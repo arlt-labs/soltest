@@ -18,4 +18,4 @@ link_directories(${CMAKE_CURRENT_BINARY_DIR}/../solidity-git/src/solidity-git-bu
 
 add_executable(heatmap ${sources} ${headers} qml.qrc)
 add_dependencies(heatmap soltesting solidity-git-build cpp-ethereum-git-build)
-target_link_libraries(heatmap soltesting Qt5::Core Qt5::Quick)
+target_link_libraries(heatmap soltesting jsoncpp Qt5::Core Qt5::Quick)

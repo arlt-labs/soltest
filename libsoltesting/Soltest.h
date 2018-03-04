@@ -22,9 +22,12 @@
 #ifndef SOLTEST_SOLTEST_H
 #define SOLTEST_SOLTEST_H
 
+#include <libsolidity/interface/CompilerStack.h>
+
 #include <string>
 #include <set>
 #include <map>
+#include <memory>
 
 namespace soltest
 {
@@ -32,21 +35,88 @@ namespace soltest
 class Soltest
 {
 public:
+	struct Error
+	{
+		typedef typename std::shared_ptr<Error> Ptr;
+		std::string file;
+		size_t line;
+		std::string what;
+	};
+
+	typedef std::map<std::string, std::map<dev::solidity::Error::Type, dev::solidity::ErrorList>> CompilerErrors;
+	typedef std::map<dev::solidity::Error::Type, std::vector<Error::Ptr>> SoltestErrors;
+
 	Soltest();
 
 	bool parseCommandLineArgumentss(int argc, char **argv);
 
-	bool addSolidityFile(std::string const& solidityFile);
-	bool addSoltestFile(std::string const& soltestFile);
+	bool addSolidityFile(std::string const &solidityFile);
+	bool addSoltestFile(std::string const &soltestFile);
 
 	void searchSoltestFiles();
 
+	bool loadContracts();
+
+	bool loadTestcases();
+
+	CompilerErrors const &compilerErrors() const
+	{
+		return m_compilerErrors;
+	}
+
+	SoltestErrors const &soltestErrors() const
+	{
+		return m_soltestErrors;
+	}
+
+	std::function<const dev::solidity::Scanner &(const std::string &)> scannerFromSourceName() const
+	{
+		return m_scannerFromSourceName;
+	}
+
+	std::set<std::string> const &contracts() const
+	{
+		return m_contracts;
+	}
+
+	std::set<std::string> const &soltestFiles() const
+	{
+		return m_soltestFiles;
+	}
+
+	std::set<std::string> const &solidityFiles() const
+	{
+		return m_solidityFiles;
+	}
+
+	std::map<std::string, std::map<std::string, std::string>> const &soltests() const
+	{
+		return m_soltests;
+	};
+
+	size_t soltestLine(std::string const &soltestFile, std::string const &testcase)
+	{
+		return m_soltestsLine[soltestFile][testcase];
+	}
+
 private:
+	void preloadContracts();
+
 	std::map<std::string, std::string> m_options;
 
 	std::string m_ipcpath;
 	std::set<std::string> m_solidityFiles;
 	std::set<std::string> m_soltestFiles;
+	std::set<std::string> m_contracts;
+
+	std::map<std::string, std::map<std::string, std::string>> m_soltests;
+	std::map<std::string, std::map<std::string, size_t>> m_soltestsLine;
+
+	dev::solidity::CompilerStack m_compilerStack;
+	std::function<const dev::solidity::Scanner &(const std::string &)> m_scannerFromSourceName;
+
+	CompilerErrors m_compilerErrors;
+	SoltestErrors m_soltestErrors;
 };
 
 } // namespace soltest

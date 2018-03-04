@@ -38,20 +38,24 @@
 using namespace boost::unit_test;
 
 #include <libsoltesting/Soltest.h>
+#include <soltest/BuildInfo.h>
+#include <soltest/TestSuiteGenerator.h>
 
 test_suite *init_unit_test_suite(int argc, char *argv[])
 {
-	(void) argc;
-	(void) argv;
-
 	static soltest::Soltest soltest;
 
-	BOOST_TEST_MESSAGE("soltest v");
+	BOOST_TEST_MESSAGE("soltest v"
+						   ETH_PROJECT_VERSION);
+	BOOST_TEST_MESSAGE("By Alexander Arlt <alexander.arlt@arlt-labs.com>, 2018.");
 
 	if (soltest.parseCommandLineArgumentss(argc, argv))
 	{
 		master_test_suite_t &master = framework::master_test_suite();
 		master.p_name.value = "soltest";
+
+		static soltest::TestSuiteGenerator testSuiteGenerator(soltest, master);
+		testSuiteGenerator.addTestsToTestSuite();
 	}
 
 	return nullptr;

@@ -13,6 +13,7 @@ project(soltest VERSION ${PROJECT_VERSION})
 
 # Let's find our dependencies
 include(EthDependencies)
+include(jsoncpp)
 
 # Figure out what compiler and system are we using
 include(EthCompilerSettings)
@@ -55,26 +56,23 @@ ExternalProject_Add(cpp-ethereum-git
 		-DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
 		-DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
 		-DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
-		#INSTALL_COMMAND  cmake -E echo "Skipping install step."
 		STEP_TARGETS build
 		EXCLUDE_FROM_ALL TRUE
 		)
 
-set (CMAKE_PREFIX_PATH "/Users/alex/Qt/5.10.1/clang_64")
+set(CMAKE_PREFIX_PATH "/Users/alex/Qt/5.10.1/clang_64")
 
 include_directories(${CMAKE_BINARY_DIR}/solidity-git/src/solidity-git)
 include_directories(${CMAKE_BINARY_DIR}/solidity-git/src/solidity-git-build/deps/include)
 
 add_subdirectory(libsoltesting)
 
-
-
 if (TOOLS)
 	add_subdirectory(heatmap)
-endif()
+endif ()
 
 if (TESTS)
 	add_subdirectory(test)
-endif()
+endif ()
 
 add_subdirectory(soltest)
