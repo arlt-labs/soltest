@@ -50,7 +50,12 @@ public:
 
 	bool parseCommandLineArgumentss(int argc, char **argv);
 
+	void addSolidityFile(std::string const &solidityFile, std::string const &solidityFileContent);
+
 	bool addSolidityFile(std::string const &solidityFile);
+
+	void addSoltestFile(std::string const &soltestFile, std::string const &soltestFileContent);
+
 	bool addSoltestFile(std::string const &soltestFile);
 
 	void searchSoltestFiles();
@@ -79,16 +84,6 @@ public:
 		return m_contracts;
 	}
 
-	std::set<std::string> const &soltestFiles() const
-	{
-		return m_soltestFiles;
-	}
-
-	std::set<std::string> const &solidityFiles() const
-	{
-		return m_solidityFiles;
-	}
-
 	std::map<std::string, std::map<std::string, std::string>> const &soltests() const
 	{
 		return m_soltests;
@@ -105,9 +100,10 @@ private:
 	std::map<std::string, std::string> m_options;
 
 	std::string m_ipcpath;
-	std::set<std::string> m_solidityFiles;
-	std::set<std::string> m_soltestFiles;
 	std::set<std::string> m_contracts;
+
+	std::map<std::string, std::string> m_solidityContents;
+	std::map<std::string, std::string> m_soltestContents;
 
 	std::map<std::string, std::map<std::string, std::string>> m_soltests;
 	std::map<std::string, std::map<std::string, size_t>> m_soltestsLine;

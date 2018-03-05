@@ -62,7 +62,7 @@ bool TestSuiteGenerator::addTestsToTestSuite()
 			strings.emplace_back(filename_ptr);
 
 			std::stringstream testcase_name;
-			testcase_name << "run testcase " << testcase.first;
+			testcase_name << testcase.first;
 			std::shared_ptr<std::string> testcase_name_ptr(new std::string(testcase_name.str()));
 			strings.emplace_back(testcase_name_ptr);
 
@@ -84,8 +84,6 @@ void TestSuiteGenerator::loadContracts(bool loadContractsResult, bool loadTestca
 	std::set<std::string> errorSet;
 
 	std::stringstream stream;
-	stream << "    Found " << m_soltest.contracts().size() << " contracts in " << m_soltest.solidityFiles().size()
-		   << " solidity files.";
 	BOOST_TEST_MESSAGE(stream.str());
 
 	for (auto &errors : m_soltest.compilerErrors())

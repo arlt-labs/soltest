@@ -21,6 +21,7 @@
 
 #include "Soltest.h"
 
+#include <libdevcore/JSON.h>
 #include <boost/test/unit_test.hpp>
 #include <boost/filesystem.hpp>
 
@@ -68,19 +69,15 @@ bool Soltest::parseCommandLineArgumentss(int argc, char **argv)
 	}
 	preloadContracts();
 	searchSoltestFiles();
-	return !m_solidityFiles.empty();
+	return !m_solidityContents.empty();
 }
 
 void Soltest::preloadContracts()
 {
 	dev::solidity::CompilerStack compilerStack;
-	for (auto &contract : m_solidityFiles)
+	for (auto &solidityContent : m_solidityContents)
 	{
-		std::ifstream file(contract);
-		std::stringstream content;
-		content << file.rdbuf();
-
-		compilerStack.addSource(contract, content.str());
+		compilerStack.addSource(solidityContent.first, solidityContent.second);
 		compilerStack.parseAndAnalyze();
 	}
 	for (auto &contract : compilerStack.contractNames())
@@ -89,9 +86,9 @@ void Soltest::preloadContracts()
 
 void Soltest::searchSoltestFiles()
 {
-	for (auto &solidityFile : m_solidityFiles)
+	for (auto &solidityContent : m_solidityContents)
 	{
-		std::string soltestFile = boost::filesystem::path(solidityFile).string() + "test";
+		std::string soltestFile = boost::filesystem::path(solidityContent.first).string() + "test";
 		if (boost::filesystem::exists(soltestFile))
 			addSoltestFile(soltestFile);
 	}
@@ -115,7 +112,11 @@ bool Soltest::addSolidityFile(std::string const &solidityFile)
 {
 	if (boost::filesystem::exists(solidityFile))
 	{
-		m_solidityFiles.insert(solidityFile);
+		std::ifstream file(solidityFile);
+		std::stringstream content;
+		content << file.rdbuf();
+
+		addSolidityFile(solidityFile, content.str());
 		return true;
 	}
 	return false;
@@ -125,27 +126,37 @@ bool Soltest::addSoltestFile(std::string const &soltestFile)
 {
 	if (boost::filesystem::exists(soltestFile))
 	{
-		m_soltestFiles.insert(soltestFile);
+		std::ifstream file(soltestFile);
+		std::stringstream content;
+		content << file.rdbuf();
+
+		addSoltestFile(soltestFile, content.str());
 		return true;
 	}
 	return false;
+}
+
+void Soltest::addSolidityFile(std::string const &solidityFile, std::string const &solidityFileContent)
+{
+	m_solidityContents[solidityFile] = solidityFileContent;
+}
+
+void Soltest::addSoltestFile(std::string const &soltestFile, std::string const &soltestFileContent)
+{
+	m_soltestContents[soltestFile] = soltestFileContent;
 }
 
 bool Soltest::loadContracts()
 {
 	m_compilerStack.reset();
 	dev::solidity::ErrorList errors;
-	for (auto &contract : m_solidityFiles)
+	for (auto &solidityContent : m_solidityContents)
 	{
-		std::ifstream file(contract);
-		std::stringstream content;
-		content << file.rdbuf();
-
-		m_compilerStack.addSource(contract, content.str());
+		m_compilerStack.addSource(solidityContent.first, solidityContent.second);
 		m_compilerStack.parseAndAnalyze();
 		for (auto const &error: m_compilerStack.errors())
 		{
-			m_compilerErrors[contract][error->type()].push_back(error);
+			m_compilerErrors[solidityContent.first][error->type()].push_back(error);
 			if (error->type() != dev::solidity::Error::Type::Warning)
 				errors.push_back(error);
 		}
@@ -159,14 +170,14 @@ bool Soltest::loadTestcases()
 	m_soltestsLine.clear();
 
 	bool success = true;
-	for (auto &soltest : m_soltestFiles)
+	for (auto &soltestContent : m_soltestContents)
 	{
-		std::ifstream file(soltest);
+		std::stringstream content(soltestContent.second);
 		std::string section;
 		uint32_t lineCounter(1);
 		std::map<std::string, uint32_t> lines;
 		std::map<std::string, std::stringstream> sections;
-		for (std::string line; getline(file, line);)
+		for (std::string line; getline(content, line);)
 		{
 			std::string trimmed(line);
 			boost::trim(trimmed);
@@ -182,7 +193,7 @@ bool Soltest::loadTestcases()
 					{
 						success = false;
 						Error::Ptr error = std::make_shared<Error>();
-						error->file = soltest;
+						error->file = soltestContent.first;
 						error->line = lineCounter;
 						std::stringstream message;
 						message << "Redefinition of test-case '" << section << "'. "
@@ -202,9 +213,16 @@ bool Soltest::loadTestcases()
 			++lineCounter;
 		}
 		for (auto &currentSection : sections)
-			m_soltests[soltest][currentSection.first] = currentSection.second.str();
+			m_soltests[soltestContent.first][currentSection.first] = currentSection.second.str();
 		for (auto &currentLine : lines)
-			m_soltestsLine[soltest][currentLine.first] = currentLine.second;
+			m_soltestsLine[soltestContent.first][currentLine.first] = currentLine.second;
+	}
+	for (auto &contract : m_contracts)
+	{
+		Json::Value dev = m_compilerStack.natspecDev(contract);
+		std::cout << dev::jsonPrettyPrint(dev) << std::endl;
+		Json::Value external = m_compilerStack.natspecExternal(contract);
+		std::cout << dev::jsonPrettyPrint(external) << std::endl;
 	}
 	return success;
 }
