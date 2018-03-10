@@ -24,6 +24,8 @@
 
 #include "StaticFileRequestHandler.h"
 
+#include "SetCompilationDataHandler.h"
+
 #include <Poco/Net/HTTPRequestHandlerFactory.h>
 #include <Poco/Net/HTTPServerRequest.h>
 
@@ -41,6 +43,8 @@ public:
 			return new StaticFileRequestHandler("/Users/alex/git/soltest/remix-plugin/files/index.html");
 		else if (request.getURI() == "/remix.js")
 			return new StaticFileRequestHandler("/Users/alex/git/soltest/remix-plugin/files/remix.js");
+		else if (request.getURI() == "/setCompilationData")
+			return new SetCompilationDataHandler();
 		else
 			return nullptr;
 	}

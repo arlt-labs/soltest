@@ -46,12 +46,14 @@ public:
 		std::string what;
 	};
 
-	typedef std::map<std::string, std::map<dev::solidity::Error::Type, dev::solidity::ErrorList>> CompilerErrors;
+	typedef std::map<dev::solidity::Error::Type, dev::solidity::ErrorList> CompilerErrors;
 	typedef std::map<dev::solidity::Error::Type, std::vector<Error::Ptr>> SoltestErrors;
 
 	Soltest();
 
 	bool parseCommandLineArguments(int argc, char **argv);
+
+	bool initialize();
 
 	void addSolidityFile(std::string const &solidityFile, std::string const &solidityFileContent);
 

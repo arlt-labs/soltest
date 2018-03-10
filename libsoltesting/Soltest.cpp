@@ -36,7 +36,7 @@ Soltest::Soltest()
 	m_scannerFromSourceName =
 		[&](std::string const &_sourceName) -> dev::solidity::Scanner const &
 		{
-			if (boost::ends_with(_sourceName, ".test.sol"))
+			if (boost::ends_with(_sourceName, ".test.sol") || boost::ends_with(_sourceName, "Soltest.sol"))
 				return m_testCompiler.scanner(_sourceName);
 			else
 				return m_compiler.scanner(_sourceName);
@@ -71,13 +71,17 @@ bool Soltest::parseCommandLineArguments(int argc, char **argv)
 					addSolidityFile(contractFile);
 			}
 	}
-	addSolidityFile(
-		boost::filesystem::current_path().string() + boost::filesystem::path::preferred_separator + "Soltest.sol",
-		m_environment.contracts());
+	addSolidityFile("Soltest.sol", m_environment.contracts());
+	return initialize();
+}
+
+bool Soltest::initialize()
+{
 	preloadContracts();
 	searchSoltestFiles();
 	return !m_solidityContents.empty() || !m_solidityTestContents.empty();
 }
+
 
 void Soltest::preloadContracts()
 {
@@ -168,8 +172,8 @@ void Soltest::addSolidityFile(std::string const &solidityFile, std::string const
 	boost::replace_first(relative,
 						 boost::filesystem::current_path().string() + boost::filesystem::path::preferred_separator,
 						 "");
-	if (solidityFile == "Soltest.sol")
-		m_solidityTestContents["Soltest.sol"] = solidityFileContent;
+	if (boost::ends_with(solidityFile, "Soltest.sol"))
+		m_solidityTestContents[solidityFile] = solidityFileContent;
 	else if (boost::ends_with(relative, ".test.sol"))
 		m_solidityTestContents[relative] = solidityFileContent;
 	else
@@ -194,28 +198,24 @@ bool Soltest::loadContracts()
 
 	m_compiler.reset();
 	for (auto &solidityContent : m_solidityContents)
-	{
 		m_compiler.addSource(solidityContent.first, solidityContent.second);
-		m_compiler.parseAndAnalyze();
-		for (auto const &error: m_compiler.errors())
-		{
-			m_compilerErrors[solidityContent.first][error->type()].push_back(error);
-			if (error->type() != dev::solidity::Error::Type::Warning)
-				errors.push_back(error);
-		}
+	m_compiler.parseAndAnalyze();
+	for (auto const &error: m_compiler.errors())
+	{
+		m_compilerErrors[error->type()].push_back(error);
+		if (error->type() != dev::solidity::Error::Type::Warning)
+			errors.push_back(error);
 	}
 
 	m_testCompiler.reset();
 	for (auto &solidityContent : m_solidityTestContents)
-	{
 		m_testCompiler.addSource(solidityContent.first, solidityContent.second);
-		m_testCompiler.parseAndAnalyze();
-		for (auto const &error: m_testCompiler.errors())
-		{
-			m_compilerErrors[solidityContent.first][error->type()].push_back(error);
-			if (error->type() != dev::solidity::Error::Type::Warning)
-				errors.push_back(error);
-		}
+	m_testCompiler.parseAndAnalyze();
+	for (auto const &error: m_testCompiler.errors())
+	{
+		m_compilerErrors[error->type()].push_back(error);
+		if (error->type() != dev::solidity::Error::Type::Warning)
+			errors.push_back(error);
 	}
 	// todo: generate test environment contracts, compile them & finally check for errors
 	return errors.empty();
@@ -258,6 +258,7 @@ bool Soltest::loadTestcases()
 		success &= components.size() == 2;
 		if (!success)
 			break;
+		std::cout << components[0] << std::endl;
 		SolidityExtractor extractor(m_testCompiler.ast(components[0]),
 									components[0],
 									m_solidityTestContents[components[0]],

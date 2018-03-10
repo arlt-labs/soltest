@@ -87,18 +87,17 @@ void TestSuiteGenerator::loadContracts(bool loadContractsResult, bool loadTestca
 	BOOST_TEST_MESSAGE(stream.str());
 
 	for (auto &errors : m_soltest.compilerErrors())
-		for (auto &e : errors.second)
-			if (e.first == dev::solidity::Error::Type::Warning)
-				for (auto &em : e.second)
-				{
-					auto const &err = dynamic_cast<dev::solidity::Error const &>(*em);
-					std::string
-						formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
-						*em, err.typeName(), m_soltest.scannerFromSourceName()
-					);
-					boost::replace_all(formattedMessage, "\n", "\n    ");
-					warningSet.insert(formattedMessage);
-				}
+		if (errors.first == dev::solidity::Error::Type::Warning)
+			for (auto &em : errors.second)
+			{
+				auto const &err = dynamic_cast<dev::solidity::Error const &>(*em);
+				std::string
+					formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
+					*em, err.typeName(), m_soltest.scannerFromSourceName()
+				);
+				boost::replace_all(formattedMessage, "\n", "\n    ");
+				warningSet.insert(formattedMessage);
+			}
 	stream.str("");
 	stream << "\n    ";
 	for (auto &warning : warningSet)
@@ -106,18 +105,17 @@ void TestSuiteGenerator::loadContracts(bool loadContractsResult, bool loadTestca
 	BOOST_TEST_MESSAGE(stream.str().c_str());
 
 	for (auto &errors : m_soltest.compilerErrors())
-		for (auto &e : errors.second)
-			if (e.first != dev::solidity::Error::Type::Warning)
-				for (auto &em : e.second)
-				{
-					auto const &err = dynamic_cast<dev::solidity::Error const &>(*em);
-					std::string
-						formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
-						*em, err.typeName(), m_soltest.scannerFromSourceName()
-					);
-					boost::replace_all(formattedMessage, "\n", "\n    ");
-					errorSet.insert(formattedMessage);
-				}
+		if (errors.first != dev::solidity::Error::Type::Warning)
+			for (auto &em : errors.second)
+			{
+				auto const &err = dynamic_cast<dev::solidity::Error const &>(*em);
+				std::string
+					formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
+					*em, err.typeName(), m_soltest.scannerFromSourceName()
+				);
+				boost::replace_all(formattedMessage, "\n", "\n    ");
+				errorSet.insert(formattedMessage);
+			}
 	stream.str("");
 	stream << "\n    ";
 	for (auto &error: errorSet)
