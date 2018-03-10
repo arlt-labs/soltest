@@ -41,15 +41,16 @@ using namespace boost::unit_test;
 #include <soltest/BuildInfo.h>
 #include <soltest/TestSuiteGenerator.h>
 
+#include <iostream>
+
 test_suite *init_unit_test_suite(int argc, char *argv[])
 {
 	static soltest::Soltest soltest;
 
-	BOOST_TEST_MESSAGE("soltest v"
-						   ETH_PROJECT_VERSION);
-	BOOST_TEST_MESSAGE("By Alexander Arlt <alexander.arlt@arlt-labs.com>, 2018.");
+	std::cout << "soltest v" << ETH_PROJECT_VERSION << std::endl;
+	std::cout << "By Alexander Arlt <alexander.arlt@arlt-labs.com>, 2018." << std::endl << std::endl;
 
-	if (soltest.parseCommandLineArgumentss(argc, argv))
+	if (soltest.parseCommandLineArguments(argc, argv))
 	{
 		master_test_suite_t &master = framework::master_test_suite();
 		master.p_name.value = "soltest";

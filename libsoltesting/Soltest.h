@@ -22,12 +22,15 @@
 #ifndef SOLTEST_SOLTEST_H
 #define SOLTEST_SOLTEST_H
 
+#include <libsoltesting/Environment.h>
+
 #include <libsolidity/interface/CompilerStack.h>
 
 #include <string>
 #include <set>
 #include <map>
 #include <memory>
+#include "SolidityExtractor.h"
 
 namespace soltest
 {
@@ -48,7 +51,7 @@ public:
 
 	Soltest();
 
-	bool parseCommandLineArgumentss(int argc, char **argv);
+	bool parseCommandLineArguments(int argc, char **argv);
 
 	void addSolidityFile(std::string const &solidityFile, std::string const &solidityFileContent);
 
@@ -97,22 +100,30 @@ public:
 private:
 	void preloadContracts();
 
+	bool parseSoltest(uint32_t _line, std::string const& _filename, std::string const &_content);
+	void parseSoltest(SolidityExtractor& _extractor);
+
 	std::map<std::string, std::string> m_options;
 
 	std::string m_ipcpath;
 	std::set<std::string> m_contracts;
+	std::set<std::string> m_testContracts;
 
-	std::map<std::string, std::string> m_solidityContents;
-	std::map<std::string, std::string> m_soltestContents;
+	std::map<std::string, std::string> m_solidityContents;		///< for .sol files
+	std::map<std::string, std::string> m_solidityTestContents;	///< for .test.sol files
+	std::map<std::string, std::string> m_soltestContents;		///< for .soltest files
 
 	std::map<std::string, std::map<std::string, std::string>> m_soltests;
 	std::map<std::string, std::map<std::string, size_t>> m_soltestsLine;
 
-	dev::solidity::CompilerStack m_compilerStack;
+	dev::solidity::CompilerStack m_compiler;
+	dev::solidity::CompilerStack m_testCompiler;
 	std::function<const dev::solidity::Scanner &(const std::string &)> m_scannerFromSourceName;
 
 	CompilerErrors m_compilerErrors;
 	SoltestErrors m_soltestErrors;
+
+	soltest::Environment m_environment;
 };
 
 } // namespace soltest

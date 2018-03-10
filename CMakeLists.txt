@@ -37,7 +37,7 @@ include(ExternalProject)
 ExternalProject_Add(solidity-git
 		PREFIX ${CMAKE_CURRENT_BINARY_DIR}/solidity-git
 		GIT_REPOSITORY git@github.com:aarlt/solidity.git
-		GIT_TAG b7400abfc85ad812e89ef86ece71cd9f5dcd37af # GIT_TAG external_natspec
+		GIT_TAG 4a692dbc53e350fe4d65f8042e7392f049d65c40 # GIT_TAG external_natspec
 		CMAKE_ARGS -DTESTS=OFF -DTOOLS=OFF
 		-DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
 		-DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
@@ -62,6 +62,7 @@ ExternalProject_Add(cpp-ethereum-git
 
 set(CMAKE_PREFIX_PATH "/Users/alex/Qt/5.10.1/clang_64")
 
+include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_BINARY_DIR}/solidity-git/src/solidity-git)
 include_directories(${CMAKE_BINARY_DIR}/solidity-git/src/solidity-git-build/deps/include)
 

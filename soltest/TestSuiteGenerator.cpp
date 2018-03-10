@@ -1,12 +1,12 @@
 /*
-	This file is part of solidity.
+	This file is part of soltest.
 
-	solidity is free software: you can redistribute it and/or modify
+	soltest is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
 
-	solidity is distributed in the hope that it will be useful,
+	soltest is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
@@ -142,9 +142,10 @@ void TestSuiteGenerator::loadContracts(bool loadContractsResult, bool loadTestca
 
 void TestSuiteGenerator::runTestcase(std::string const &soltestFile, std::string const &testcase)
 {
-	(void) soltestFile;
-	(void) testcase;
 	BOOST_REQUIRE(true);
+	std::map<std::string, std::map<std::string, std::string>> soltests = m_soltest.soltests();
+	std::cout << soltestFile << " - " << testcase << std::endl;
+	std::cout << soltests[soltestFile][testcase] << std::endl;
 }
 
 } // namespace soltest
