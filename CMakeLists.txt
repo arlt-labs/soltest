@@ -70,6 +70,7 @@ add_subdirectory(libsoltesting)
 
 if (TOOLS)
 	add_subdirectory(heatmap)
+	add_subdirectory(remix-plugin)
 endif ()
 
 if (TESTS)
