@@ -82,7 +82,6 @@ bool Soltest::initialize()
 	return !m_solidityContents.empty() || !m_solidityTestContents.empty();
 }
 
-
 void Soltest::preloadContracts()
 {
 	dev::solidity::ErrorList testCompilerErrors;
@@ -134,6 +133,8 @@ void Soltest::searchSoltestFiles()
 										+ boost::filesystem::path::preferred_separator + contractName + ".soltest");
 			if (boost::filesystem::exists(soltestFile))
 				addSoltestFile(soltestFile);
+			else if (soltestFile.length() > 1 && boost::filesystem::exists(soltestFile.substr(1)))
+				addSoltestFile(soltestFile.substr(1));
 		}
 	}
 }
@@ -258,7 +259,6 @@ bool Soltest::loadTestcases()
 		success &= components.size() == 2;
 		if (!success)
 			break;
-		std::cout << components[0] << std::endl;
 		SolidityExtractor extractor(m_testCompiler.ast(components[0]),
 									components[0],
 									m_solidityTestContents[components[0]],
@@ -268,7 +268,7 @@ bool Soltest::loadTestcases()
 	return success;
 }
 
-void Soltest::parseSoltest(SolidityExtractor&_extractor)
+void Soltest::parseSoltest(SolidityExtractor &_extractor)
 {
 	std::map<std::string, std::string> testcases = _extractor.testcases();
 	for (auto &testcase : testcases)
