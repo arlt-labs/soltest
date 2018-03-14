@@ -61,6 +61,8 @@ bool Soltest::parseCommandLineArguments(int argc, char **argv)
 		else if (boost::starts_with(argument, "-"))
 			m_options[argument] = "yes";
 		else if (boost::filesystem::exists(absolutePath))
+			if (boost::filesystem::extension(absolutePath) == ".abi")
+				addAbiFile(absolutePath);
 			if (boost::filesystem::extension(absolutePath) == ".sol")
 				addSolidityFile(absolutePath);
 			else if (boost::filesystem::extension(absolutePath) == ".soltest")
@@ -153,20 +155,6 @@ bool Soltest::addSolidityFile(std::string const &solidityFile)
 	return false;
 }
 
-bool Soltest::addSoltestFile(std::string const &soltestFile)
-{
-	if (boost::filesystem::exists(soltestFile))
-	{
-		std::ifstream file(soltestFile);
-		std::stringstream content;
-		content << file.rdbuf();
-
-		addSoltestFile(soltestFile, content.str());
-		return true;
-	}
-	return false;
-}
-
 void Soltest::addSolidityFile(std::string const &solidityFile, std::string const &solidityFileContent)
 {
 	std::string relative(solidityFile);
@@ -184,6 +172,20 @@ void Soltest::addSolidityFile(std::string const &solidityFile, std::string const
 	}
 }
 
+bool Soltest::addSoltestFile(std::string const &soltestFile)
+{
+	if (boost::filesystem::exists(soltestFile))
+	{
+		std::ifstream file(soltestFile);
+		std::stringstream content;
+		content << file.rdbuf();
+
+		addSoltestFile(soltestFile, content.str());
+		return true;
+	}
+	return false;
+}
+
 void Soltest::addSoltestFile(std::string const &soltestFile, std::string const &soltestFileContent)
 {
 	std::string relative(soltestFile);
@@ -191,6 +193,50 @@ void Soltest::addSoltestFile(std::string const &soltestFile, std::string const &
 						 boost::filesystem::current_path().string() + boost::filesystem::path::preferred_separator,
 						 "");
 	m_soltestContents[relative] = soltestFileContent;
+}
+
+bool Soltest::addAbiFile(std::string const &abiFile)
+{
+	std::string binFile(abiFile);
+	boost::replace_last(binFile, ".abi", ".bin");
+	if (boost::filesystem::exists(abiFile))
+		if (boost::filesystem::exists(binFile))
+		{
+			std::ifstream abiFileStream(abiFile);
+			std::stringstream abiFileContent;
+			abiFileContent << abiFileStream.rdbuf();
+
+			std::ifstream binFileStream(binFile);
+			std::stringstream binFileContent;
+			binFileContent << binFileStream.rdbuf();
+
+			addAbiFile(abiFile, abiFileContent.str(), binFileContent.str());
+
+			return true;
+		} else {
+			Error::Ptr error = std::make_shared<Error>();
+			error->file = abiFile;
+			error->line = 0;
+			std::stringstream message;
+			message << "Binary file " << binFile << " was not found.";
+			error->what = message.str();
+			m_soltestErrors[dev::solidity::Error::Type::DeclarationError].push_back(error);
+		}
+	return false;
+}
+
+void Soltest::addAbiFile(std::string const &abiFile,
+						 std::string const &abiFileContent,
+						 std::string const &binFileContent)
+{
+	std::string relative(abiFile);
+	boost::replace_first(relative,
+						 boost::filesystem::current_path().string() + boost::filesystem::path::preferred_separator,
+						 "");
+	std::pair<std::string, std::string> abiBinaryPair;
+	abiBinaryPair.first = abiFileContent;
+	abiBinaryPair.second = binFileContent;
+	m_abiContents[relative] = abiBinaryPair;
 }
 
 bool Soltest::loadContracts()

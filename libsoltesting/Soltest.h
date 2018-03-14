@@ -63,6 +63,10 @@ public:
 
 	bool addSoltestFile(std::string const &soltestFile);
 
+	bool addAbiFile(std::string const &abiFile);
+
+	void addAbiFile(std::string const &abiFile, std::string const &abiFileContent, std::string const &binFileContent);
+
 	void searchSoltestFiles();
 
 	bool loadContracts();
@@ -102,8 +106,9 @@ public:
 private:
 	void preloadContracts();
 
-	bool parseSoltest(uint32_t _line, std::string const& _filename, std::string const &_content);
-	void parseSoltest(SolidityExtractor& _extractor);
+	bool parseSoltest(uint32_t _line, std::string const &_filename, std::string const &_content);
+
+	void parseSoltest(SolidityExtractor &_extractor);
 
 	std::map<std::string, std::string> m_options;
 
@@ -111,9 +116,10 @@ private:
 	std::set<std::string> m_contracts;
 	std::set<std::string> m_testContracts;
 
-	std::map<std::string, std::string> m_solidityContents;		///< for .sol files
-	std::map<std::string, std::string> m_solidityTestContents;	///< for .test.sol files
-	std::map<std::string, std::string> m_soltestContents;		///< for .soltest files
+	std::map<std::string, std::string> m_solidityContents;                        ///< for .sol files
+	std::map<std::string, std::string> m_solidityTestContents;                    ///< for .test.sol files
+	std::map<std::string, std::string> m_soltestContents;                        ///< for .soltest files
+	std::map<std::string, std::pair<std::string, std::string>> m_abiContents;    ///< for .abi + .bin files
 
 	std::map<std::string, std::map<std::string, std::string>> m_soltests;
 	std::map<std::string, std::map<std::string, size_t>> m_soltestsLine;

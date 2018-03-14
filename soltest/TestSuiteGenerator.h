@@ -35,7 +35,7 @@ public:
 
 	bool addTestsToTestSuite();
 
-	void loadContracts(bool loadContractsResult, bool loadTestcasesResult);
+	void checkForWarningsAndErrors(bool loadContractsResult, bool loadTestcasesResult, bool printToCerr);
 
 	void runTestcase(std::string const &soltestFile, std::string const &testcase);
 
