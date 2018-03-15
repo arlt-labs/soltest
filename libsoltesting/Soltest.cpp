@@ -305,11 +305,14 @@ bool Soltest::loadTestcases()
 		success &= components.size() == 2;
 		if (!success)
 			break;
-		SolidityExtractor extractor(m_testCompiler.ast(components[0]),
-									components[0],
-									m_solidityTestContents[components[0]],
-									m_scannerFromSourceName(components[0]));
-		parseSoltest(extractor);
+		if (components[0].find(".test.sol") != std::string::npos)
+		{
+			SolidityExtractor extractor(m_testCompiler.ast(components[0]),
+										components[0],
+										m_solidityTestContents[components[0]],
+										m_scannerFromSourceName(components[0]));
+			parseSoltest(extractor);
+		}
 	}
 	return success;
 }
