@@ -10,6 +10,7 @@ link_directories(${CMAKE_CURRENT_BINARY_DIR}/../solidity-git/src/solidity-git-bu
 		${CMAKE_CURRENT_BINARY_DIR}/../solidity-git/src/solidity-git-build/libdevcore
 		${CMAKE_CURRENT_BINARY_DIR}/../cpp-ethereum-git/src/cpp-ethereum-git-build/libevmexec)
 
+add_definitions(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_NO_MAIN)
 add_executable(soltest ${sources} ${headers})
 add_dependencies(soltest soltesting solidity-git-build cpp-ethereum-git-build)
 

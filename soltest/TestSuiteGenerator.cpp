@@ -170,7 +170,8 @@ void TestSuiteGenerator::runTestcase(std::string const &soltestFile, std::string
 	BOOST_REQUIRE(true);
 	std::map<std::string, std::map<std::string, std::string>> soltests = m_soltest.soltests();
 	std::cout << soltestFile << " - " << testcase << std::endl;
-	std::cout << soltests[soltestFile][testcase] << std::endl;
+//	std::cout << soltests[soltestFile][testcase] << std::endl;
+	sleep(1);
 }
 
 } // namespace soltest

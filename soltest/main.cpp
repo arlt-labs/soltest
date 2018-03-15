@@ -28,7 +28,9 @@
 #pragma warning(push)
 #pragma warning(disable:4535) // calling _set_se_translator requires /EHa
 #endif
+
 #include <boost/test/included/unit_test.hpp>
+
 #if defined(_MSC_VER)
 #pragma warning(pop)
 #endif
@@ -43,12 +45,9 @@ using namespace boost::unit_test;
 
 #include <iostream>
 
-test_suite *init_unit_test_suite(int argc, char *argv[])
+test_suite *soltest_init_unit_test_suite(int argc, char **argv)
 {
 	static soltest::Soltest soltest;
-
-	std::cout << "soltest v" << ETH_PROJECT_VERSION << std::endl;
-	std::cout << "By Alexander Arlt <alexander.arlt@arlt-labs.com>, 2018." << std::endl << std::endl;
 
 	if (soltest.parseCommandLineArguments(argc, argv))
 	{
@@ -60,4 +59,103 @@ test_suite *init_unit_test_suite(int argc, char *argv[])
 	}
 
 	return nullptr;
+}
+
+int soltest_unit_test_main(init_unit_test_func init_func, int argc, char *argv[])
+{
+	int result_code = 0;
+
+	BOOST_TEST_I_TRY
+	{
+		framework::init(init_func, argc, argv);
+
+		if (runtime_config::get<bool>(runtime_config::btrt_wait_for_debugger))
+		{
+			results_reporter::get_stream() << "Press any key to continue..." << std::endl;
+
+			// getchar is defined as a macro in uClibc. Use parenthesis to fix
+			// gcc bug 58952 for gcc <= 4.8.2.
+			(std::getchar)();
+			results_reporter::get_stream() << "Continuing..." << std::endl;
+		}
+
+		framework::finalize_setup_phase();
+
+		output_format list_cont = runtime_config::get<output_format>(runtime_config::btrt_list_content);
+		if (list_cont != boost::unit_test::OF_INVALID)
+		{
+			if (list_cont == boost::unit_test::OF_DOT)
+			{
+				ut_detail::dot_content_reporter reporter(results_reporter::get_stream());
+
+				traverse_test_tree(framework::master_test_suite().p_id, reporter, true);
+			}
+			else
+			{
+				ut_detail::hrf_content_reporter reporter(results_reporter::get_stream());
+
+				traverse_test_tree(framework::master_test_suite().p_id, reporter, true);
+			}
+
+			return boost::exit_success;
+		}
+
+		if (runtime_config::get<bool>(runtime_config::btrt_list_labels))
+		{
+			ut_detail::labels_collector collector;
+
+			traverse_test_tree(framework::master_test_suite().p_id, collector, true);
+
+			results_reporter::get_stream() << "Available labels:\n  ";
+			std::copy(collector.labels().begin(), collector.labels().end(),
+					  std::ostream_iterator<std::string>(results_reporter::get_stream(), "\n  "));
+			results_reporter::get_stream() << "\n";
+
+			return boost::exit_success;
+		}
+
+		framework::run();
+
+		results_reporter::make_report();
+
+		result_code = !runtime_config::get<bool>(runtime_config::btrt_result_code)
+					  ? boost::exit_success
+					  : results_collector.results(framework::master_test_suite().p_id).result_code();
+	}
+	BOOST_TEST_I_CATCH(framework::nothing_to_test, ex)
+	{
+		result_code = ex.m_result_code;
+	}
+	BOOST_TEST_I_CATCH(framework::internal_error, ex)
+	{
+		results_reporter::get_stream() << "Boost.Test framework internal error: " << ex.what() << std::endl;
+
+		result_code = boost::exit_exception_failure;
+	}
+	BOOST_TEST_I_CATCH(framework::setup_error, ex)
+	{
+		results_reporter::get_stream() << "Test setup error: " << ex.what() << std::endl;
+
+		result_code = boost::exit_exception_failure;
+	}
+	BOOST_TEST_I_CATCHALL()
+	{
+		results_reporter::get_stream() << "Boost.Test framework internal error: unknown reason" << std::endl;
+
+		result_code = boost::exit_exception_failure;
+	}
+
+	framework::shutdown();
+
+	return result_code;
+}
+
+int main(int argc, char *argv[])
+{
+	std::cout << "soltest v" << ETH_PROJECT_VERSION << std::endl;
+	std::cout << "By Alexander Arlt <alexander.arlt@arlt-labs.com>, 2018." << std::endl << std::endl;
+
+	boost::unit_test::init_unit_test_func init_func = &soltest_init_unit_test_suite;
+
+	return soltest_unit_test_main(init_func, argc, argv);
 }
