@@ -61,7 +61,8 @@ bool TestSuiteGenerator::addTestsToTestSuite()
 			for (auto const &testcase: soltestFile.second)
 			{
 				auto
-					runTestcases = std::bind(&TestSuiteGenerator::runTestcase, this, soltestFile.first, testcase.first);
+					runTestcases =
+					std::bind(&TestSuiteGenerator::startTestcase, this, soltestFile.first, testcase.first);
 				size_t line(m_soltest.soltestLine(soltestFile.first, testcase.first));
 
 				// tests are executed asynchronously, we need a valid reference to the dynamically created string,
@@ -165,13 +166,43 @@ void TestSuiteGenerator::checkForWarningsAndErrors(bool loadContractsResult,
 		BOOST_REQUIRE_MESSAGE(loadTestcasesResult, stream.str().c_str());
 }
 
-void TestSuiteGenerator::runTestcase(std::string const &soltestFile, std::string const &testcase)
+void TestSuiteGenerator::startTestcase(std::string const &soltestFile, std::string const &testcase)
 {
+	(void) soltestFile;
+	(void) testcase;
 	BOOST_REQUIRE(true);
-	std::map<std::string, std::map<std::string, std::string>> soltests = m_soltest.soltests();
-	std::cout << soltestFile << " - " << testcase << std::endl;
-//	std::cout << soltests[soltestFile][testcase] << std::endl;
-	sleep(1);
+	if (m_threads.find(soltestFile + ":" + testcase) == m_threads.end())
+	{
+		// first run: spawn test execution threads
+		std::shared_ptr<std::thread> thread(
+			new std::thread(
+				[=]()
+				{
+					/*
+					std::map<std::string, std::map<std::string, std::string>>
+						soltests = m_soltest.soltests();
+					std::cout << soltestFile << " - " << testcase << std::endl;
+					std::cout << soltests[soltestFile][testcase] << std::endl;
+					 */
+					sleep(10);
+				}
+			)
+		);
+		m_threads[soltestFile + ":" + testcase] = thread;
+	}
+	else
+	{
+		// second run: collect results & create errors, if there where some
+		BOOST_REQUIRE(true);
+	}
+}
+
+void TestSuiteGenerator::join()
+{
+	for (auto &thread : m_threads)
+	{
+		thread.second->join();
+	}
 }
 
 } // namespace soltest

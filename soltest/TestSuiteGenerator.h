@@ -24,6 +24,8 @@
 
 #include <libsoltesting/Soltest.h>
 #include <boost/test/tree/test_unit.hpp>
+#include <thread>
+#include <memory>
 
 namespace soltest
 {
@@ -37,9 +39,12 @@ public:
 
 	void checkForWarningsAndErrors(bool loadContractsResult, bool loadTestcasesResult, bool printToCerr);
 
-	void runTestcase(std::string const &soltestFile, std::string const &testcase);
+	void startTestcase(std::string const &soltestFile, std::string const &testcase);
+
+	void join();
 
 private:
+	std::map<std::string, std::shared_ptr<std::thread>> m_threads;
 	soltest::Soltest &m_soltest;
 	boost::unit_test::master_test_suite_t &m_masterTestSuite;
 };

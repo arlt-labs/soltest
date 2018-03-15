@@ -30,6 +30,7 @@
 #endif
 
 #include <boost/test/included/unit_test.hpp>
+#include <boost/test/utils/runtime/cla/parser.hpp>
 
 #if defined(_MSC_VER)
 #pragma warning(pop)
@@ -45,9 +46,13 @@ using namespace boost::unit_test;
 
 #include <iostream>
 
+static soltest::Soltest *g_soltest;
+static soltest::TestSuiteGenerator *g_testSuiteGenerator;
+
 test_suite *soltest_init_unit_test_suite(int argc, char **argv)
 {
 	static soltest::Soltest soltest;
+	g_soltest = &soltest;
 
 	if (soltest.parseCommandLineArguments(argc, argv))
 	{
@@ -55,11 +60,26 @@ test_suite *soltest_init_unit_test_suite(int argc, char **argv)
 		master.p_name.value = "soltest";
 
 		static soltest::TestSuiteGenerator testSuiteGenerator(soltest, master);
+		g_testSuiteGenerator = &testSuiteGenerator;
+
 		testSuiteGenerator.addTestsToTestSuite();
 	}
 
 	return nullptr;
 }
+
+struct test_collector : test_tree_visitor
+{
+private:
+	virtual bool visit(test_unit const &tu)
+	{
+		(void) tu;
+		return true;
+	}
+
+	// Data members
+	std::set<std::string> m_labels;
+};
 
 int soltest_unit_test_main(init_unit_test_func init_func, int argc, char *argv[])
 {
@@ -114,6 +134,11 @@ int soltest_unit_test_main(init_unit_test_func init_func, int argc, char *argv[]
 			return boost::exit_success;
 		}
 
+		// test_collector collector;
+		// traverse_test_tree(framework::master_test_suite().p_id, collector, true);
+
+		framework::run();
+		g_testSuiteGenerator->join();
 		framework::run();
 
 		results_reporter::make_report();
