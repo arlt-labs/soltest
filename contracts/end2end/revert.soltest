@@ -1,0 +1,7 @@
+{revert}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("a()"), encodeArgs(u256(42)));
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("a()"), encodeArgs(u256(42)));
+

@@ -1,0 +1,7 @@
+{C99_scoping_activation}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(3));
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs(0));
+	// ABI_CHECK(callContractFunction("h()"), encodeArgs(3, 3, 4));
+	// ABI_CHECK(callContractFunction("i()"), encodeArgs(3, 3));
+

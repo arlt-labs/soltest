@@ -1,0 +1,4 @@
+{constructing_enums_from_ints}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(1));
+

@@ -1,0 +1,7 @@
+{invalid_enum_compared}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("test_eq_ok()"), encodeArgs(u256(1)));
+	// // both should throw
+	// ABI_CHECK(callContractFunction("test_eq()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("test_neq()"), encodeArgs());
+

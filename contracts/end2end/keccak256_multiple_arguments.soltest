@@ -1,0 +1,11 @@
+{keccak256_multiple_arguments}
+	// compileAndRun(sourceCode);
+	//
+	// ABI_CHECK(callContractFunction("foo(uint256,uint256,uint256)", 10, 12, 13), encodeArgs(
+	// 	dev::keccak256(
+	// 		toBigEndian(u256(10)) +
+	// 		toBigEndian(u256(12)) +
+	// 		toBigEndian(u256(13))
+	// 	)
+	// ));
+

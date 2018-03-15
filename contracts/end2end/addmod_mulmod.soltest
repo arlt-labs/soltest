@@ -1,0 +1,4 @@
+{addmod_mulmod}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(u256(0)));
+

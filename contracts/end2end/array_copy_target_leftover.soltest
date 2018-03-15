@@ -1,0 +1,8 @@
+{array_copy_target_leftover}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(
+	// 	u256("0xffffffff"),
+	// 	asString(fromHex("0000000000000000""000000000a000900""0800070006000500""0400030002000100")),
+	// 	asString(fromHex("0000000000000000""0000000000000000""0000000000000000""0000000000000000"))
+	// ));
+

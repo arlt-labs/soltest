@@ -1,0 +1,6 @@
+{copy_internal_function_array_to_storage}
+	//
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("one()"), encodeArgs(u256(3)));
+	// ABI_CHECK(callContractFunction("two()"), encodeArgs());
+

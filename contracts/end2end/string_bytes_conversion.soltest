@@ -1,0 +1,11 @@
+{string_bytes_conversion}
+	// compileAndRun(sourceCode, 0, "Test");
+	// ABI_CHECK(callContractFunction(
+	// 	"f(string,uint256)",
+	// 	u256(0x40),
+	// 	u256(2),
+	// 	u256(6),
+	// 	string("abcdef")
+	// ), encodeArgs("c"));
+	// ABI_CHECK(callContractFunction("l()"), encodeArgs(u256(6)));
+

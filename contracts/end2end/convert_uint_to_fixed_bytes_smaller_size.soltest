@@ -1,0 +1,7 @@
+{convert_uint_to_fixed_bytes_smaller_size}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(
+	// 	callContractFunction("uintToBytes(uint32)", u160("0x61626364")),
+	// 	encodeArgs(string("cd"))
+	// );
+

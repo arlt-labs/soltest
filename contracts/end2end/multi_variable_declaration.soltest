@@ -1,0 +1,4 @@
+{multi_variable_declaration}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()", encodeArgs()), encodeArgs(true));
+

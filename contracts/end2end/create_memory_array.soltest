@@ -1,0 +1,4 @@
+{create_memory_array}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(string("A"), u256(8), u256(4), string("B")));
+

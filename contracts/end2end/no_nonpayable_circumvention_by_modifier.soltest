@@ -1,0 +1,5 @@
+{no_nonpayable_circumvention_by_modifier}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunctionWithValue("f()", 27), encodeArgs());
+	// BOOST_CHECK_EQUAL(balanceAt(m_contractAddress), 0);
+

@@ -1,0 +1,4 @@
+{array_push}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(5, 4, 3, 3));
+

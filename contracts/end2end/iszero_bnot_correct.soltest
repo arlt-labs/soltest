@@ -1,0 +1,4 @@
+{iszero_bnot_correct}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(true));
+

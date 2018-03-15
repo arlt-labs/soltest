@@ -1,0 +1,4 @@
+{assignment_to_const_var_involving_expression}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(0x123 + 0x456 + 1));
+

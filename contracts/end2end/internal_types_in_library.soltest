@@ -1,0 +1,5 @@
+{internal_types_in_library}
+	// compileAndRun(sourceCode, 0, "Lib");
+	// compileAndRun(sourceCode, 0, "Test", bytes(), map<string, Address>{{"Lib", m_contractAddress}});
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(4), u256(17)));
+

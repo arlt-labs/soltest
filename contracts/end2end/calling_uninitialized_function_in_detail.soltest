@@ -1,0 +1,5 @@
+{calling_uninitialized_function_in_detail}
+	//
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("t()"), encodeArgs());
+

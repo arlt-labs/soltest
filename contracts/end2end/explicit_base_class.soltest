@@ -1,0 +1,5 @@
+{explicit_base_class}
+	// compileAndRun(sourceCode, 0, "Derived");
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs(3));
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(1));
+

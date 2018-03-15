@@ -1,0 +1,4 @@
+{inline_member_init}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("get()"), encodeArgs(5, 6, 8));
+

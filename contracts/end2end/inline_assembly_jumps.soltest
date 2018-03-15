@@ -1,0 +1,5 @@
+{inline_assembly_jumps}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()", u256(5)), encodeArgs(u256(13)));
+	// ABI_CHECK(callContractFunction("f()", u256(7)), encodeArgs(u256(34)));
+

@@ -1,0 +1,7 @@
+{packing_signed_types}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(
+	// 	callContractFunction("run()"),
+	// 	fromHex("fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffa")
+	// );
+

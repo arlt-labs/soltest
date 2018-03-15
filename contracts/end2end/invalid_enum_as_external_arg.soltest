@@ -1,0 +1,5 @@
+{invalid_enum_as_external_arg}
+	// compileAndRun(sourceCode, 0, "C");
+	// // should throw
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs());
+

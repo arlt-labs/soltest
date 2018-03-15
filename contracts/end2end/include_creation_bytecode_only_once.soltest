@@ -1,0 +1,7 @@
+{include_creation_bytecode_only_once}
+	// compileAndRun(sourceCode);
+	// BOOST_CHECK_LE(
+	// 	double(m_compiler.object("Double").bytecode.size()),
+	// 	1.1 * double(m_compiler.object("Single").bytecode.size())
+	// );
+

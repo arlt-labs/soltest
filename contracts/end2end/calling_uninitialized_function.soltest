@@ -1,0 +1,7 @@
+{calling_uninitialized_function}
+	//
+	// compileAndRun(sourceCode, 0, "C");
+	// // This should throw exceptions
+	// ABI_CHECK(callContractFunction("intern()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("extern()"), encodeArgs());
+

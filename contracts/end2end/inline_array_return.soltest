@@ -1,0 +1,4 @@
+{inline_array_return}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(1, 2, 3, 4, 5));
+

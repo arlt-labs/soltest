@@ -1,0 +1,5 @@
+{simple_throw}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f(uint256)", u256(11)), encodeArgs(u256(21)));
+	// ABI_CHECK(callContractFunction("f(uint256)", u256(1)), encodeArgs());
+

@@ -1,0 +1,4 @@
+{inline_assembly_memory_access}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(u256(0x20), u256(5), string("12345")));
+

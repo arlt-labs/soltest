@@ -1,0 +1,5 @@
+{store_internal_unused_library_function_in_constructor}
+	//
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("t()"), encodeArgs(u256(7)));
+

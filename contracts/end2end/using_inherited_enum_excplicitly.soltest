@@ -1,0 +1,4 @@
+{using_inherited_enum_excplicitly}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("answer()"), encodeArgs(1));
+

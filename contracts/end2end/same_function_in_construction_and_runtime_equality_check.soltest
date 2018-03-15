@@ -1,0 +1,5 @@
+{same_function_in_construction_and_runtime_equality_check}
+	//
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(true));
+

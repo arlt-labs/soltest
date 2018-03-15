@@ -1,0 +1,5 @@
+{inline_member_init_inheritence_without_constructor}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("getBMember()"), encodeArgs(5));
+	// ABI_CHECK(callContractFunction("getDMember()"), encodeArgs(6));
+

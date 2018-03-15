@@ -1,0 +1,6 @@
+{addmod_mulmod_zero}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("h()"), encodeArgs(2));
+

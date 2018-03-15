@@ -1,0 +1,4 @@
+{keccak256_with_bytes}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("foo()"), encodeArgs(true));
+

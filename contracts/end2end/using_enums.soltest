@@ -1,0 +1,4 @@
+{using_enums}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("getChoice()"), encodeArgs(2));
+

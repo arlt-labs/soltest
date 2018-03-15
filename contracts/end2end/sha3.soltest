@@ -1,0 +1,4 @@
+{sha3}
+	// compileAndRun(sourceCode);
+	// BOOST_REQUIRE(callContractFunction("a(bytes32)", u256(42)) == encodeArgs(true));
+

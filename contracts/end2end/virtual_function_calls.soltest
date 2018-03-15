@@ -1,0 +1,5 @@
+{virtual_function_calls}
+	// compileAndRun(sourceCode, 0, "Derived");
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs(2));
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(2));
+

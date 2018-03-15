@@ -1,0 +1,4 @@
+{inlineasm_empty_let}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(0), u256(0)));
+

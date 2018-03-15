@@ -1,0 +1,4 @@
+{external_function}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test(uint256,uint256)", 2, 3), encodeArgs(2+7, 3));
+

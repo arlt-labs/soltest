@@ -1,0 +1,7 @@
+{gas_and_value_basic}
+	// compileAndRun(sourceCode, 20);
+	// BOOST_REQUIRE(callContractFunction("sendAmount(uint256)", 5) == encodeArgs(5));
+	// // call to helper should not succeed but amount should be transferred anyway
+	// BOOST_REQUIRE(callContractFunction("outOfGas()") == bytes());
+	// BOOST_REQUIRE(callContractFunction("checkState()") == encodeArgs(false, 20 - 5));
+

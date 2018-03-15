@@ -1,0 +1,5 @@
+{address_overload_resolution}
+	// compileAndRun(sourceCode, 0, "D");
+	// BOOST_CHECK(callContractFunction("f()") == encodeArgs(u256(1)));
+	// BOOST_CHECK(callContractFunction("g()") == encodeArgs(u256(5)));
+

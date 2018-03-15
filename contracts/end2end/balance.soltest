@@ -1,0 +1,4 @@
+{balance}
+	// compileAndRun(sourceCode, 23);
+	// ABI_CHECK(callContractFunction("getBalance()"), encodeArgs(23));
+

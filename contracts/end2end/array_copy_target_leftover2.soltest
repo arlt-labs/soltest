@@ -1,0 +1,8 @@
+{array_copy_target_leftover2}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(
+	// 	asString(fromHex("0000000000000004")),
+	// 	asString(fromHex("0000000000000000")),
+	// 	asString(fromHex("0000000000000000"))
+	// ));
+

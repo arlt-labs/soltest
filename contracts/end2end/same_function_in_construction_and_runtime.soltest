@@ -1,0 +1,6 @@
+{same_function_in_construction_and_runtime}
+	//
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("runtime(uint256)", encodeArgs(u256(3))), encodeArgs(u256(6)));
+	// ABI_CHECK(callContractFunction("initial()"), encodeArgs(u256(4)));
+

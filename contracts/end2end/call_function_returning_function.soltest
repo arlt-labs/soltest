@@ -1,0 +1,5 @@
+{call_function_returning_function}
+	//
+	// compileAndRun(sourceCode, 0, "test");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(2)));
+

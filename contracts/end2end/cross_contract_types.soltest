@@ -1,0 +1,4 @@
+{cross_contract_types}
+	// compileAndRun(sourceCode, 0, "Test");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(3)));
+

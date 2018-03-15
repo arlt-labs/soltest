@@ -1,0 +1,6 @@
+{struct_reference}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("check()"), encodeArgs(false));
+	// ABI_CHECK(callContractFunction("set()"), bytes());
+	// ABI_CHECK(callContractFunction("check()"), encodeArgs(true));
+

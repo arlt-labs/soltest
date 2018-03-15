@@ -1,0 +1,5 @@
+{function_delete_stack}
+	//
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs());
+

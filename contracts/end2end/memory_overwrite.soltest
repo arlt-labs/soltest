@@ -1,0 +1,4 @@
+{memory_overwrite}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeDyn(string("b23a5")));
+

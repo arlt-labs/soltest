@@ -1,0 +1,4 @@
+{lone_struct_array_type}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(3)));
+

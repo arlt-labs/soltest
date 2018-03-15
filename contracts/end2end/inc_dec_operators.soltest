@@ -1,0 +1,4 @@
+{inc_dec_operators}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(0x53866));
+

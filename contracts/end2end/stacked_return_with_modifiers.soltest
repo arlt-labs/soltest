@@ -1,0 +1,6 @@
+{stacked_return_with_modifiers}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("x()"), encodeArgs(u256(0)));
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("x()"), encodeArgs(u256(1)));
+

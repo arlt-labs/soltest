@@ -1,0 +1,4 @@
+{deleteLocal}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("delLocal()"), encodeArgs(0));
+

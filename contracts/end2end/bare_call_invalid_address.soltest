@@ -1,0 +1,6 @@
+{bare_call_invalid_address}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(1)));
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs(u256(1)));
+	// ABI_CHECK(callContractFunction("h()"), encodeArgs(u256(1)));
+

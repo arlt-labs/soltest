@@ -1,0 +1,5 @@
+{function_modifier_multi_invocation}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f(bool)", false), encodeArgs(1));
+	// ABI_CHECK(callContractFunction("f(bool)", true), encodeArgs(2));
+

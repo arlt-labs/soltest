@@ -1,0 +1,4 @@
+{cleanup_in_compound_assign}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(u256(0xff), u256(0xff)));
+

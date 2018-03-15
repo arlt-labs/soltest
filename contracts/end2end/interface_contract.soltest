@@ -1,0 +1,6 @@
+{interface_contract}
+	// compileAndRun(sourceCode, 0, "A");
+	// u160 const recipient = m_contractAddress;
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f(address)", recipient), encodeArgs(true));
+

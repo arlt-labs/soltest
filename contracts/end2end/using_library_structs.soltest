@@ -1,0 +1,5 @@
+{using_library_structs}
+	// compileAndRun(sourceCode, 0, "Lib");
+	// compileAndRun(sourceCode, 0, "Test", bytes(), map<string, Address>{{"Lib", m_contractAddress}});
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(7), u256(8)));
+

@@ -1,0 +1,4 @@
+{exp_operator_const_signed}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()", bytes()), toBigEndian(u256(-8)));
+

@@ -1,0 +1,5 @@
+{state_variable_local_variable_mixture}
+	//
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("a()"), encodeArgs(u256(2)));
+

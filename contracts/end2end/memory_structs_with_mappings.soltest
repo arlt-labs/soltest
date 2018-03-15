@@ -1,0 +1,4 @@
+{memory_structs_with_mappings}
+	// compileAndRun(sourceCode, 0, "Test");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(0)));
+

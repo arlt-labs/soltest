@@ -1,0 +1,4 @@
+{disorder_named_args}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("b()", bytes()), toBigEndian(u256(123)));
+

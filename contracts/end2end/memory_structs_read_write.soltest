@@ -1,0 +1,7 @@
+{memory_structs_read_write}
+	// compileAndRun(sourceCode, 0, "Test");
+	//
+	// ABI_CHECK(callContractFunction("testInit()"), encodeArgs(u256(0), u256(0), u256(0), u256(0), true));
+	// ABI_CHECK(callContractFunction("testCopyRead()"), encodeArgs(u256(1), u256(2), u256(3), u256(4)));
+	// ABI_CHECK(callContractFunction("testAssign()"), encodeArgs(u256(1), u256(2), u256(3), u256(4)));
+

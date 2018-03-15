@@ -1,0 +1,4 @@
+{inline_tuple_with_rational_numbers}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(1)));
+

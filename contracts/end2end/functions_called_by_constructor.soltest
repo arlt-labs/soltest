@@ -1,0 +1,4 @@
+{functions_called_by_constructor}
+	// compileAndRun(sourceCode);
+	// BOOST_REQUIRE(callContractFunction("getName()") == encodeArgs("abc"));
+

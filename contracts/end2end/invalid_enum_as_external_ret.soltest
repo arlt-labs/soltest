@@ -1,0 +1,7 @@
+{invalid_enum_as_external_ret}
+	// compileAndRun(sourceCode, 0, "C");
+	// // both should throw
+	// ABI_CHECK(callContractFunction("test_return()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("test_inline_assignment()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("test_assignment()"), encodeArgs());
+

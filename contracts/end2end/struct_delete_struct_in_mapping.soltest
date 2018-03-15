@@ -1,0 +1,4 @@
+{struct_delete_struct_in_mapping}
+	// compileAndRun(sourceCode, 0, "test");
+	// ABI_CHECK(callContractFunction("deleteIt()"), encodeArgs(0));
+

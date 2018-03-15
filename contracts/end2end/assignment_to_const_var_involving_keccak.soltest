@@ -1,0 +1,4 @@
+{assignment_to_const_var_involving_keccak}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(dev::keccak256("abc")));
+

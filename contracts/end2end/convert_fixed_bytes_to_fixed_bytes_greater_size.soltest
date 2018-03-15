@@ -1,0 +1,4 @@
+{convert_fixed_bytes_to_fixed_bytes_greater_size}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("bytesToBytes(bytes2)", "ab"), encodeArgs("ab"));
+

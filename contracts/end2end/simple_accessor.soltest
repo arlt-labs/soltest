@@ -1,0 +1,4 @@
+{simple_accessor}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("data()"), encodeArgs(8));
+

@@ -1,0 +1,5 @@
+{event_anonymous}
+	// compileAndRun(sourceCode);
+	// callContractFunction("deposit()");
+	// BOOST_REQUIRE_EQUAL(m_logs[0].topics.size(), 0);
+

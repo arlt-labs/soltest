@@ -1,0 +1,4 @@
+{simple_constant_variables_test}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("getX()"), encodeArgs(56));
+

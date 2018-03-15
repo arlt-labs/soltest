@@ -1,0 +1,10 @@
+{array_copy_different_packing}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(
+	// 	asString(fromHex("0000000000000001")),
+	// 	asString(fromHex("0000000000000002")),
+	// 	asString(fromHex("0000000000000003")),
+	// 	asString(fromHex("0000000000000004")),
+	// 	asString(fromHex("0000000000000005"))
+	// ));
+

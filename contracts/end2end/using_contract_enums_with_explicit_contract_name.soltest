@@ -1,0 +1,4 @@
+{using_contract_enums_with_explicit_contract_name}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("answer()"), encodeArgs(1));
+

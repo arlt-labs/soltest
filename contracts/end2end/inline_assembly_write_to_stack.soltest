@@ -1,0 +1,4 @@
+{inline_assembly_write_to_stack}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(7), string("abcdef")));
+

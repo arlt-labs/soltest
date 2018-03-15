@@ -1,0 +1,5 @@
+{derived_overload_base_function_indirect}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs(10));
+	// ABI_CHECK(callContractFunction("h()"), encodeArgs(2));
+

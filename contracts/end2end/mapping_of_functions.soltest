@@ -1,0 +1,10 @@
+{mapping_of_functions}
+	//
+	// compileAndRun(sourceCode, 0, "Flow");
+	// ABI_CHECK(callContractFunction("success()"), encodeArgs(false));
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(7)));
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(7)));
+	// ABI_CHECK(callContractFunction("success()"), encodeArgs(false));
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(7)));
+	// ABI_CHECK(callContractFunction("success()"), encodeArgs(true));
+

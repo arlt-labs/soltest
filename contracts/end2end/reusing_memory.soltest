@@ -1,0 +1,4 @@
+{reusing_memory}
+	// compileAndRun(sourceCode, 0, "Main");
+	// BOOST_REQUIRE(callContractFunction("f(uint256)", 0x34) == encodeArgs(dev::keccak256(dev::toBigEndian(u256(0x34)))));
+

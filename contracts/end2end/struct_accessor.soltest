@@ -1,0 +1,4 @@
+{struct_accessor}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("data(uint256)", 7), encodeArgs(1, 2, true));
+

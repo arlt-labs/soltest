@@ -1,0 +1,6 @@
+{failing_send}
+	// compileAndRun(sourceCode, 0, "Helper");
+	// u160 const c_helperAddress = m_contractAddress;
+	// compileAndRun(sourceCode, 20, "Main");
+	// BOOST_REQUIRE(callContractFunction("callHelper(address)", c_helperAddress) == encodeArgs(true, 20));
+

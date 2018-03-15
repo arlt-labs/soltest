@@ -1,0 +1,4 @@
+{crazy_elementary_typenames_on_stack}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(-7)));
+

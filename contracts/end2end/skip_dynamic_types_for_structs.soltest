@@ -1,0 +1,4 @@
+{skip_dynamic_types_for_structs}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs(u256(2), u256(6)));
+

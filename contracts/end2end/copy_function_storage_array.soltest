@@ -1,0 +1,5 @@
+{copy_function_storage_array}
+	//
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(u256(7)));
+

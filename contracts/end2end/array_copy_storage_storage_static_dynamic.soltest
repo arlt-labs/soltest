@@ -1,0 +1,4 @@
+{array_copy_storage_storage_static_dynamic}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(9, 4));
+

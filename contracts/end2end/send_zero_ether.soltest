@@ -1,0 +1,4 @@
+{send_zero_ether}
+	// compileAndRun(sourceCode, 20, "Main");
+	// BOOST_REQUIRE(callContractFunction("s()") == encodeArgs(true));
+

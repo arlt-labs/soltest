@@ -1,0 +1,10 @@
+{enum_explicit_overflow}
+	// compileAndRun(sourceCode);
+	// // These should throw
+	// ABI_CHECK(callContractFunction("getChoiceExp(uint256)", 3), encodeArgs());
+	// ABI_CHECK(callContractFunction("getChoiceFromSigned(int256)", -1), encodeArgs());
+	// ABI_CHECK(callContractFunction("getChoiceFromNegativeLiteral()"), encodeArgs());
+	// // These should work
+	// ABI_CHECK(callContractFunction("getChoiceExp(uint256)", 2), encodeArgs(2));
+	// ABI_CHECK(callContractFunction("getChoiceExp(uint256)", 0), encodeArgs(0));
+

@@ -1,0 +1,8 @@
+{small_signed_types}
+	// compileAndRun(sourceCode);
+	// auto small_signed_types_cpp = []() -> u256
+	// {
+	// 	return -int32_t(10) * -int64_t(20);
+	// };
+	// testContractAgainstCpp("run()", small_signed_types_cpp);
+

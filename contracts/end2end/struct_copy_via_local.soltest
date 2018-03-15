@@ -1,0 +1,4 @@
+{struct_copy_via_local}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(true));
+

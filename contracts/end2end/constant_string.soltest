@@ -1,0 +1,6 @@
+{constant_string}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeDyn(string("\x03\x01\x02")));
+	// ABI_CHECK(callContractFunction("g()"), encodeDyn(string("\x03\x01\x02")));
+	// ABI_CHECK(callContractFunction("h()"), encodeDyn(string("hello")));
+

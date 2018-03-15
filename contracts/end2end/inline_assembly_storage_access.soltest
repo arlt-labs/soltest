@@ -1,0 +1,5 @@
+{inline_assembly_storage_access}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(true));
+	// ABI_CHECK(callContractFunction("z()"), encodeArgs(u256(7)));
+

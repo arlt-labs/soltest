@@ -1,0 +1,4 @@
+{tuples}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(u256(0)));
+

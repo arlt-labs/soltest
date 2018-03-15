@@ -1,0 +1,4 @@
+{bytes_delete_element}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test1()"), encodeArgs(true));
+

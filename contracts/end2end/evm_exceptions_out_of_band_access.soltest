@@ -1,0 +1,6 @@
+{evm_exceptions_out_of_band_access}
+	// compileAndRun(sourceCode, 0, "A");
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(false));
+	// ABI_CHECK(callContractFunction("testIt()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(false));
+

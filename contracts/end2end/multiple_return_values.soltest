@@ -1,0 +1,4 @@
+{multiple_return_values}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("run(bool,uint256)", true, 0xcd), encodeArgs(0xcd, true, 0));
+

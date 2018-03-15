@@ -1,0 +1,5 @@
+{packed_storage_structs_delete}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(1));
+	// BOOST_CHECK(storageEmpty(m_contractAddress));
+

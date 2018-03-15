@@ -1,0 +1,5 @@
+{array_copy_storage_storage_struct}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(4, 5));
+	// BOOST_CHECK(storageEmpty(m_contractAddress));
+

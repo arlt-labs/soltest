@@ -1,0 +1,4 @@
+{value_insane}
+	// compileAndRun(sourceCode, 20);
+	// BOOST_REQUIRE(callContractFunction("sendAmount(uint256)", 5) == encodeArgs(8));
+

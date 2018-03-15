@@ -1,0 +1,4 @@
+{byte_array_push}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(false));
+

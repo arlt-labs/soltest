@@ -1,0 +1,7 @@
+{multi_modifiers}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f1()"), bytes());
+	// ABI_CHECK(callContractFunction("x()"), encodeArgs(u256(8)));
+	// ABI_CHECK(callContractFunction("f2()"), bytes());
+	// ABI_CHECK(callContractFunction("x()"), encodeArgs(u256(12)));
+

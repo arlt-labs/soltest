@@ -1,0 +1,6 @@
+{inherited_fallback_function}
+	// compileAndRun(sourceCode, 0, "B");
+	// ABI_CHECK(callContractFunction("getData()"), encodeArgs(0));
+	// ABI_CHECK(callContractFunction(""), encodeArgs());
+	// ABI_CHECK(callContractFunction("getData()"), encodeArgs(1));
+

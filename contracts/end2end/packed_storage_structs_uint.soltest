@@ -1,0 +1,4 @@
+{packed_storage_structs_uint}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(1));
+

@@ -1,0 +1,5 @@
+{function_modifier}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("getOne()"), encodeArgs(0));
+	// ABI_CHECK(callContractFunctionWithValue("getOne()", 1), encodeArgs(1));
+

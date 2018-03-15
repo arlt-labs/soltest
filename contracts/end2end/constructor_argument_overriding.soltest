@@ -1,0 +1,4 @@
+{constructor_argument_overriding}
+	// compileAndRun(sourceCode, 0, "Derived");
+	// ABI_CHECK(callContractFunction("getA()"), encodeArgs(3));
+

@@ -1,0 +1,10 @@
+{dynamic_array_cleanup}
+	// compileAndRun(sourceCode);
+	// BOOST_CHECK(storageEmpty(m_contractAddress));
+	// ABI_CHECK(callContractFunction("fill()"), bytes());
+	// BOOST_CHECK(!storageEmpty(m_contractAddress));
+	// ABI_CHECK(callContractFunction("halfClear()"), bytes());
+	// BOOST_CHECK(!storageEmpty(m_contractAddress));
+	// ABI_CHECK(callContractFunction("fullClear()"), bytes());
+	// BOOST_CHECK(storageEmpty(m_contractAddress));
+

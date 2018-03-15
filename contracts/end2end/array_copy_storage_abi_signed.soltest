@@ -1,0 +1,14 @@
+{array_copy_storage_abi_signed}
+	// compileAndRun(sourceCode);
+	// bytes valueSequence;
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(0x20, 8,
+	// 	u256(-1),
+	// 	u256(-1),
+	// 	u256(8),
+	// 	u256(-16),
+	// 	u256(-2),
+	// 	u256(6),
+	// 	u256(8),
+	// 	u256(-1)
+	// ));
+

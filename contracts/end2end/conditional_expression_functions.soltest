@@ -1,0 +1,5 @@
+{conditional_expression_functions}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f(bool)", true), encodeArgs(u256(1)));
+	// ABI_CHECK(callContractFunction("f(bool)", false), encodeArgs(u256(2)));
+

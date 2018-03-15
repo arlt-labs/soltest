@@ -1,0 +1,4 @@
+{super_in_constructor}
+	// compileAndRun(sourceCode, 0, "D");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(1 | 2 | 4 | 8));
+

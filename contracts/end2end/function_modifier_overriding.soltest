@@ -1,0 +1,4 @@
+{function_modifier_overriding}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(false));
+

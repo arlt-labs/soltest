@@ -1,0 +1,4 @@
+{overloaded_function_call_resolve_to_first}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs(3));
+

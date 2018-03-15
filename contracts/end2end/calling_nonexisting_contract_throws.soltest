@@ -1,0 +1,6 @@
+{calling_nonexisting_contract_throws}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs());
+	// ABI_CHECK(callContractFunction("h()"), encodeArgs(u256(7)));
+

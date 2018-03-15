@@ -1,0 +1,4 @@
+{msg_sig_after_internal_call_is_same}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("foo(uint256)", 0), encodeArgs(asString(FixedHash<4>(dev::keccak256("foo(uint256)")).asBytes())));
+

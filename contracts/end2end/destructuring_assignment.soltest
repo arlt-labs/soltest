@@ -1,0 +1,4 @@
+{destructuring_assignment}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f(bytes)", u256(0x20), u256(5), string("abcde")), encodeArgs(u256(0)));
+

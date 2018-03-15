@@ -1,0 +1,4 @@
+{struct_delete_member}
+	// compileAndRun(sourceCode, 0, "test");
+	// ABI_CHECK(callContractFunction("deleteMember()"), encodeArgs(0));
+

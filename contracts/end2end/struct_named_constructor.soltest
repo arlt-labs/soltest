@@ -1,0 +1,5 @@
+{struct_named_constructor}
+	// compileAndRun(sourceCode, 0, "C");
+	//
+	// ABI_CHECK(callContractFunction("s()"), encodeArgs(u256(1), true));
+

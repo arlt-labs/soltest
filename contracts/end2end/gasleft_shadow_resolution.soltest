@@ -1,0 +1,4 @@
+{gasleft_shadow_resolution}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(0));
+

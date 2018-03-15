@@ -1,0 +1,4 @@
+{inline_assembly_in_modifiers}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(true));
+

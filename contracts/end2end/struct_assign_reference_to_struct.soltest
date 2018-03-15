@@ -1,0 +1,4 @@
+{struct_assign_reference_to_struct}
+	// compileAndRun(sourceCode, 0, "test");
+	// ABI_CHECK(callContractFunction("assign()"), encodeArgs(2, 2, 3, 3));
+

@@ -1,0 +1,8 @@
+{invalid_enum_stored}
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("test_store_ok()"), encodeArgs(u256(1)));
+	// ABI_CHECK(callContractFunction("x()"), encodeArgs(u256(0)));
+	//
+	// // should throw
+	// ABI_CHECK(callContractFunction("test_store()"), encodeArgs());
+

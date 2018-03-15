@@ -1,0 +1,4 @@
+{overloaded_function_call_resolve_to_second}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("g()"), encodeArgs(10));
+

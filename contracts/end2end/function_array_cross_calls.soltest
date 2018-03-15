@@ -1,0 +1,5 @@
+{function_array_cross_calls}
+	//
+	// compileAndRun(sourceCode, 0, "C");
+	// ABI_CHECK(callContractFunction("test()"), encodeArgs(u256(5), u256(6), u256(7)));
+
