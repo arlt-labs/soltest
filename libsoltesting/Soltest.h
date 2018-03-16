@@ -22,15 +22,19 @@
 #ifndef SOLTEST_SOLTEST_H
 #define SOLTEST_SOLTEST_H
 
+#include <libsoltesting/SolidityExtractor.h>
 #include <libsoltesting/Environment.h>
+#include <libsoltesting/Testcases.h>
 
 #include <libsolidity/interface/CompilerStack.h>
+
+#include <Poco/NotificationQueue.h>
 
 #include <string>
 #include <set>
 #include <map>
 #include <memory>
-#include "SolidityExtractor.h"
+#include <mutex>
 
 namespace soltest
 {
@@ -73,6 +77,8 @@ public:
 
 	bool loadTestcases();
 
+	void runTestcases(int threads);
+
 	CompilerErrors const &compilerErrors() const
 	{
 		return m_compilerErrors;
@@ -110,14 +116,18 @@ private:
 
 	void parseSoltest(SolidityExtractor &_extractor);
 
+	void prepareTestcases(std::string const _filename, std::map<std::string, std::string> _testcases);
+
+	void executeTestcase(std::string const _filename, std::string const _testcase);
+
 	std::map<std::string, std::string> m_options;
 
 	std::string m_ipcpath;
 	std::set<std::string> m_contracts;
 	std::set<std::string> m_testContracts;
 
-	std::map<std::string, std::string> m_solidityContents;                        ///< for .sol files
-	std::map<std::string, std::string> m_solidityTestContents;                    ///< for .test.sol files
+	std::map<std::string, std::string> m_solidityContents;                       ///< for .sol files
+	std::map<std::string, std::string> m_solidityTestContents;                   ///< for .test.sol files
 	std::map<std::string, std::string> m_soltestContents;                        ///< for .soltest files
 	std::map<std::string, std::pair<std::string, std::string>> m_abiContents;    ///< for .abi + .bin files
 
@@ -132,6 +142,9 @@ private:
 	SoltestErrors m_soltestErrors;
 
 	soltest::Environment m_environment;
+
+	std::mutex m_testcasesMutex;
+	std::map<std::string, soltest::Testcases::Ptr> m_testcases;
 };
 
 } // namespace soltest

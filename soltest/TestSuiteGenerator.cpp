@@ -60,9 +60,8 @@ bool TestSuiteGenerator::addTestsToTestSuite()
 		for (auto const &soltestFile: m_soltest.soltests())
 			for (auto const &testcase: soltestFile.second)
 			{
-				auto
-					runTestcases =
-					std::bind(&TestSuiteGenerator::startTestcase, this, soltestFile.first, testcase.first);
+				auto processTestcase =
+					std::bind(&TestSuiteGenerator::processTestcase, this, soltestFile.first, testcase.first);
 				size_t line(m_soltest.soltestLine(soltestFile.first, testcase.first));
 
 				// tests are executed asynchronously, we need a valid reference to the dynamically created string,
@@ -76,7 +75,7 @@ bool TestSuiteGenerator::addTestsToTestSuite()
 				strings.emplace_back(testcase_name_ptr);
 
 				m_masterTestSuite.add(
-					boost::unit_test::make_test_case(boost::function<void()>(runTestcases),
+					boost::unit_test::make_test_case(boost::function<void()>(processTestcase),
 													 testcase_name_ptr->c_str(),
 													 filename_ptr->c_str(),
 													 line
@@ -166,43 +165,16 @@ void TestSuiteGenerator::checkForWarningsAndErrors(bool loadContractsResult,
 		BOOST_REQUIRE_MESSAGE(loadTestcasesResult, stream.str().c_str());
 }
 
-void TestSuiteGenerator::startTestcase(std::string const &soltestFile, std::string const &testcase)
+void TestSuiteGenerator::processTestcase(std::string const &soltestFile, std::string const &testcase)
 {
 	(void) soltestFile;
 	(void) testcase;
 	BOOST_REQUIRE(true);
-	if (m_threads.find(soltestFile + ":" + testcase) == m_threads.end())
-	{
-		// first run: spawn test execution threads
-		std::shared_ptr<std::thread> thread(
-			new std::thread(
-				[=]()
-				{
-					/*
-					std::map<std::string, std::map<std::string, std::string>>
-						soltests = m_soltest.soltests();
-					std::cout << soltestFile << " - " << testcase << std::endl;
-					std::cout << soltests[soltestFile][testcase] << std::endl;
-					 */
-					sleep(10);
-				}
-			)
-		);
-		m_threads[soltestFile + ":" + testcase] = thread;
-	}
-	else
-	{
-		// second run: collect results & create errors, if there where some
-		BOOST_REQUIRE(true);
-	}
 }
 
-void TestSuiteGenerator::join()
+void TestSuiteGenerator::runTestcases(int threads)
 {
-	for (auto &thread : m_threads)
-	{
-		thread.second->join();
-	}
+	m_soltest.runTestcases(threads);
 }
 
 } // namespace soltest

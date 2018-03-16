@@ -137,8 +137,8 @@ int soltest_unit_test_main(init_unit_test_func init_func, int argc, char *argv[]
 		// test_collector collector;
 		// traverse_test_tree(framework::master_test_suite().p_id, collector, true);
 
-		framework::run();
-		g_testSuiteGenerator->join();
+		g_testSuiteGenerator->runTestcases(1);
+
 		framework::run();
 
 		results_reporter::make_report();

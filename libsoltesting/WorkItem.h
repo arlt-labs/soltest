@@ -14,40 +14,38 @@
 	You should have received a copy of the GNU General Public License
 	along with solidity.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** @file TestSuiteGenerator.h
+/** @file WorkItem.h
  * @author Alexander Arlt <alexander.arlt@arlt-labs.com>
  * @date 2018
  */
 
-#ifndef SOLTEST_TESTSUITEGENERATOR_H
-#define SOLTEST_TESTSUITEGENERATOR_H
+#ifndef SOLTEST_WORKITEM_H
+#define SOLTEST_WORKITEM_H
 
-#include <libsoltesting/Soltest.h>
-#include <boost/test/tree/test_unit.hpp>
-#include <thread>
-#include <memory>
+#include <Poco/Notification.h>
+#include <functional>
+#include <utility>
+#include "Soltest.h"
 
 namespace soltest
 {
 
-class TestSuiteGenerator
+class WorkItem : public Poco::Notification
 {
 public:
-	TestSuiteGenerator(soltest::Soltest &_soltest, boost::unit_test::master_test_suite_t &_masterTestSuite);
+	explicit WorkItem(std::function<void(void)> _run) : m_run(_run)
+	{
+	}
 
-	bool addTestsToTestSuite();
-
-	void checkForWarningsAndErrors(bool loadContractsResult, bool loadTestcasesResult, bool printToCerr);
-
-	void processTestcase(std::string const &soltestFile, std::string const &testcase);
-
-	void runTestcases(int threads);
+	void run()
+	{
+		m_run();
+	}
 
 private:
-	soltest::Soltest &m_soltest;
-	boost::unit_test::master_test_suite_t &m_masterTestSuite;
+	std::function<void(void)> m_run;
 };
 
 } // namespace soltest
 
-#endif //SOLTEST_TESTSUITEGENERATOR_H
+#endif //SOLTEST_WORKITEM_H

@@ -14,40 +14,49 @@
 	You should have received a copy of the GNU General Public License
 	along with solidity.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** @file TestSuiteGenerator.h
+/** @file Worker.h
  * @author Alexander Arlt <alexander.arlt@arlt-labs.com>
  * @date 2018
  */
 
-#ifndef SOLTEST_TESTSUITEGENERATOR_H
-#define SOLTEST_TESTSUITEGENERATOR_H
+#ifndef SOLTEST_WORKER_H
+#define SOLTEST_WORKER_H
 
-#include <libsoltesting/Soltest.h>
-#include <boost/test/tree/test_unit.hpp>
-#include <thread>
-#include <memory>
+#include "WorkItem.h"
+
+#include <Poco/Runnable.h>
+#include <Poco/NotificationQueue.h>
+
+#include <functional>
+#include <utility>
 
 namespace soltest
 {
 
-class TestSuiteGenerator
+class Worker : public Poco::Runnable
 {
 public:
-	TestSuiteGenerator(soltest::Soltest &_soltest, boost::unit_test::master_test_suite_t &_masterTestSuite);
+	typedef typename std::shared_ptr<Worker> Ptr;
 
-	bool addTestsToTestSuite();
+	explicit Worker(Poco::NotificationQueue &queue) : m_queue(queue)
+	{}
 
-	void checkForWarningsAndErrors(bool loadContractsResult, bool loadTestcasesResult, bool printToCerr);
-
-	void processTestcase(std::string const &soltestFile, std::string const &testcase);
-
-	void runTestcases(int threads);
+	void run() override
+	{
+		Poco::AutoPtr<Poco::Notification> pNf(m_queue.waitDequeueNotification());
+		while (pNf)
+		{
+			auto pWorkNf = dynamic_cast<WorkItem *>(pNf.get());
+			if (pWorkNf)
+				pWorkNf->run();
+			pNf = m_queue.waitDequeueNotification();
+		}
+	}
 
 private:
-	soltest::Soltest &m_soltest;
-	boost::unit_test::master_test_suite_t &m_masterTestSuite;
+	Poco::NotificationQueue &m_queue;
 };
 
 } // namespace soltest
 
-#endif //SOLTEST_TESTSUITEGENERATOR_H
+#endif //SOLTEST_WORKER_H

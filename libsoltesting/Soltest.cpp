@@ -21,12 +21,14 @@
 
 #include "Soltest.h"
 #include "SolidityExtractor.h"
+#include "Worker.h"
 
 #include <libdevcore/JSON.h>
 #include <boost/test/unit_test.hpp>
 #include <boost/filesystem.hpp>
 
 #include <boost/algorithm/string.hpp>
+#include <Poco/ThreadPool.h>
 
 namespace soltest
 {
@@ -63,15 +65,15 @@ bool Soltest::parseCommandLineArguments(int argc, char **argv)
 		else if (boost::filesystem::exists(absolutePath))
 			if (boost::filesystem::extension(absolutePath) == ".abi")
 				addAbiFile(absolutePath);
-			if (boost::filesystem::extension(absolutePath) == ".sol")
-				addSolidityFile(absolutePath);
-			else if (boost::filesystem::extension(absolutePath) == ".soltest")
-			{
-				std::string contractFile(absolutePath.substr(0, absolutePath.length() - 4));
-				addSoltestFile(absolutePath);
-				if (boost::filesystem::exists(contractFile))
-					addSolidityFile(contractFile);
-			}
+		if (boost::filesystem::extension(absolutePath) == ".sol")
+			addSolidityFile(absolutePath);
+		else if (boost::filesystem::extension(absolutePath) == ".soltest")
+		{
+			std::string contractFile(absolutePath.substr(0, absolutePath.length() - 4));
+			addSoltestFile(absolutePath);
+			if (boost::filesystem::exists(contractFile))
+				addSolidityFile(contractFile);
+		}
 	}
 	addSolidityFile("Soltest.sol", m_environment.contracts());
 	return initialize();
@@ -213,7 +215,9 @@ bool Soltest::addAbiFile(std::string const &abiFile)
 			addAbiFile(abiFile, abiFileContent.str(), binFileContent.str());
 
 			return true;
-		} else {
+		}
+		else
+		{
 			Error::Ptr error = std::make_shared<Error>();
 			error->file = abiFile;
 			error->line = 0;
@@ -378,6 +382,62 @@ bool Soltest::parseSoltest(uint32_t _line, std::string const &_filename, std::st
 			m_soltestsLine[_filename][currentLine.first] = currentLine.second;
 	}
 	return result;
+}
+
+void Soltest::runTestcases(int threads)
+{
+	Poco::NotificationQueue queue;
+	for (auto &test : m_soltests)
+		queue.enqueueNotification(
+			new soltest::WorkItem(
+				[&]()
+				{
+					this->prepareTestcases(test.first, test.second);
+				}
+			)
+		);
+	for (auto &test : m_soltests)
+		for (auto &data : test.second)
+			queue.enqueueNotification(
+				new soltest::WorkItem(
+					[&]()
+					{
+						this->executeTestcase(test.first, data.first);
+					}
+				)
+			);
+
+	std::vector<soltest::Worker::Ptr> workers;
+	for (int i = 0; i < threads; ++i)
+	{
+		soltest::Worker::Ptr worker(new Worker(queue));
+		workers.push_back(worker);
+		Poco::ThreadPool::defaultPool().start(*worker);
+	}
+
+	while (!queue.empty())
+		Poco::Thread::sleep(100);
+
+	queue.wakeUpAll();
+	Poco::ThreadPool::defaultPool().joinAll();
+}
+
+void Soltest::prepareTestcases(std::string const _filename, std::map<std::string, std::string> _testcases)
+{
+	soltest::Testcases::Ptr testcases(new soltest::Testcases(_filename, _testcases));
+
+	m_testcasesMutex.lock();
+	m_testcases[_filename] = testcases;
+	m_testcasesMutex.unlock();
+}
+
+void Soltest::executeTestcase(const std::string _filename, std::string const _testcase)
+{
+	m_testcasesMutex.lock();
+	soltest::Testcases::Ptr testcases = m_testcases[_filename];
+	m_testcasesMutex.unlock();
+
+	testcases->executeTestcase(_testcase);
 }
 
 } // namespace soltest
