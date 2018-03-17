@@ -23,7 +23,7 @@
 #define SOLTEST_TESTSUITEGENERATOR_H
 
 #include <libsoltesting/Soltest.h>
-#include <boost/test/tree/test_unit.hpp>
+#include <boost/test/unit_test_suite.hpp>
 #include <thread>
 #include <memory>
 

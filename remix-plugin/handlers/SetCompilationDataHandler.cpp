@@ -28,7 +28,7 @@
 #include <libdevcore/JSON.h>
 
 #include <libsoltesting/Soltest.h>
-#include <cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/SourceReferenceFormatter.h>
+#include <libsolidity/interface/SourceReferenceFormatter.h>
 #include <boost/algorithm/string.hpp>
 
 namespace soltest

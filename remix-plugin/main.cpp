@@ -98,7 +98,7 @@ protected:
 		helpFormatter.format(std::cout);
 	}
 
-	int main(const ArgVec &args) override
+	int main(const std::vector < std::string > & args) override
 	{
 		(void) args;
 		if (!_helpRequested)

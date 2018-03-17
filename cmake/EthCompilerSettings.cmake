@@ -35,6 +35,7 @@ if (("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR ("${CMAKE_CXX_COMPILER_ID}" MA
 	add_compile_options(-Wall)
 	add_compile_options(-Wextra)
 	add_compile_options(-Werror)
+	add_compile_options(-fPIC)
 
 	# Disable warnings about unknown pragmas (which is enabled by -Wall).  I assume we have external
 	# dependencies (probably Boost) which have some of these.   Whatever the case, we shouldn't be

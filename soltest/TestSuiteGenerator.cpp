@@ -62,7 +62,7 @@ void TestSuiteGenerator::load(bool _printWarnings)
 				strings.emplace_back(testcase_name_ptr);
 
 				m_masterTestSuite.add(
-					boost::unit_test::make_test_case(boost::function<void()>(processTestcase),
+					boost::unit_test::make_test_case(boost::function<void ()>(processTestcase),
 													 testcase_name_ptr->c_str(),
 													 filename_ptr->c_str(),
 													 line
