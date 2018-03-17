@@ -38,18 +38,20 @@ class Worker : public Poco::Runnable
 public:
 	typedef typename std::shared_ptr<Worker> Ptr;
 
-	explicit Worker(Poco::NotificationQueue &queue) : m_queue(queue)
-	{}
+	explicit Worker(Poco::NotificationQueue &queue) : m_queue(queue) {}
 
 	void run() override
 	{
-		Poco::AutoPtr<Poco::Notification> pNf(m_queue.waitDequeueNotification());
-		while (pNf)
+		while (!m_queue.empty())
 		{
-			auto pWorkNf = dynamic_cast<WorkItem *>(pNf.get());
-			if (pWorkNf)
-				pWorkNf->run();
-			pNf = m_queue.waitDequeueNotification();
+			Poco::AutoPtr<Poco::Notification> pNf(m_queue.waitDequeueNotification(100));
+			while (pNf)
+			{
+				auto pWorkNf = dynamic_cast<WorkItem *>(pNf.get());
+				if (pWorkNf)
+					pWorkNf->run();
+				pNf = m_queue.waitDequeueNotification(100);
+			}
 		}
 	}
 
