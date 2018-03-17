@@ -34,3 +34,9 @@ The build-process may take up to 30 minutes. This may become faster, if you run 
 available cores.
 
 To only build `soltest`, set `cmake` option `TOOLS=off`, this can be done with `cmake .. -DTOOLS=off`. 
+
+## License
+
+[![License](https://img.shields.io/github/license/aarlt/soltest.svg)](LICENSE.txt)
+
+All contributions are made under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.en.html). See [LICENSE](LICENSE.txt).
