@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="soltest" targetName="solidity-git" />
+      <config projectName="soltest" targetName="remix-plugin" />
+      <config projectName="soltest" targetName="end2end-extractor" />
+      <config projectName="soltest" targetName="soltesting" />
+      <config projectName="soltest" targetName="cpp-ethereum-git" />
+      <config projectName="soltest" targetName="heatmap" />
+      <config projectName="soltest" targetName="heatmap_autogen" />
+      <config projectName="soltest" targetName="cpp-ethereum-git-build" />
+      <config projectName="soltest" targetName="solidity-git-build" />
+      <config projectName="soltest" targetName="soltest_BuildInfo.h" />
+      <config projectName="soltest" targetName="jsoncpp-project" />
+      <config projectName="soltest" targetName="soltest-unittests" />
+      <config projectName="soltest" targetName="soltest" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" BUILD_OPTIONS="-j 3" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="693c209a-fbdb-4c9f-98c2-e9af5a9ff988" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Soltest.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="116" column="16" lean-forward="false" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Testcases.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="61" column="32" lean-forward="false" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
+              <folding>
+                <element signature="e#745#759#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tests.test.sol" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contracts/Tests.test.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Soltest.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="334">
+              <caret line="144" column="13" lean-forward="true" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
+              <folding>
+                <element signature="e#743#763#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Testcases.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="370">
+              <caret line="44" column="49" lean-forward="false" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
+              <folding>
+                <element signature="e#800#848#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Solidity Contract" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>solidity</find>
+      <find>target</find>
+      <find>value</find>
+      <find>MyRe</find>
+      <find>//</find>
+      <find>sources</find>
+      <find>browser/Soltest.sol</find>
+      <find>m_soltestErrors</find>
+      <find>R&quot;</find>
+      <find>BOOST_AUTO_TEST_CASE</find>
+      <find>compileAndRun</find>
+      <find>runner</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/contracts/SimpleEmbedded.sol" />
+        <option value="$PROJECT_DIR$/libsoltesting/SoltestSolidityEnvironment.hpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/SoltestSolidityEnvironment.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/SoltestEnvironment.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/SoltestEnvironment.hpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/Environment.hpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/Environment.h" />
+        <option value="$PROJECT_DIR$/contracts/asd.sol" />
+        <option value="$PROJECT_DIR$/contracts/Soltest.sol" />
+        <option value="$PROJECT_DIR$/libsoltesting/Environment.cpp" />
+        <option value="$PROJECT_DIR$/contracts/SimpleAssignment.soltest" />
+        <option value="$PROJECT_DIR$/contracts/SimpleA.soltest" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/ast/ASTVisitor.h" />
+        <option value="$PROJECT_DIR$/contracts/Tests.test.sol" />
+        <option value="$PROJECT_DIR$/libsoltesting/SolidityExtractor.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/SolidityExtractor.h" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/remix-plugin/main.cpp" />
+        <option value="$PROJECT_DIR$/remix-plugin/handlers/StaticFileRequestHandler.h" />
+        <option value="$PROJECT_DIR$/remix-plugin/handlers/SetCompilationDataHandler.h" />
+        <option value="$PROJECT_DIR$/remix-plugin/handlers/HandlerFactory.h" />
+        <option value="$PROJECT_DIR$/remix-plugin/handlers/StaticFileRequestHandler.cpp" />
+        <option value="$PROJECT_DIR$/remix-plugin/files/remix.js" />
+        <option value="$PROJECT_DIR$/remix-plugin/handlers/SetCompilationDataHandler.cpp" />
+        <option value="$PROJECT_DIR$/contracts/TestsHere.test.sol" />
+        <option value="$PROJECT_DIR$/end2end-extractor/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/end2end-extractor/main.cpp" />
+        <option value="$PROJECT_DIR$/soltest/console_test_runner.cpp" />
+        <option value="$PROJECT_DIR$/test/boostTest.cpp" />
+        <option value="$PROJECT_DIR$/remix-plugin/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/soltest/WorkItem.cpp" />
+        <option value="$PROJECT_DIR$/soltest/WorkItem.h" />
+        <option value="$PROJECT_DIR$/soltest/Worker.cpp" />
+        <option value="$PROJECT_DIR$/soltest/Worker.h" />
+        <option value="$PROJECT_DIR$/libsoltesting/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/soltest/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/libsoltesting/WorkItem.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/Worker.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/Worker.h" />
+        <option value="$PROJECT_DIR$/libsoltesting/Testcase.h" />
+        <option value="$PROJECT_DIR$/libsoltesting/Testcase.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/WorkItem.h" />
+        <option value="$PROJECT_DIR$/soltest/TestSuiteGenerator.h" />
+        <option value="$PROJECT_DIR$/contracts/Simple.sol" />
+        <option value="$PROJECT_DIR$/contracts/SimpleB.soltest" />
+        <option value="$PROJECT_DIR$/soltest/main.cpp" />
+        <option value="$PROJECT_DIR$/soltest/TestSuiteGenerator.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/Soltest.h" />
+        <option value="$PROJECT_DIR$/libsoltesting/Testcases.h" />
+        <option value="$PROJECT_DIR$/libsoltesting/Testcases.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/Soltest.cpp" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="815" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="soltest" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="soltest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="soltest" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="soltest" type="462c0819:PsiDirectoryNode" />
+              <item name="libsoltesting" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="soltest" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="soltest" type="462c0819:PsiDirectoryNode" />
+              <item name="soltest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="soltest" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="soltest" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/alex/git/soltest/libsoltesting/Testcases.cpp" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/libsoltesting" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/contracts" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.soltest - contracts/end2end">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+    </configuration>
+    <configuration name="cpp-ethereum-git-build" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="cpp-ethereum-git-build" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="cpp-ethereum-git" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="cpp-ethereum-git" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="end2end-extractor" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/test/libsolidity/SolidityEndToEndTest.cpp $PROJECT_DIR$/contracts/end2end" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="end2end-extractor" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="heatmap" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="heatmap" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="heatmap_autogen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="heatmap_autogen" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="jsoncpp-project" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="jsoncpp-project" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="remix-plugin" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="remix-plugin" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="solidity-git-build" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="solidity-git-build" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="solidity-git" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="solidity-git" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - SimpleAssignment.soltest" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- SimpleAssignment.soltest" WORKING_DIR="file://$PROJECT_DIR$/contracts/" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - SimpleEmbedded.sol" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- SimpleEmbedded.sol" WORKING_DIR="file://$PROJECT_DIR$/contracts" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - Simple.sol" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- Simple.sol" WORKING_DIR="file://$PROJECT_DIR$/contracts" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - TestsHere.test.sol - NoBin.abi" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- MyRegistry.sol TestsHere.test.sol NoBin.abi" WORKING_DIR="file://$PROJECT_DIR$/contracts" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - TestsHere.test.sol - Raw.abi" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- MyRegistry.sol TestsHere.test.sol Raw.abi" WORKING_DIR="file://$PROJECT_DIR$/contracts" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - TestsHere.test.sol" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- MyRegistry.sol TestsHere.test.sol " WORKING_DIR="file://$PROJECT_DIR$/contracts" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - contracts/SimpleAssignment.soltest" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- contracts/SimpleAssignment.soltest" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - contracts/SimpleEmbedded.sol" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- contracts/SimpleEmbedded.sol" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - contracts/Simple.sol" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- contracts/Simple.sol" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - contracts/Tests.test.sol" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- contracts/MyRegistry.sol contracts/Tests.test.sol " WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest - contracts/end2end" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-- C99_scoping_activation.sol access_base_storage.sol accessor_for_const_state_variable.sol accessor_for_state_variable.sol accessor_involving_strings.sol accessors_mapping_for_array.sol addmod_mulmod.sol addmod_mulmod_zero.sol address_overload_resolution.sol array_accessor.sol array_copy_calldata_storage.sol array_copy_different_packing.sol array_copy_including_mapping.sol array_copy_nested_array.sol array_copy_storage_abi.sol array_copy_storage_abi_signed.sol array_copy_storage_storage_dyn_dyn.sol array_copy_storage_storage_static_dynamic.sol array_copy_storage_storage_static_static.sol array_copy_storage_storage_struct.sol array_copy_target_leftover.sol array_copy_target_leftover2.sol array_copy_target_simple.sol array_push.sol arrays_complex_from_and_to_storage.sol arrays_complex_memory_index_access.sol arrays_from_and_to_storage.sol arrays_in_constructors.sol assert_require.sol assignment_to_const_array_vars.sol assignment_to_const_var_involving_expression.sol assignment_to_const_var_involving_keccak.sol balance.sol bare_call_invalid_address.sol base_constructor_arguments.sol blockchain.sol bool_conversion.sol bound_function_in_var.sol bound_function_to_string.sol break_in_modifier.sol byte_array_push.sol bytes_comparison.sol bytes_delete_element.sol bytes_from_calldata_to_memory.sol bytes_in_arguments.sol bytes_in_constructors_packer.sol bytes_in_constructors_unpacker.sol bytes_in_function_calls.sol bytes_index_access.sol bytes_index_access_memory.sol bytes_inside_mappings.sol bytes_length_member.sol bytes_memory_index_access.sol call_forward_bytes.sol call_function_returning_function.sol calldata_offset.sol calling_nonexisting_contract_throws.sol calling_other_functions.sol calling_uninitialized_function.sol calling_uninitialized_function_in_detail.sol calls_to_this.sol cleanup_bytes_types.sol cleanup_in_compound_assign.sol complex_accessors.sol compound_assign.sol conditional_expression_different_types.sol conditional_expression_false_literal.sol conditional_expression_functions.sol conditional_expression_multiple.sol conditional_expression_storage_memory_1.sol conditional_expression_storage_memory_2.sol conditional_expression_true_literal.sol conditional_expression_tuples.sol conditional_expression_with_return_values.sol constant_string.sol constant_string_literal.sol constant_struct.sol constant_var_as_array_length.sol constant_variables.sol constructing_enums_from_ints.sol constructor.sol constructor_argument_overriding.sol constructor_arguments_external.sol constructor_arguments_internal.sol constructor_static_array_argument.sol constructor_with_long_arguments.sol contract_binary_dependencies.sol contracts_as_addresses.sol contracts_separated_with_comment.sol convert_fixed_bytes_to_fixed_bytes_greater_size.sol convert_fixed_bytes_to_fixed_bytes_same_size.sol convert_fixed_bytes_to_fixed_bytes_smaller_size.sol convert_fixed_bytes_to_uint_greater_size.sol convert_fixed_bytes_to_uint_same_min_size.sol convert_fixed_bytes_to_uint_same_size.sol convert_fixed_bytes_to_uint_smaller_size.sol convert_uint_to_fixed_bytes_greater_size.sol convert_uint_to_fixed_bytes_same_min_size.sol convert_uint_to_fixed_bytes_same_size.sol convert_uint_to_fixed_bytes_smaller_size.sol copy_from_calldata_removes_bytes_data.sol copy_function_storage_array.sol copy_internal_function_array_to_storage.sol copy_removes_bytes_data.sol copying_bytes_multiassign.sol crazy_elementary_typenames_on_stack.sol create_dynamic_array_with_zero_length.sol create_memory_array.sol create_memory_array_allocation_size.sol cross_contract_types.sol decayed_tuple.sol default_fallback_throws.sol deleteLocal.sol deleteLocals.sol deleteStruct.sol delete_on_array_of_structs.sol delete_removes_bytes_data.sol derived_overload_base_function_direct.sol derived_overload_base_function_indirect.sol destructuring_assignment.sol destructuring_assignment_wildcard.sol disorder_named_args.sol divisiod_by_zero.sol do_while_loop.sol dynamic_array_cleanup.sol dynamic_arrays_in_storage.sol dynamic_multi_array_cleanup.sol dynamic_out_of_bounds_array_access.sol ecrecover.sol empty_contract.sol empty_name_input_parameter_with_named_one.sol empty_name_return_parameter.sol enum_explicit_overflow.sol event.sol event_access_through_base_name.sol event_access_through_base_name_emit.sol event_anonymous.sol event_anonymous_with_topics.sol event_emit.sol event_indexed_string.sol event_lots_of_data.sol event_no_arguments.sol event_really_lots_of_data.sol event_really_lots_of_data_from_storage.sol event_really_really_lots_of_data_from_storage.sol events_with_same_name.sol events_with_same_name_inherited.sol events_with_same_name_inherited_emit.sol evm_exceptions_in_constructor_call_fail.sol evm_exceptions_in_constructor_out_of_baund.sol evm_exceptions_out_of_band_access.sol exp_operator.sol exp_operator_const.sol exp_operator_const_signed.sol explicit_base_class.sol external_array_args.sol external_function.sol external_function_to_address.sol external_types_in_calls.sol failed_create.sol failing_ecrecover_invalid_input.sol failing_ecrecover_invalid_input_asm.sol failing_ecrecover_invalid_input_proper.sol failing_send.sol fallback_function.sol fixed_array_cleanup.sol fixed_arrays_as_return_type.sol fixed_arrays_in_constructors.sol fixed_arrays_in_storage.sol fixed_bytes_in_calls.sol fixed_bytes_index_access.sol fixed_bytes_length_access.sol fixed_out_of_bounds_array_access.sol for_loop.sol for_loop_break_continue.sol for_loop_empty.sol for_loop_simple_init_expr.sol function_array_cross_calls.sol function_delete_stack.sol function_delete_storage.sol function_memory_array.sol function_modifier.sol function_modifier_calling_functions_in_creation_context.sol function_modifier_for_constructor.sol function_modifier_local_variables.sol function_modifier_loop.sol function_modifier_multi_invocation.sol function_modifier_multi_with_return.sol function_modifier_multiple_times.sol function_modifier_multiple_times_local_vars.sol function_modifier_overriding.sol function_type_library_internal.sol function_types_sig.sol function_usage_in_constructor_arguments.sol functions_called_by_constructor.sol gas_and_value_basic.sol gasleft_shadow_resolution.sol high_bits_cleaning.sol inc_dec_operators.sol include_creation_bytecode_only_once.sol index_access_with_type_conversion.sol inherited_constant_state_var.sol inherited_fallback_function.sol inherited_function {.sol inherited_function_from_a_library {.sol initialise_string_constant.sol inline_array_index_access_ints.sol inline_array_index_access_strings.sol inline_array_return.sol inline_array_singleton.sol inline_array_storage_to_memory_conversion_ints.sol inline_array_storage_to_memory_conversion_strings.sol inline_array_strings_from_document.sol inline_assembly_embedded_function_call.sol inline_assembly_for.sol inline_assembly_for2.sol inline_assembly_function_access.sol inline_assembly_function_call.sol inline_assembly_function_call2.sol inline_assembly_function_call_assignment.sol inline_assembly_if.sol inline_assembly_in_modifiers.sol inline_assembly_jumps.sol inline_assembly_memory_access.sol inline_assembly_read_and_write_stack.sol inline_assembly_recursion.sol inline_assembly_storage_access.sol inline_assembly_storage_access_inside_function.sol inline_assembly_storage_access_via_pointer.sol inline_assembly_switch.sol inline_assembly_write_to_stack.sol inline_long_string_return.sol inline_member_init.sol inline_member_init_inheritence.sol inline_member_init_inheritence_without_constructor.sol inline_tuple_with_rational_numbers.sol inlineasm_empty_let.sol inter_contract_calls.sol inter_contract_calls_accessing_this.sol inter_contract_calls_with_complex_parameters.sol inter_contract_calls_with_local_vars.sol interface_contract.sol internal_constructor.sol internal_library_function.sol internal_library_function_bound.sol internal_library_function_calling_private.sol internal_library_function_return_var_size.sol internal_types_in_library.sol invalid_enum_as_external_arg.sol invalid_enum_as_external_ret.sol invalid_enum_compared.sol invalid_enum_logged.sol invalid_enum_stored.sol invalid_instruction.sol iszero_bnot_correct.sol iterated_keccak256_with_bytes.sol keccak256.sol keccak256_assembly.sol keccak256_multiple_arguments.sol keccak256_multiple_arguments_with_numeric_literals.sol keccak256_multiple_arguments_with_string_literals.sol keccak256_with_bytes.sol library_call.sol library_call_in_homestead.sol library_call_protection.sol library_enum_as_an_expression.sol library_stray_values.sol library_struct_as_an_expression.sol literal_empty_string.sol literal_strings.sol log0.sol log1.sol log2.sol log3.sol log4.sol log_in_constructor.sol lone_struct_array_type.sol many_local_variables.sol mapping_of_functions.sol mapping_state.sol mapping_state_inc_dec.sol mem_resize_is_not_paid_at_call.sol memory_arrays_delete.sol memory_arrays_dynamic_index_access_write.sol memory_arrays_index_access_write.sol memory_arrays_of_various_sizes.sol memory_overwrite.sol memory_structs_as_function_args.sol memory_structs_nested.sol memory_structs_nested_load.sol memory_structs_read_write.sol memory_structs_with_mappings.sol memory_types_initialisation.sol msg_sig.sol msg_sig_after_internal_call_is_same.sol multi_level_mapping.sol multi_modifiers.sol multi_variable_declaration.sol multiple_elementary_accessors.sol multiple_functions.sol multiple_inherited_state_vars.sol multiple_return_values.sol mutex.sol named_args.sol negative_stack_height.sol nested_loops.sol no_nonpayable_circumvention_by_modifier.sol non_payable_throw.sol now.sol overloaded_function_call_resolve_to_first.sol overloaded_function_call_resolve_to_second.sol overloaded_function_call_with_if_else.sol packed_functions.sol packed_keccak256.sol packed_ripemd160.sol packed_sha256.sol packed_storage_overflow.sol packed_storage_signed.sol packed_storage_structs_bytes.sol packed_storage_structs_delete.sol packed_storage_structs_enum.sol packed_storage_structs_uint.sol packing_signed_types.sol packing_unpacking_types.sol pass_dynamic_arguments_to_the_base.sol pass_dynamic_arguments_to_the_base_base.sol pass_dynamic_arguments_to_the_base_base_with_gap.sol pass_function_types_externally.sol pass_function_types_internally.sol payable_constructor.sol payable_function.sol payable_function_calls_library.sol positive_integers_to_signed.sol proper_order_of_overwriting_of_attributes.sol receive_external_function_type.sol recursive_calls.sol recursive_structs.sol reject_ether_sent_to_library.sol return_bytes_internal.sol return_does_not_skip_modifier.sol return_external_function_type.sol return_multiple_strings_of_various_sizes.sol return_string.sol reusing_memory.sol revert.sol ripemd.sol same_function_in_construction_and_runtime.sol same_function_in_construction_and_runtime_equality_check.sol scientific_notation.sol selfdestruct.sol send_ether.sol send_zero_ether.sol sha256.sol sha3.sol sha3_multiple_arguments.sol shift_bytes.sol shift_bytes_cleanup.sol shift_cleanup.sol shift_cleanup_garbled.sol shift_constant_left.sol shift_constant_left_assignment.sol shift_constant_right.sol shift_constant_right_assignment.sol shift_left.sol shift_left_assignment.sol shift_left_assignment_different_type.sol shift_left_larger_type.sol shift_left_uint32.sol shift_left_uint8.sol shift_negative_constant_left.sol shift_negative_constant_right.sol shift_negative_rvalue.sol shift_negative_rvalue_assignment.sol shift_overflow.sol shift_right.sol shift_right_assignment.sol shift_right_garbled.sol shift_right_negative_lvalue.sol shift_right_negative_lvalue_assignment.sol shift_right_uint32.sol shift_right_uint8.sol short_circuiting.sol short_data_calls_fallback.sol short_fixed_array_cleanup.sol short_strings.sol sign_extension.sol simple_accessor.sol simple_constant_variables_test.sol simple_mapping.sol simple_throw.sol single_copy_with_multiple_inheritance.sol skip_dynamic_types.sol skip_dynamic_types_for_structs.sol small_signed_types.sol small_unsigned_types.sol smoke_test.sol snark.sol stacked_return_with_modifiers.sol state_smoke_test.sol state_variable_local_variable_mixture.sol staticcall_for_view_and_pure.sol storage_array_ref.sol storage_string_as_mapping_key_without_variable.sol store_bytes.sol store_function.sol store_function_in_constructor.sol store_internal_unused_function_in_constructor.sol store_internal_unused_library_function_in_constructor.sol storing_invalid_boolean.sol string_allocation_bug.sol string_as_mapping_key.sol string_bytes_conversion.sol string_tuples.sol strings.sol strings_in_struct.sol struct_accessor.sol struct_assign_reference_to_struct.sol struct_constructor_nested.sol struct_containing_bytes_copy_and_delete.sol struct_copy.sol struct_copy_via_local.sol struct_delete_member.sol struct_delete_struct_in_mapping.sol struct_named_constructor.sol struct_reference.sol structs.sol suicide.sol super.sol super_alone.sol super_in_constructor.sol super_overload.sol swap_in_storage_overwrite.sol transfer_ether.sol tuples.sol type_conversions_cleanup.sol using_contract_enums_with_explicit_contract_name.sol using_enums.sol using_for_by_name.sol using_for_function_on_int.sol using_for_function_on_struct.sol using_for_overload.sol using_inherited_enum.sol using_inherited_enum_excplicitly.sol using_library_structs.sol value_complex.sol value_for_constructor.sol value_insane.sol virtual_function_calls.sol virtual_function_usage_in_constructor_arguments.sol while_loop.sol" WORKING_DIR="file://$PROJECT_DIR$/contracts/end2end" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltest-unittests" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest-unittests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest-unittests">
+      <envs />
+    </configuration>
+    <configuration name="soltest_BuildInfo.h" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest_BuildInfo.h" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <configuration name="soltesting" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltesting" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest">
+      <envs />
+    </configuration>
+    <list size="24">
+      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
+      <item index="1" class="java.lang.String" itemvalue="Application.cpp-ethereum-git" />
+      <item index="2" class="java.lang.String" itemvalue="Application.cpp-ethereum-git-build" />
+      <item index="3" class="java.lang.String" itemvalue="Application.jsoncpp-project" />
+      <item index="4" class="java.lang.String" itemvalue="Application.solidity-git" />
+      <item index="5" class="java.lang.String" itemvalue="Application.solidity-git-build" />
+      <item index="6" class="java.lang.String" itemvalue="Application.soltest_BuildInfo.h" />
+      <item index="7" class="java.lang.String" itemvalue="Application.end2end-extractor" />
+      <item index="8" class="java.lang.String" itemvalue="Application.heatmap" />
+      <item index="9" class="java.lang.String" itemvalue="Application.heatmap_autogen" />
+      <item index="10" class="java.lang.String" itemvalue="Application.soltesting" />
+      <item index="11" class="java.lang.String" itemvalue="Application.remix-plugin" />
+      <item index="12" class="java.lang.String" itemvalue="Application.soltest - contracts/Simple.sol" />
+      <item index="13" class="java.lang.String" itemvalue="Application.soltest - Simple.sol" />
+      <item index="14" class="java.lang.String" itemvalue="Application.soltest - contracts/SimpleAssignment.soltest" />
+      <item index="15" class="java.lang.String" itemvalue="Application.soltest - SimpleAssignment.soltest" />
+      <item index="16" class="java.lang.String" itemvalue="Application.soltest - contracts/SimpleEmbedded.sol" />
+      <item index="17" class="java.lang.String" itemvalue="Application.soltest - SimpleEmbedded.sol" />
+      <item index="18" class="java.lang.String" itemvalue="Application.soltest - contracts/Tests.test.sol" />
+      <item index="19" class="java.lang.String" itemvalue="Application.soltest - contracts/end2end" />
+      <item index="20" class="java.lang.String" itemvalue="Application.soltest - TestsHere.test.sol" />
+      <item index="21" class="java.lang.String" itemvalue="Application.soltest - TestsHere.test.sol - Raw.abi" />
+      <item index="22" class="java.lang.String" itemvalue="Application.soltest - TestsHere.test.sol - NoBin.abi" />
+      <item index="23" class="java.lang.String" itemvalue="Application.soltest-unittests" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="693c209a-fbdb-4c9f-98c2-e9af5a9ff988" name="Default" comment="" />
+      <created>1520591096350</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1520591096350</updated>
+      <workItem from="1520591097743" duration="27660000" />
+      <workItem from="1520683259459" duration="12273000" />
+      <workItem from="1520892887547" duration="16522000" />
+      <workItem from="1521148077149" duration="5910000" />
+      <workItem from="1521221178329" duration="10172000" />
+      <workItem from="1521232032562" duration="326000" />
+      <workItem from="1521240100839" duration="9972000" />
+    </task>
+    <task id="LOCAL-00001" summary="remix-plugin: initial source loading implemented">
+      <created>1520691439980</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1520691439980</updated>
+    </task>
+    <task id="LOCAL-00002" summary="libsoltesting/Soltest.cpp: corrected relative path behavior&#10;&#10;- fixed problem where .soltest files couldn't be found, if they where placed in current directory">
+      <created>1521061200357</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1521061200357</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Basic loading of .abi files and corresponding .bin files implemented.">
+      <created>1521064730508</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1521064730508</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="82835000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="815" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28667563" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270525" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28667563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49798116" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="remix-plugin: initial source loading implemented" />
+    <MESSAGE value="libsoltesting/Soltest.cpp: corrected relative path behavior&#10;&#10;- fixed problem where .soltest files couldn't be found, if they where placed in current directory" />
+    <MESSAGE value="Basic loading of .abi files and corresponding .bin files implemented." />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic loading of .abi files and corresponding .bin files implemented." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="154" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="72" column="33" lean-forward="false" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Environment.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remix-plugin/handlers/StaticFileRequestHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/SimpleAssignment.soltest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remix-plugin/handlers/SetCompilationDataHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/utility">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="405" column="4" lean-forward="false" selection-start-line="405" selection-start-column="4" selection-end-line="405" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remix-plugin/handlers/HandlerFactory.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="46" column="48" lean-forward="false" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remix-plugin/files/remix.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remix-plugin/handlers/StaticFileRequestHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="4" lean-forward="false" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remix-plugin/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="111" column="17" lean-forward="false" selection-start-line="111" selection-start-column="17" selection-end-line="111" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remix-plugin/handlers/SetCompilationDataHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="106" column="18" lean-forward="false" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/SolidityExtractor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="56" column="9" lean-forward="false" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/SolidityExtractor.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="55" column="8" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/TestsHere.test.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/Raw.abi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="57" lean-forward="false" selection-start-line="0" selection-start-column="57" selection-end-line="0" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/end2end-extractor/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/test/libsolidity/SolidityEndToEndTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="902" column="0" lean-forward="false" selection-start-line="902" selection-start-column="0" selection-end-line="902" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/end2end-extractor/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="2" lean-forward="false" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soltest/console_test_runner.cpp" />
+    <entry file="file://$PROJECT_DIR$/heatmap/qml.qrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="14" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/boostTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="39" column="15" lean-forward="false" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/boost/test/detail/throw_exception.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/boost/test/utils/runtime/cla/parser.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1504">
+          <caret line="395" column="0" lean-forward="false" selection-start-line="395" selection-start-column="0" selection-end-line="395" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/boost/test/framework.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3499">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/boost/test/impl/unit_test_main.ipp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2430">
+          <caret line="162" column="0" lean-forward="false" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/boost/test/impl/framework.ipp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22560">
+          <caret line="1504" column="0" lean-forward="false" selection-start-line="1504" selection-start-column="0" selection-end-line="1504" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/boost/test/impl/results_reporter.ipp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/boost/test/impl/results_collector.ipp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="272" column="21" lean-forward="false" selection-start-line="272" selection-start-column="21" selection-end-line="272" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remix-plugin/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="92" lean-forward="false" selection-start-line="24" selection-start-column="92" selection-end-line="24" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="29" column="202" lean-forward="false" selection-start-line="29" selection-start-column="202" selection-end-line="29" selection-end-column="202" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soltest/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="86" lean-forward="false" selection-start-line="18" selection-start-column="86" selection-end-line="18" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/WorkItem.cpp" />
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Worker.cpp" />
+    <entry file="file://$PROJECT_DIR$/libsoltesting/WorkItem.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="e#798#828#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Worker.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="5" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+          <folding>
+            <element signature="e#792#813#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/SimpleEmbedded.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/SimpleA.soltest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soltest/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="65" column="29" lean-forward="false" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/Simple.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="20" lean-forward="false" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soltest/TestSuiteGenerator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="41" column="15" lean-forward="false" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
+          <folding>
+            <element signature="e#828#862#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soltest/TestSuiteGenerator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="149" column="25" lean-forward="false" selection-start-line="149" selection-start-column="25" selection-end-line="149" selection-end-column="25" />
+          <folding>
+            <element signature="e#755#786#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/Tests.test.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="44" column="49" lean-forward="false" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
+          <folding>
+            <element signature="e#800#848#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/__functional_base">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="327" column="0" lean-forward="false" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/ReadFile.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="33" column="11" lean-forward="false" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/CompilerStack.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="151" column="9" lean-forward="false" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/Poco/Thread.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="305" column="0" lean-forward="false" selection-start-line="305" selection-start-column="0" selection-end-line="305" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="144" column="13" lean-forward="true" selection-start-line="144" selection-start-column="13" selection-end-line="144" selection-end-column="13" />
+          <folding>
+            <element signature="e#743#763#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/SimpleB.soltest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="116" column="16" lean-forward="false" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="61" column="32" lean-forward="false" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
+          <folding>
+            <element signature="e#745#759#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
