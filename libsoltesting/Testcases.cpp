@@ -21,15 +21,62 @@
 
 #include <map>
 #include <string>
+#include <boost/algorithm/string.hpp>
 #include "Testcases.h"
+#include "Soltest.h"
 
 namespace soltest
 {
 
-Testcases::Testcases(std::string const &_filename, std::map<std::string, std::string> &_testcases)
+Testcases::Testcases(const soltest::Soltest *_soltest,
+					 std::string const &_filename,
+					 std::map<std::string, std::string> &_testcases) : m_soltest(_soltest)
 {
-	(void) _filename;
-	(void) _testcases;
+	std::map<std::string, std::string> solidityContents = m_soltest->solidityContents();
+	std::map<std::string, std::string> solidityTestContents = m_soltest->solidityTestContents();
+
+	m_compiler = std::make_shared<dev::solidity::CompilerStack>(
+		[&](std::string const &import) -> dev::solidity::ReadCallback::Result
+		{
+			dev::solidity::ReadCallback::Result result;
+			result.success = true;
+
+			if (solidityContents.find(import) != solidityContents.end())
+				result.responseOrErrorMessage = solidityContents[import];
+			else  if (solidityTestContents.find(import) != solidityTestContents.end())
+				result.responseOrErrorMessage = solidityTestContents[import];
+			else
+				result.success = false;
+
+			return result;
+		}
+	);
+
+	if (boost::ends_with(_filename, ".test.sol"))
+	{
+		m_compiler->addSource(_filename, solidityTestContents[_filename]);
+	}
+	else
+	{
+		std::string solidityFile(m_soltest->solidityFile(_filename));
+		if (solidityFile.empty())
+			solidityFile = _filename;
+
+		(void) _testcases;
+
+		m_compiler->addSource(solidityFile, solidityContents[solidityFile]);
+	}
+	if (!m_compiler->parseAndAnalyze())
+	{
+		for (auto& e : m_compiler->errors()) {
+			std::cout << e->lineInfo() << " @ " << e->what() << std::endl;
+		}
+	}
+	else
+		for (auto &c : m_compiler->contractNames())
+		{
+			std::cout << c << std::endl;
+		}
 }
 
 void Testcases::executeTestcase(std::string const &_testcase)

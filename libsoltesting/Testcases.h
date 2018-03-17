@@ -22,19 +22,27 @@
 #ifndef SOLTEST_TESTCASES_H
 #define SOLTEST_TESTCASES_H
 
+#include <libsolidity/interface/CompilerStack.h>
+
 #include <memory>
 
 namespace soltest
 {
+
+class Soltest;
 
 class Testcases
 {
 public:
 	typedef typename std::shared_ptr<Testcases> Ptr;
 
-	Testcases(std::string const &_filename, std::map<std::string, std::string> &_testcases);
+	Testcases(const soltest::Soltest* _soltest, std::string const &_filename, std::map<std::string, std::string> &_testcases);
 
 	void executeTestcase(std::string const &_testcase);
+
+private:
+	const soltest::Soltest* m_soltest;
+	std::shared_ptr<dev::solidity::CompilerStack> m_compiler;
 };
 
 } // namespace soltest

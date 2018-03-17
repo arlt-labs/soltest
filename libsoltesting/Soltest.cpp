@@ -123,7 +123,10 @@ void Soltest::searchSoltestFiles()
 	{
 		std::string soltestFile = boost::filesystem::path(solidityContent.first).string() + "test";
 		if (boost::filesystem::exists(soltestFile))
+		{
 			addSoltestFile(soltestFile);
+			m_soltestSolidityFile[soltestFile] = solidityContent.first;
+		}
 	}
 	for (auto &contract : m_contracts)
 	{
@@ -136,9 +139,15 @@ void Soltest::searchSoltestFiles()
 			std::string soltestFile(boost::filesystem::path(solidityFile).parent_path().string()
 										+ boost::filesystem::path::preferred_separator + contractName + ".soltest");
 			if (boost::filesystem::exists(soltestFile))
+			{
 				addSoltestFile(soltestFile);
+				m_soltestSolidityFile[soltestFile] = solidityFile;
+			}
 			else if (soltestFile.length() > 1 && boost::filesystem::exists(soltestFile.substr(1)))
+			{
 				addSoltestFile(soltestFile.substr(1));
+				m_soltestSolidityFile[soltestFile.substr(1)] = solidityFile;
+			}
 		}
 	}
 }
@@ -422,16 +431,16 @@ void Soltest::runTestcases(int threads)
 	Poco::ThreadPool::defaultPool().joinAll();
 }
 
-void Soltest::prepareTestcases(std::string const _filename, std::map<std::string, std::string> _testcases)
+void Soltest::prepareTestcases(std::string const &_filename, std::map<std::string, std::string> _testcases)
 {
-	soltest::Testcases::Ptr testcases(new soltest::Testcases(_filename, _testcases));
+	soltest::Testcases::Ptr testcases(new soltest::Testcases(this, _filename, _testcases));
 
 	m_testcasesMutex.lock();
 	m_testcases[_filename] = testcases;
 	m_testcasesMutex.unlock();
 }
 
-void Soltest::executeTestcase(const std::string _filename, std::string const _testcase)
+void Soltest::executeTestcase(std::string const &_filename, std::string const &_testcase)
 {
 	m_testcasesMutex.lock();
 	soltest::Testcases::Ptr testcases = m_testcases[_filename];

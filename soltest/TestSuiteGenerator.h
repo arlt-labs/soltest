@@ -35,15 +35,22 @@ class TestSuiteGenerator
 public:
 	TestSuiteGenerator(soltest::Soltest &_soltest, boost::unit_test::master_test_suite_t &_masterTestSuite);
 
-	bool addTestsToTestSuite();
-
-	void checkForWarningsAndErrors(bool loadContractsResult, bool loadTestcasesResult, bool printToCerr);
+	void load(bool _printWarnings);
 
 	void processTestcase(std::string const &soltestFile, std::string const &testcase);
 
 	void runTestcases(int threads);
 
+	bool error()
+	{
+		return m_error;
+	}
+
 private:
+	bool checkForWarningsAndErrors(bool _printWarnings);
+
+	bool m_error;
+
 	soltest::Soltest &m_soltest;
 	boost::unit_test::master_test_suite_t &m_masterTestSuite;
 };

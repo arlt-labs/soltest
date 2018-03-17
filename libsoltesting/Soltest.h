@@ -109,6 +109,35 @@ public:
 		return m_soltestsLine[soltestFile][testcase];
 	}
 
+	std::map<std::string, std::string> const &solidityContents() const
+	{
+		return m_solidityContents;
+	}
+
+	std::map<std::string, std::string> const &solidityTestContents() const
+	{
+		return m_solidityTestContents;
+	}
+
+	std::map<std::string, std::string> const &soltestContents() const
+	{
+		return m_soltestContents;
+	}
+
+	std::map<std::string, std::pair<std::string, std::string>> const &abiContents() const
+	{
+		return m_abiContents;
+	}
+
+	std::string solidityFile(std::string const &soltestFile) const
+	{
+		auto iter = m_soltestSolidityFile.find(soltestFile);
+		if (iter != m_soltestSolidityFile.end()) {
+			return iter->second;
+		}
+		return "";
+	}
+
 private:
 	void preloadContracts();
 
@@ -116,9 +145,9 @@ private:
 
 	void parseSoltest(SolidityExtractor &_extractor);
 
-	void prepareTestcases(std::string const _filename, std::map<std::string, std::string> _testcases);
+	void prepareTestcases(std::string const &_filename, std::map<std::string, std::string> _testcases);
 
-	void executeTestcase(std::string const _filename, std::string const _testcase);
+	void executeTestcase(std::string const &_filename, std::string const &_testcase);
 
 	std::map<std::string, std::string> m_options;
 
@@ -130,6 +159,8 @@ private:
 	std::map<std::string, std::string> m_solidityTestContents;                   ///< for .test.sol files
 	std::map<std::string, std::string> m_soltestContents;                        ///< for .soltest files
 	std::map<std::string, std::pair<std::string, std::string>> m_abiContents;    ///< for .abi + .bin files
+
+	std::map<std::string, std::string> m_soltestSolidityFile;
 
 	std::map<std::string, std::map<std::string, std::string>> m_soltests;
 	std::map<std::string, std::map<std::string, size_t>> m_soltestsLine;

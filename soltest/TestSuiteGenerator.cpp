@@ -36,26 +36,13 @@ TestSuiteGenerator::TestSuiteGenerator(soltest::Soltest &_soltest,
 {
 }
 
-bool TestSuiteGenerator::addTestsToTestSuite()
+void TestSuiteGenerator::load(bool _printWarnings)
 {
-	bool loadContractsResult(m_soltest.loadContracts());
-	bool loadTestcasesResult(m_soltest.loadTestcases());
+	m_soltest.loadContracts();
+	m_soltest.loadTestcases();
 
-	if (m_soltest.soltestErrors().empty())
+	if (!checkForWarningsAndErrors(_printWarnings))
 	{
-		auto checkForWarningsAndErrors =
-			std::bind(&TestSuiteGenerator::checkForWarningsAndErrors,
-					  this,
-					  loadContractsResult,
-					  loadTestcasesResult,
-					  false);
-		m_masterTestSuite.add(
-			boost::unit_test::make_test_case(boost::function<void()>(checkForWarningsAndErrors),
-											 "load contracts & testcases",
-											 __FILE__,
-											 __LINE__)
-		);
-
 		static std::vector<std::shared_ptr<std::string>> strings;
 		for (auto const &soltestFile: m_soltest.soltests())
 			for (auto const &testcase: soltestFile.second)
@@ -83,15 +70,9 @@ bool TestSuiteGenerator::addTestsToTestSuite()
 				);
 			}
 	}
-	else
-		checkForWarningsAndErrors(false, false, true);
-
-	return false;
 }
 
-void TestSuiteGenerator::checkForWarningsAndErrors(bool loadContractsResult,
-												   bool loadTestcasesResult,
-												   bool printToCerr)
+bool TestSuiteGenerator::checkForWarningsAndErrors(bool _printWarnings)
 {
 	std::set<std::string> soltestErrorSet;
 	std::set<std::string> warningSet;
@@ -115,11 +96,8 @@ void TestSuiteGenerator::checkForWarningsAndErrors(bool loadContractsResult,
 	for (auto &warning : warningSet)
 		stream << warning;
 
-	if (!warningSet.empty() && printToCerr)
+	if (!warningSet.empty() && _printWarnings)
 		std::cerr << stream.str() << std::endl;
-
-	if (!printToCerr && !warningSet.empty())
-		BOOST_TEST_MESSAGE(stream.str().c_str());
 
 	for (auto &errors : m_soltest.compilerErrors())
 		if (errors.first != dev::solidity::Error::Type::Warning)
@@ -138,11 +116,8 @@ void TestSuiteGenerator::checkForWarningsAndErrors(bool loadContractsResult,
 	for (auto &error: errorSet)
 		stream << error;
 
-	if (!errorSet.empty() && printToCerr)
+	if (!errorSet.empty())
 		std::cerr << stream.str() << std::endl;
-
-	if (!printToCerr && !errorSet.empty())
-		BOOST_REQUIRE_MESSAGE(loadContractsResult, stream.str().c_str());
 
 	for (auto &errors : m_soltest.soltestErrors())
 		for (auto &e : errors.second)
@@ -158,11 +133,11 @@ void TestSuiteGenerator::checkForWarningsAndErrors(bool loadContractsResult,
 	for (auto &error : soltestErrorSet)
 		stream << error;
 
-	if (!soltestErrorSet.empty() && printToCerr)
+	if (!soltestErrorSet.empty())
 		std::cerr << stream.str() << std::endl;
 
-	if (!printToCerr && !soltestErrorSet.empty())
-		BOOST_REQUIRE_MESSAGE(loadTestcasesResult, stream.str().c_str());
+	m_error = !errorSet.empty() || !soltestErrorSet.empty();
+	return m_error;
 }
 
 void TestSuiteGenerator::processTestcase(std::string const &soltestFile, std::string const &testcase)
