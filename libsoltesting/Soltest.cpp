@@ -30,6 +30,8 @@
 #include <boost/algorithm/string.hpp>
 #include <Poco/ThreadPool.h>
 
+#include <fstream>
+
 namespace soltest
 {
 
@@ -211,6 +213,7 @@ bool Soltest::addAbiFile(std::string const &abiFile)
 	std::string binFile(abiFile);
 	boost::replace_last(binFile, ".abi", ".bin");
 	if (boost::filesystem::exists(abiFile))
+	{
 		if (boost::filesystem::exists(binFile))
 		{
 			std::ifstream abiFileStream(abiFile);
@@ -235,6 +238,7 @@ bool Soltest::addAbiFile(std::string const &abiFile)
 			error->what = message.str();
 			m_soltestErrors[dev::solidity::Error::Type::DeclarationError].push_back(error);
 		}
+	}
 	return false;
 }
 

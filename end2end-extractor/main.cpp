@@ -23,6 +23,10 @@
 
 #include <iostream>
 #include <sstream>
+#include <fstream>
+#include <string>
+#include <set>
+#include <map>
 #include <boost/filesystem.hpp>
 #include <boost/algorithm/string.hpp>
 

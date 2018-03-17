@@ -10,10 +10,10 @@ link_directories(${CMAKE_CURRENT_BINARY_DIR}/../solidity-git/src/solidity-git-bu
 		${CMAKE_CURRENT_BINARY_DIR}/../solidity-git/src/solidity-git-build/libdevcore
 		${CMAKE_CURRENT_BINARY_DIR}/../cpp-ethereum-git/src/cpp-ethereum-git-build/libevmexec)
 
-add_definitions(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_NO_MAIN)
+add_definitions(-DBOOST_TEST_DYN_LINK -DBOOST_TEST_NO_MAIN -DBOOST_TEST_ALTERNATIVE_INIT_API)
 add_executable(soltest ${sources} ${headers})
 add_dependencies(soltest soltesting solidity-git-build cpp-ethereum-git-build)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/../../)
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/../include)
-target_link_libraries(soltest soltesting jsoncpp ${Boost_UNIT_TEST_FRAMEWORK_LIBRARIES})
+target_link_libraries(soltest soltesting ${Boost_UNIT_TEST_FRAMEWORK_LIBRARIES})

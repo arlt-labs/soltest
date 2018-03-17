@@ -27,7 +27,7 @@ find_library(POCO_FOUNDATION PocoFoundation)
 
 add_library(soltesting ${sources} ${headers})
 add_dependencies(soltesting solidity-git-build soltest_BuildInfo.h jsoncpp)
-target_link_libraries(soltesting PUBLIC solc solidity evmasm devcore evmexec ${Boost_FILESYSTEM_LIBRARIES} ${Boost_REGEX_LIBRARIES} ${Boost_SYSTEM_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${POCO_FOUNDATION})
+target_link_libraries(soltesting PUBLIC solc solidity evmasm devcore evmexec ${JSONCPP_LIBRARY} ${Boost_FILESYSTEM_LIBRARIES} ${Boost_REGEX_LIBRARIES} ${Boost_SYSTEM_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${POCO_FOUNDATION})
 
 if (${Z3_FOUND})
 	target_link_libraries(soltesting PUBLIC ${Z3_LIBRARY})

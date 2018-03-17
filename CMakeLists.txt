@@ -31,7 +31,7 @@ set(LICENSE_TEXT "0x${LICENSE_TEXT}")
 configure_file("${CMAKE_SOURCE_DIR}/cmake/templates/license.h.in" include/license.h)
 
 include(EthOptions)
-configure_project(TESTS TOOLS)
+configure_project(TESTS TOOLS HEATMAP)
 
 include(ExternalProject)
 ExternalProject_Add(solidity-git
@@ -50,7 +50,7 @@ ExternalProject_Add(solidity-git
 ExternalProject_Add(cpp-ethereum-git
 		PREFIX ${CMAKE_CURRENT_BINARY_DIR}/cpp-ethereum-git
 		GIT_REPOSITORY git@github.com:aarlt/cpp-ethereum.git
-		GIT_TAG 691c49a951aa91d04d6a509df25199dda8638360 # GIT_TAG libevmexec
+		GIT_TAG e257654a8c00edf9c505a92c587a57c8647021e2 # GIT_TAG libevmexec
 		BUILD_COMMAND make evmexec
 		CMAKE_ARGS -DTESTS=OFF -DTOOLS=OFF
 		-DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
@@ -60,7 +60,9 @@ ExternalProject_Add(cpp-ethereum-git
 		EXCLUDE_FROM_ALL TRUE
 		)
 
-set(CMAKE_PREFIX_PATH "/Users/alex/Qt/5.10.1/clang_64")
+if (NOT DEFINED CMAKE_PREFIX_PATH)
+	set(CMAKE_PREFIX_PATH "/Users/alex/Qt/5.10.1/clang_64")
+endif(NOT DEFINED CMAKE_PREFIX_PATH)
 
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_BINARY_DIR}/solidity-git/src/solidity-git)
@@ -69,9 +71,12 @@ include_directories(${CMAKE_BINARY_DIR}/solidity-git/src/solidity-git-build/deps
 add_subdirectory(libsoltesting)
 
 if (TOOLS)
-	add_subdirectory(heatmap)
 	add_subdirectory(remix-plugin)
 	add_subdirectory(end2end-extractor)
+endif ()
+
+if (HEATMAP)
+	add_subdirectory(heatmap)
 endif ()
 
 if (TESTS)
