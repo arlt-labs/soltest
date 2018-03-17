@@ -60,7 +60,9 @@ ExternalProject_Add(cpp-ethereum-git
 		EXCLUDE_FROM_ALL TRUE
 		)
 
-set(CMAKE_PREFIX_PATH "/Users/alex/Qt/5.10.1/clang_64")
+if (NOT DEFINED CMAKE_PREFIX_PATH)
+	set(CMAKE_PREFIX_PATH "/Users/alex/Qt/5.10.1/clang_64")
+endif(NOT DEFINED CMAKE_PREFIX_PATH)
 
 include_directories(${CMAKE_SOURCE_DIR})
 include_directories(${CMAKE_BINARY_DIR}/solidity-git/src/solidity-git)

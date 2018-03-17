@@ -14,7 +14,6 @@ find_library(POCO_FOUNDATION PocoFoundation)
 find_library(POCO_NET PocoNet)
 find_library(POCO_UTIL PocoUtil)
 find_library(POCO_XML PocoXML)
-find_library(POCO_JSON PocoJSON)
 find_library(POCO_ZIP PocoZip)
 
 add_executable(remix-plugin ${sources} ${headers})
@@ -22,4 +21,4 @@ add_dependencies(remix-plugin soltesting solidity-git-build cpp-ethereum-git-bui
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/../../)
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/../include)
-target_link_libraries(remix-plugin soltesting jsoncpp ${Boost_UNIT_TEST_FRAMEWORK_LIBRARIES} ${POCO_FOUNDATION} ${POCO_NET} ${POCO_UTIL} ${POCO_XML} ${POCO_JSON} ${POCO_ZIP})
+target_link_libraries(remix-plugin soltesting jsoncpp ${Boost_UNIT_TEST_FRAMEWORK_LIBRARIES} ${POCO_FOUNDATION} ${POCO_NET} ${POCO_UTIL} ${POCO_XML} ${POCO_ZIP})

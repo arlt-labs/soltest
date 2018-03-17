@@ -19,11 +19,13 @@
  * @date 2018
  */
 
-#include <map>
-#include <string>
-#include <boost/algorithm/string.hpp>
 #include "Testcases.h"
 #include "Soltest.h"
+
+#include <boost/algorithm/string.hpp>
+
+#include <map>
+#include <string>
 
 namespace soltest
 {
