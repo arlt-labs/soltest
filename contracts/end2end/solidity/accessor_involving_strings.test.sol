@@ -1,0 +1,20 @@
+import 'accessor_involving_strings.sol';
+import 'Soltest.sol'; // this file will be virtually provided by the testing environment - it's not existing physically.
+
+contract accessor_involving_strings_Test is Soltest { 
+    function test_accessor_involving_strings() { 
+        // compileAndRun(sourceCode, 0, "Main");
+        // string s1("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
+        // string s2("ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ");
+        // bytes s1Data = encodeArgs(u256(s1.length()), s1);
+        // bytes s2Data = encodeArgs(u256(s2.length()), s2);
+        // u256 b = 765;
+        // u256 x = 7;
+        // u256 y = 123;
+        // bytes args = encodeArgs(x, y, u256(0xa0), b, u256(0xa0 + s1Data.size()), s1Data, s2Data);
+        // bytes result = encodeArgs(u256(0x60), b, u256(0x60 + s1Data.size()), s1Data, s2Data);
+        // BOOST_REQUIRE(callContractFunction("set(uint256,uint256,string,uint256,string)", asString(args)) == encodeArgs(true));
+        // BOOST_REQUIRE(callContractFunction("data(uint256,uint256)", x, y) == result);
+    } 
+} 
+

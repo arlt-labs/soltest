@@ -1,0 +1,26 @@
+/// @ext:soltest
+/// {accessor_involving_strings}
+///     // compileAndRun(sourceCode, 0, "Main");
+///     // string s1("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
+///     // string s2("ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ");
+///     // bytes s1Data = encodeArgs(u256(s1.length()), s1);
+///     // bytes s2Data = encodeArgs(u256(s2.length()), s2);
+///     // u256 b = 765;
+///     // u256 x = 7;
+///     // u256 y = 123;
+///     // bytes args = encodeArgs(x, y, u256(0xa0), b, u256(0xa0 + s1Data.size()), s1Data, s2Data);
+///     // bytes result = encodeArgs(u256(0x60), b, u256(0x60 + s1Data.size()), s1Data, s2Data);
+///     // BOOST_REQUIRE(callContractFunction("set(uint256,uint256,string,uint256,string)", asString(args)) == encodeArgs(true));
+///     // BOOST_REQUIRE(callContractFunction("data(uint256,uint256)", x, y) == result);
+contract Main {
+	struct stringData { string a; uint b; string c; }
+	mapping(uint => stringData[]) public data;
+	function set(uint x, uint y, string a, uint b, string c) external returns (bool) {
+		data[x].length = y + 1;
+		data[x][y].a = a;
+		data[x][y].b = b;
+		data[x][y].c = c;
+		return true;
+	}
+}
+

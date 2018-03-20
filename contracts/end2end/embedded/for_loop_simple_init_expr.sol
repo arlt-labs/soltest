@@ -1,0 +1,23 @@
+/// @ext:soltest
+/// {for_loop_simple_init_expr}
+///     // compileAndRun(sourceCode);
+///     //
+///     // auto for_loop_simple_init_expr_cpp = [](u256 const& n) -> u256
+///     // {
+///     // 	u256 nfac = 1;
+///     // 	u256 i;
+///     // 	for (i = 2; i <= n; i++)
+///     // 		nfac *= i;
+///     // 	return nfac;
+///     // };
+///     //
+///     // testContractAgainstCppOnRange("f(uint256)", for_loop_simple_init_expr_cpp, 0, 5);
+contract test {
+	function f(uint n) returns(uint nfac) {
+		nfac = 1;
+		uint256 i;
+		for (i = 2; i <= n; i++)
+			nfac *= i;
+	}
+}
+

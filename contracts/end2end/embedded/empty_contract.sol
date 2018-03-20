@@ -1,0 +1,6 @@
+/// @ext:soltest
+/// {empty_contract}
+///     // compileAndRun(sourceCode);
+///     // BOOST_CHECK(callContractFunction("i_am_not_there()", bytes()).empty());
+contract test { }
+

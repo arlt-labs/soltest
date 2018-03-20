@@ -1,5 +1,0 @@
-{inherited_function {}
-	//
-	// compileAndRun(sourceCode, 0, "B");
-	// ABI_CHECK(callContractFunction("g()"), encodeArgs(u256(1)));
-

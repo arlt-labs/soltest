@@ -1,0 +1,8 @@
+contract test {
+	function f(bool cond) returns (uint) {
+		uint8 x = 0xcd;
+		uint16 y = 0xabab;
+		return cond ? x : y;
+	}
+}
+

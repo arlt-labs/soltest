@@ -1,0 +1,25 @@
+import 'storage_array_ref.sol';
+import 'Soltest.sol'; // this file will be virtually provided by the testing environment - it's not existing physically.
+
+contract storage_array_ref_Test is Soltest { 
+    function test_storage_array_ref() { 
+        // compileAndRun(sourceCode, 0, "Store");
+        // BOOST_REQUIRE(callContractFunction("find(uint256)", u256(7)) == encodeArgs(u256(-1)));
+        // BOOST_REQUIRE(callContractFunction("add(uint256)", u256(7)) == encodeArgs());
+        // BOOST_REQUIRE(callContractFunction("find(uint256)", u256(7)) == encodeArgs(u256(0)));
+        // ABI_CHECK(callContractFunction("add(uint256)", u256(11)), encodeArgs());
+        // ABI_CHECK(callContractFunction("add(uint256)", u256(17)), encodeArgs());
+        // ABI_CHECK(callContractFunction("add(uint256)", u256(27)), encodeArgs());
+        // ABI_CHECK(callContractFunction("add(uint256)", u256(31)), encodeArgs());
+        // ABI_CHECK(callContractFunction("add(uint256)", u256(32)), encodeArgs());
+        // ABI_CHECK(callContractFunction("add(uint256)", u256(66)), encodeArgs());
+        // ABI_CHECK(callContractFunction("add(uint256)", u256(177)), encodeArgs());
+        // ABI_CHECK(callContractFunction("find(uint256)", u256(7)), encodeArgs(u256(0)));
+        // ABI_CHECK(callContractFunction("find(uint256)", u256(27)), encodeArgs(u256(3)));
+        // ABI_CHECK(callContractFunction("find(uint256)", u256(32)), encodeArgs(u256(5)));
+        // ABI_CHECK(callContractFunction("find(uint256)", u256(176)), encodeArgs(u256(-1)));
+        // ABI_CHECK(callContractFunction("find(uint256)", u256(0)), encodeArgs(u256(-1)));
+        // ABI_CHECK(callContractFunction("find(uint256)", u256(400)), encodeArgs(u256(-1)));
+    } 
+} 
+
