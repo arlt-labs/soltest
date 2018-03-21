@@ -37,7 +37,7 @@ include(ExternalProject)
 ExternalProject_Add(solidity-git
 		PREFIX ${CMAKE_CURRENT_BINARY_DIR}/solidity-git
 		GIT_REPOSITORY git@github.com:aarlt/solidity.git
-		GIT_TAG 4a692dbc53e350fe4d65f8042e7392f049d65c40 # GIT_TAG external_natspec
+		GIT_TAG 971dfae0b7fce7657187141a556bf14b0e397c90 # GIT_TAG external_natspec
 		CMAKE_ARGS -DTESTS=OFF -DTOOLS=OFF
 		-DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
 		-DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
