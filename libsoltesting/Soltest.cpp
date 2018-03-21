@@ -412,9 +412,11 @@ bool Soltest::parseSoltest(uint32_t _line, std::string const &_filename, std::st
 	if (result)
 	{
 		for (auto &currentSection : sections)
-			m_soltests[_filename][currentSection.first] = currentSection.second.str();
+			if (!currentSection.first.empty())
+				m_soltests[_filename][currentSection.first] = currentSection.second.str();
 		for (auto &currentLine : lines)
-			m_soltestsLine[_filename][currentLine.first] = currentLine.second;
+			if (!currentLine.first.empty())
+				m_soltestsLine[_filename][currentLine.first] = currentLine.second;
 	}
 	return result;
 }

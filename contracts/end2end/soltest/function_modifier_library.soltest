@@ -1,0 +1,4 @@
+{function_modifier_library}
+	// compileAndRun(sourceCode);
+	// ABI_CHECK(callContractFunction("f()"), encodeArgs(0x202));
+

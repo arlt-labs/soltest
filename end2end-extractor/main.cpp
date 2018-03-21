@@ -21,14 +21,15 @@
  * solidity/src/solidity-git/test/libsolidity/SolidityEndToEndTest.cpp.
  */
 
+#include <boost/filesystem.hpp>
+#include <boost/algorithm/string.hpp>
+
 #include <iostream>
 #include <sstream>
 #include <fstream>
 #include <string>
 #include <set>
 #include <map>
-#include <boost/filesystem.hpp>
-#include <boost/algorithm/string.hpp>
 
 int main(int argc, char *argv[])
 {
@@ -86,25 +87,25 @@ int main(int argc, char *argv[])
 			}
 		}
 		std::cout << "extracted " << testCount << " tests." << std::endl;
-		boost::filesystem::create_directories(outputDirectory + boost::filesystem::path::separator + "embedded");
-		boost::filesystem::create_directories(outputDirectory + boost::filesystem::path::separator + "solidity");
-		boost::filesystem::create_directories(outputDirectory + boost::filesystem::path::separator + "soltest");
+		boost::filesystem::create_directories(outputDirectory + boost::filesystem::path::preferred_separator + "embedded");
+		boost::filesystem::create_directories(outputDirectory + boost::filesystem::path::preferred_separator + "solidity");
+		boost::filesystem::create_directories(outputDirectory + boost::filesystem::path::preferred_separator + "soltest");
 		for (auto &l : tests)
 		{
 			std::string testName(l.first);
 
 			std::ofstream soltestSolFile
-				(outputDirectory + boost::filesystem::path::separator + "soltest" + boost::filesystem::path::separator
+				(outputDirectory + boost::filesystem::path::preferred_separator + "soltest" + boost::filesystem::path::preferred_separator
 					 + testName + ".sol");
 			std::ofstream soltestSoltestFile
-				(outputDirectory + boost::filesystem::path::separator + "soltest" + boost::filesystem::path::separator
+				(outputDirectory + boost::filesystem::path::preferred_separator + "soltest" + boost::filesystem::path::preferred_separator
 					 + testName + ".soltest");
 			soltestSolFile << l.second.first << std::endl;
 			soltestSoltestFile << "{" + testName + "}" << std::endl;
 			soltestSoltestFile << l.second.second << std::endl;
 
 			std::ofstream embeddedSolFile
-				(outputDirectory + boost::filesystem::path::separator + "embedded" + boost::filesystem::path::separator
+				(outputDirectory + boost::filesystem::path::preferred_separator + "embedded" + boost::filesystem::path::preferred_separator
 					 + testName + ".sol");
 
 			std::stringstream embeddedSoltest;
@@ -131,7 +132,7 @@ int main(int argc, char *argv[])
 			std::cout << l.second.first << " @ " << l.second.second << std::endl;
 
 			std::ofstream soliditySolFile
-				(outputDirectory + boost::filesystem::path::separator + "solidity" + boost::filesystem::path::separator
+				(outputDirectory + boost::filesystem::path::preferred_separator + "solidity" + boost::filesystem::path::preferred_separator
 					 + testName + ".sol");
 			soliditySolFile << l.second.first << std::endl;
 
@@ -147,7 +148,7 @@ int main(int argc, char *argv[])
 			solidityTestcaseContract << "    } " << std::endl;
 			solidityTestcaseContract << "} " << std::endl;
 			std::ofstream solidityTestcaseFile
-				(outputDirectory + boost::filesystem::path::separator + "solidity" + boost::filesystem::path::separator
+				(outputDirectory + boost::filesystem::path::preferred_separator + "solidity" + boost::filesystem::path::preferred_separator
 					 + testName + ".test.sol");
 			solidityTestcaseFile << solidityTestcaseContract.str() << std::endl;
 		}

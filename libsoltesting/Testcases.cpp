@@ -98,7 +98,7 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 		}
 		testContractContent << "}" << std::endl;
 
-		std::cout << std::endl << _filename << std::endl << testContractContent.str() << std::endl;
+//		std::cout << std::endl << _filename << std::endl << testContractContent.str() << std::endl;
 
 		m_compiler->addSource(testContractFileName, testContractContent.str());
 	}
@@ -126,7 +126,7 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 			auto const &err = dynamic_cast<dev::solidity::Error const &>(*e);
 			if (err.type() != dev::solidity::Error::Type::Warning)
 			{
-				std::cout << formattedErrorMessage(_filename, err) << std::endl;
+//				std::cout << formattedErrorMessage(_filename, err) << std::endl;
 			}
 		}
 	}
@@ -182,8 +182,10 @@ std::string Testcases::formattedErrorMessage(const std::string &_filename, const
 		}
 	}
 
-	if (!secondarylocation->infos.empty()) {
-		std::tie(startLine, startColumn) = scanner.translatePositionToLineColumn(secondarylocation->infos[0].second.start);
+	if (!secondarylocation->infos.empty())
+	{
+		std::tie(startLine, startColumn) =
+			scanner.translatePositionToLineColumn(secondarylocation->infos[0].second.start);
 		originalLocation.str("");
 		originalLocation << *location->sourceName << ":" << (startLine + 1) << ":" << (startColumn + 1) << ": ";
 

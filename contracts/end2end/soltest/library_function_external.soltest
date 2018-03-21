@@ -1,0 +1,5 @@
+{library_function_external}
+	// compileAndRun(sourceCode, 0, "Lib");
+	// compileAndRun(sourceCode, 0, "Test", bytes(), map<string, Address>{{"Lib", m_contractAddress}});
+	// ABI_CHECK(callContractFunction("f(bytes)", u256(0x20), u256(5), "abcde"), encodeArgs("c"));
+
