@@ -45,6 +45,7 @@ using namespace boost::unit_test;
 #include <soltest/TestSuiteGenerator.h>
 
 #include <iostream>
+#include <Poco/ThreadPool.h>
 
 static soltest::Soltest *g_soltest;
 static soltest::TestSuiteGenerator *g_testSuiteGenerator;
@@ -71,27 +72,63 @@ test_suite *soltest_init_unit_test_suite(int argc, char **argv)
 #endif
 }
 
-int soltest_unit_test_main(init_unit_test_func init_func, int argc, char *argv[])
+struct TestcaseCounter : public boost::unit_test::test_tree_visitor
 {
+	TestcaseCounter() : count(0)
+	{
+	}
+	std::size_t count;
+	bool visit(test_unit const &unit) override
+	{
+		++count;
+		return test_tree_visitor::visit(unit);
+	}
+};
+
+int main(int argc, char *argv[])
+{
+	std::cout << "soltest v" << ETH_PROJECT_VERSION << std::endl;
+	std::cout << "By Alexander Arlt <alexander.arlt@arlt-labs.com>, 2018." << std::endl << std::endl;
+
+	std::cout << "Loading test cases..." << std::flush;
+
 	static soltest::Soltest soltest;
 	g_soltest = &soltest;
 
 	if (!soltest.parseCommandLineArguments(argc, argv))
+	{
+		std::cout << "\rLoading test cases... error" << std::endl;
 		return boost::exit_failure;
+	}
+	std::cout << "\rLoading test cases... done" << std::endl;
 
 	int result_code = 0;
 
 	BOOST_TEST_I_TRY
 	{
-		framework::init(init_func, argc, argv);
+		framework::init(soltest_init_unit_test_suite, argc, argv);
 
 		framework::finalize_setup_phase();
 
 		if (!g_testSuiteGenerator->error())
 		{
-			g_testSuiteGenerator->runTestcases(1);
+			TestcaseCounter counter;
+			traverse_test_tree(boost::unit_test::framework::master_test_suite().p_id, counter, true);
+			std::cout << "Running " << counter.count - 1 << " test cases using "
+					  << g_soltest->threads() << " threads..." << std::flush;
+
+			g_testSuiteGenerator->runTestcases(g_soltest->threads());
+
+			std::cout << "\rRunning " << counter.count - 1 << " test cases using "
+					  << g_soltest->threads() << " threads... done" << std::endl;
+
+			std::cout << "Collecting results..." << std::endl;
+
 			framework::run();
-		} else
+
+			std::cout << "Collecting results... done" << std::endl;
+		}
+		else
 			return boost::exit_failure;
 
 		results_reporter::make_report();
@@ -124,14 +161,4 @@ int soltest_unit_test_main(init_unit_test_func init_func, int argc, char *argv[]
 	framework::shutdown();
 
 	return result_code;
-}
-
-int main(int argc, char *argv[])
-{
-	std::cout << "soltest v" << ETH_PROJECT_VERSION << std::endl;
-	std::cout << "By Alexander Arlt <alexander.arlt@arlt-labs.com>, 2018." << std::endl << std::endl;
-
-	boost::unit_test::init_unit_test_func init_func = &soltest_init_unit_test_suite;
-
-	return soltest_unit_test_main(init_func, argc, argv);
 }

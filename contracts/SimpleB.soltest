@@ -1,7 +1,8 @@
 {test 01}
-    soltest.setAccount("other");
-    assert(s1.add(1, 1) == 2);
-    assert(s1.add(2, 2) == 4);
+    uint32 one = 1;
+    uint32 two = 2;
+    uint32 three = two + one;
+    assert(1 + three == 1 + one + three - 1);
 
 {test 02}
     uint32 one = 1;

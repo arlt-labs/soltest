@@ -31,8 +31,8 @@ namespace soltest
 {
 
 Testcases::Testcases(const soltest::Soltest *_soltest,
-					 std::string const &_filename,
-					 std::map<std::string, std::string> &_testcases) : m_soltest(_soltest)
+					 std::string _filename,
+					 std::map<std::string, std::string> _testcases) : m_soltest(_soltest)
 {
 	std::map<std::string, std::string> solidityContents = m_soltest->solidityContents();
 	std::map<std::string, std::string> solidityTestContents = m_soltest->solidityTestContents();
@@ -43,10 +43,13 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 			dev::solidity::ReadCallback::Result result;
 			result.success = true;
 
-			if (solidityContents.find(import) != solidityContents.end())
-				result.responseOrErrorMessage = solidityContents[import];
-			else  if (solidityTestContents.find(import) != solidityTestContents.end())
-				result.responseOrErrorMessage = solidityTestContents[import];
+			auto solidityContentsImport = solidityContents.find(import);
+			auto solidityTestContentsImport = solidityTestContents.find(import);
+
+			if (solidityContentsImport != solidityContents.end())
+				result.responseOrErrorMessage = solidityContentsImport->second;
+			else if (solidityTestContents.find(import) != solidityTestContents.end())
+				result.responseOrErrorMessage = solidityTestContentsImport->second;
 			else
 				result.success = false;
 
@@ -64,26 +67,82 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 		if (solidityFile.empty())
 			solidityFile = _filename;
 
-		(void) _testcases;
-
 		m_compiler->addSource(solidityFile, solidityContents[solidityFile]);
+
+		std::string testContractFileName(solidityFile);
+		std::string testContractName(boost::filesystem::path(solidityFile).filename().string());
+		boost::replace_all(testContractName, ".sol", "");
+		boost::replace_all(testContractFileName, ".sol", ".test.sol");
+
+		std::stringstream testContractContent;
+		testContractContent << "pragma solidity ^0.4.0;" << std::endl << std::endl;
+		testContractContent << "import '" << solidityFile << "';" << std::endl;
+		testContractContent << "import 'Soltest.sol';" << std::endl << std::endl;
+		testContractContent << "contract " << testContractName << "Test is Soltest {" << std::endl;
+		for (auto &testcase : _testcases)
+		{
+			std::vector<std::string> soltestLines;
+			boost::split(soltestLines, testcase.second, boost::is_any_of("\n"));
+			testContractContent << "    function test_" << normalize(testcase.first) << "() {" << std::endl;
+			for (auto &soltestLine : soltestLines)
+			{
+				boost::trim(soltestLine);
+				if (!soltestLine.empty())
+					testContractContent << "        " << soltestLine << std::endl;
+			}
+			testContractContent << "    }" << std::endl;
+		}
+		testContractContent << "}" << std::endl;
+
+		// std::cout << testContractContent.str() << std::endl;
+
+		m_compiler->addSource(testContractFileName, testContractContent.str());
 	}
-	if (!m_compiler->parseAndAnalyze())
+
+	bool errors = true;
+	static Poco::Mutex parse_and_analyze_mutex;
 	{
-		for (auto& e : m_compiler->errors()) {
-			std::cout << e->lineInfo() << " @ " << e->what() << std::endl;
+		// some how z3 is using a global shared state - not good for our multi-threaded execution...
+		// so we sequentially call parseAndAnalyze();
+		// todo: file issue on ethereum/solidity
+
+		Poco::Mutex::ScopedLock lock(parse_and_analyze_mutex);
+		errors = m_compiler->parseAndAnalyze();
+	}
+
+	if (!errors)
+	{
+		for (auto &e : m_compiler->errors())
+		{
+			(void) e;
+//				std::cout << e->lineInfo() << " @ " << e->what() << std::endl;
 		}
 	}
 	else
 		for (auto &c : m_compiler->contractNames())
 		{
-			std::cout << c << std::endl;
+			(void) c;
+//				std::cout << c << std::endl;
 		}
 }
 
 void Testcases::executeTestcase(std::string const &_testcase)
 {
 	(void) _testcase;
+	/*
+	if (!m_errors)
+	{
+		std::string testcaseFunctionName("test_" + normalize(_testcase));
+		(void) testcaseFunctionName;
+	}
+	 */
+}
+
+std::string Testcases::normalize(std::string const &name)
+{
+	std::string result(name);
+	boost::replace_all(result, " ", "_");
+	return result;
 }
 
 } // namespace soltest

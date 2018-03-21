@@ -62,7 +62,7 @@ void TestSuiteGenerator::load(bool _printWarnings)
 				strings.emplace_back(testcase_name_ptr);
 
 				m_masterTestSuite.add(
-					boost::unit_test::make_test_case(boost::function<void ()>(processTestcase),
+					boost::unit_test::make_test_case(boost::function<void()>(processTestcase),
 													 testcase_name_ptr->c_str(),
 													 filename_ptr->c_str(),
 													 line
@@ -70,6 +70,18 @@ void TestSuiteGenerator::load(bool _printWarnings)
 				);
 			}
 	}
+}
+
+void TestSuiteGenerator::processTestcase(std::string const &soltestFile, std::string const &testcase)
+{
+	(void)soltestFile;
+	(void)testcase;
+	BOOST_REQUIRE(true);
+}
+
+void TestSuiteGenerator::runTestcases(unsigned int threads)
+{
+	m_soltest.runTestcases(threads);
 }
 
 bool TestSuiteGenerator::checkForWarningsAndErrors(bool _printWarnings)
@@ -138,18 +150,6 @@ bool TestSuiteGenerator::checkForWarningsAndErrors(bool _printWarnings)
 
 	m_error = !errorSet.empty() || !soltestErrorSet.empty();
 	return m_error;
-}
-
-void TestSuiteGenerator::processTestcase(std::string const &soltestFile, std::string const &testcase)
-{
-	(void) soltestFile;
-	(void) testcase;
-	BOOST_REQUIRE(true);
-}
-
-void TestSuiteGenerator::runTestcases(int threads)
-{
-	m_soltest.runTestcases(threads);
 }
 
 } // namespace soltest

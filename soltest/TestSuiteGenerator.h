@@ -39,7 +39,7 @@ public:
 
 	void processTestcase(std::string const &soltestFile, std::string const &testcase);
 
-	void runTestcases(int threads);
+	void runTestcases(unsigned int threads);
 
 	bool error()
 	{

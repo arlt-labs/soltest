@@ -34,7 +34,7 @@ void Environment::reset()
 
 }
 
-std::string Environment::contracts()
+std::string Environment::contracts() const
 {
 	return R"(
 pragma solidity ^0.4.0;

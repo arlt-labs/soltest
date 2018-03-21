@@ -21,7 +21,7 @@
 
 #include "Soltest.h"
 #include "SolidityExtractor.h"
-#include "Worker.h"
+#include "Executor.h"
 
 #include <libdevcore/JSON.h>
 #include <boost/test/unit_test.hpp>
@@ -30,6 +30,8 @@
 #include <boost/algorithm/string.hpp>
 #include <Poco/ThreadPool.h>
 
+#include <thread>
+
 #include <fstream>
 
 namespace soltest
@@ -37,6 +39,9 @@ namespace soltest
 
 Soltest::Soltest()
 {
+	m_threads = std::thread::hardware_concurrency();
+	if (m_threads == 0)
+		m_threads = 1;
 	m_scannerFromSourceName =
 		[&](std::string const &_sourceName) -> dev::solidity::Scanner const &
 		{
@@ -60,6 +65,23 @@ bool Soltest::parseCommandLineArguments(int argc, char **argv)
 		{
 			m_options[argument] = argv[i + 1];
 			m_ipcpath = argv[i + 1];
+			++i;
+		}
+		else if (argument == "--threads")
+		{
+			m_options[argument] = argv[i + 1];
+			try
+			{
+				m_threads = boost::lexical_cast<int>(argv[i + 1]);
+			}
+			catch (...)
+			{
+				m_threads = std::thread::hardware_concurrency();
+			}
+			if (m_threads > 64)
+				m_threads = std::thread::hardware_concurrency();
+			if (m_threads == 0)
+				m_threads = 1;
 			++i;
 		}
 		else if (boost::starts_with(argument, "-"))
@@ -397,33 +419,62 @@ bool Soltest::parseSoltest(uint32_t _line, std::string const &_filename, std::st
 	return result;
 }
 
-void Soltest::runTestcases(int threads)
+void Soltest::runTestcases(unsigned int threads)
 {
 	Poco::NotificationQueue queue;
 	for (auto &test : m_soltests)
-		queue.enqueueNotification(
-			new soltest::WorkItem(
-				[&]()
-				{
-					this->prepareTestcases(test.first, test.second);
-				}
-			)
+	{
+		soltest::Testcase::Ptr testcasePtr = new soltest::Testcase(
+			[&]()
+			{
+				soltest::Testcases::Ptr testcasesPtr(new soltest::Testcases(this, test.first, test.second));
+
+				m_testcases_mutex.lock();
+				m_testcases[test.first] = testcasesPtr;
+				m_testcases_mutex.unlock();
+			}
 		);
+		m_testcases_mutex.lock();
+		m_prepare_tests[test.first] = testcasePtr;
+		m_testcases_mutex.unlock();
+
+		queue.enqueueNotification(testcasePtr);
+	}
 	for (auto &test : m_soltests)
 		for (auto &data : test.second)
-			queue.enqueueNotification(
-				new soltest::WorkItem(
-					[&]()
-					{
-						this->executeTestcase(test.first, data.first);
-					}
-				)
-			);
+		{
+			soltest::Testcase::Ptr testcasePtr = new soltest::Testcase(
+				[&]()
+				{
+					m_testcases_mutex.lock();
+					soltest::Testcase::Ptr prepare = m_prepare_tests[test.first];
+					m_testcases_mutex.unlock();
 
-	std::vector<soltest::Worker::Ptr> workers;
-	for (int i = 0; i < threads; ++i)
+					prepare->wait();
+
+					m_testcases_mutex.lock();
+					soltest::Testcases::Ptr testcasesPtr(m_testcases[test.first]);
+					m_testcases_mutex.unlock();
+
+					Poco::Thread::sleep(100);
+
+					testcasesPtr->executeTestcase(data.first);
+				}
+			);
+			queue.enqueueNotification(testcasePtr);
+
+			m_testcases_mutex.lock();
+			m_testcase[std::make_pair(test.first, data.first)] = testcasePtr;
+			m_testcases_mutex.unlock();
+		}
+
+	if (Poco::ThreadPool::defaultPool().capacity() < 64)
+		Poco::ThreadPool::defaultPool().addCapacity(64);
+
+	std::vector<soltest::Executor::Ptr> workers;
+	for (unsigned int i = 0; i < threads; ++i)
 	{
-		soltest::Worker::Ptr worker(new Worker(queue));
+		soltest::Executor::Ptr worker(new Executor(queue));
 		workers.push_back(worker);
 		Poco::ThreadPool::defaultPool().start(*worker);
 	}
@@ -432,25 +483,8 @@ void Soltest::runTestcases(int threads)
 		Poco::Thread::sleep(100);
 
 	queue.wakeUpAll();
+
 	Poco::ThreadPool::defaultPool().joinAll();
-}
-
-void Soltest::prepareTestcases(std::string const &_filename, std::map<std::string, std::string> _testcases)
-{
-	soltest::Testcases::Ptr testcases(new soltest::Testcases(this, _filename, _testcases));
-
-	m_testcasesMutex.lock();
-	m_testcases[_filename] = testcases;
-	m_testcasesMutex.unlock();
-}
-
-void Soltest::executeTestcase(std::string const &_filename, std::string const &_testcase)
-{
-	m_testcasesMutex.lock();
-	soltest::Testcases::Ptr testcases = m_testcases[_filename];
-	m_testcasesMutex.unlock();
-
-	testcases->executeTestcase(_testcase);
 }
 
 } // namespace soltest

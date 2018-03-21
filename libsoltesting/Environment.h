@@ -33,7 +33,7 @@ public:
 	void load(dev::solidity::CompilerStack& _compilerStack);
 	void reset();
 
-	std::string contracts();
+	std::string contracts() const;
 };
 
 } // namespace soltest

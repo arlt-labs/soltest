@@ -24,6 +24,8 @@
 
 #include <libsolidity/interface/CompilerStack.h>
 
+#include <Poco/SharedPtr.h>
+
 #include <memory>
 
 namespace soltest
@@ -34,9 +36,11 @@ class Soltest;
 class Testcases
 {
 public:
-	typedef typename std::shared_ptr<Testcases> Ptr;
+	typedef typename Poco::SharedPtr<Testcases> Ptr;
 
-	Testcases(const soltest::Soltest* _soltest, std::string const &_filename, std::map<std::string, std::string> &_testcases);
+	Testcases(const soltest::Soltest* _soltest, std::string _filename, std::map<std::string, std::string> _testcases);
+
+	std::string normalize(std::string const& name);
 
 	void executeTestcase(std::string const &_testcase);
 

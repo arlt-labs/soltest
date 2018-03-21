@@ -24,6 +24,7 @@
 
 #include <libsoltesting/SolidityExtractor.h>
 #include <libsoltesting/Environment.h>
+#include <libsoltesting/Testcase.h>
 #include <libsoltesting/Testcases.h>
 
 #include <libsolidity/interface/CompilerStack.h>
@@ -77,7 +78,7 @@ public:
 
 	bool loadTestcases();
 
-	void runTestcases(int threads);
+	void runTestcases(unsigned int threads);
 
 	CompilerErrors const &compilerErrors() const
 	{
@@ -132,10 +133,15 @@ public:
 	std::string solidityFile(std::string const &soltestFile) const
 	{
 		auto iter = m_soltestSolidityFile.find(soltestFile);
-		if (iter != m_soltestSolidityFile.end()) {
+		if (iter != m_soltestSolidityFile.end())
+		{
 			return iter->second;
 		}
 		return "";
+	}
+
+	unsigned int threads() {
+		return m_threads;
 	}
 
 private:
@@ -145,13 +151,12 @@ private:
 
 	void parseSoltest(SolidityExtractor &_extractor);
 
-	void prepareTestcases(std::string const &_filename, std::map<std::string, std::string> _testcases);
-
-	void executeTestcase(std::string const &_filename, std::string const &_testcase);
-
 	std::map<std::string, std::string> m_options;
 
 	std::string m_ipcpath;
+
+	unsigned int m_threads;
+
 	std::set<std::string> m_contracts;
 	std::set<std::string> m_testContracts;
 
@@ -174,8 +179,10 @@ private:
 
 	soltest::Environment m_environment;
 
-	std::mutex m_testcasesMutex;
+	std::mutex m_testcases_mutex;
 	std::map<std::string, soltest::Testcases::Ptr> m_testcases;
+	std::map<std::string, soltest::Testcase::Ptr> m_prepare_tests;
+	std::map<std::pair<std::string, std::string>, soltest::Testcase::Ptr> m_testcase;
 };
 
 } // namespace soltest

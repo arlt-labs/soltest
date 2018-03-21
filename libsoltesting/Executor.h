@@ -14,38 +14,51 @@
 	You should have received a copy of the GNU General Public License
 	along with solidity.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** @file WorkItem.h
+/** @file Worker.h
  * @author Alexander Arlt <alexander.arlt@arlt-labs.com>
  * @date 2018
  */
 
-#ifndef SOLTEST_WORKITEM_H
-#define SOLTEST_WORKITEM_H
+#ifndef SOLTEST_WORKER_H
+#define SOLTEST_WORKER_H
 
-#include <Poco/Notification.h>
+#include "Testcase.h"
+
+#include <Poco/Runnable.h>
+#include <Poco/NotificationQueue.h>
+
 #include <functional>
 #include <utility>
-#include "Soltest.h"
 
 namespace soltest
 {
 
-class WorkItem : public Poco::Notification
+class Executor : public Poco::Runnable
 {
 public:
-	explicit WorkItem(std::function<void(void)> _run) : m_run(_run)
-	{
-	}
+	typedef typename std::shared_ptr<Executor> Ptr;
 
-	void run()
+	explicit Executor(Poco::NotificationQueue &queue) : m_queue(queue) {}
+
+	void run() override
 	{
-		m_run();
+		while (!m_queue.empty())
+		{
+			Poco::AutoPtr<Poco::Notification> pNf(m_queue.waitDequeueNotification(100));
+			while (pNf)
+			{
+				auto pWorkNf = dynamic_cast<Testcase *>(pNf.get());
+				if (pWorkNf)
+					pWorkNf->run();
+				pNf = m_queue.waitDequeueNotification(100);
+			}
+		}
 	}
 
 private:
-	std::function<void(void)> m_run;
+	Poco::NotificationQueue &m_queue;
 };
 
 } // namespace soltest
 
-#endif //SOLTEST_WORKITEM_H
+#endif //SOLTEST_WORKER_H

@@ -14,51 +14,57 @@
 	You should have received a copy of the GNU General Public License
 	along with solidity.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** @file Worker.h
+/** @file WorkItem.h
  * @author Alexander Arlt <alexander.arlt@arlt-labs.com>
  * @date 2018
  */
 
-#ifndef SOLTEST_WORKER_H
-#define SOLTEST_WORKER_H
+#ifndef SOLTEST_WORKITEM_H
+#define SOLTEST_WORKITEM_H
 
-#include "WorkItem.h"
-
-#include <Poco/Runnable.h>
-#include <Poco/NotificationQueue.h>
-
+#include <Poco/Notification.h>
 #include <functional>
 #include <utility>
+#include <atomic>
+
+#include <Poco/Thread.h>
 
 namespace soltest
 {
 
-class Worker : public Poco::Runnable
+class Testcase : public Poco::Notification
 {
 public:
-	typedef typename std::shared_ptr<Worker> Ptr;
+	typedef typename Poco::AutoPtr<Testcase> Ptr;
 
-	explicit Worker(Poco::NotificationQueue &queue) : m_queue(queue) {}
-
-	void run() override
+	enum class State
 	{
-		while (!m_queue.empty())
-		{
-			Poco::AutoPtr<Poco::Notification> pNf(m_queue.waitDequeueNotification(100));
-			while (pNf)
-			{
-				auto pWorkNf = dynamic_cast<WorkItem *>(pNf.get());
-				if (pWorkNf)
-					pWorkNf->run();
-				pNf = m_queue.waitDequeueNotification(100);
-			}
-		}
+		READY,
+		RUNNING,
+		FINISHED
+	};
+	explicit Testcase(std::function<void(void)> _run) : m_run(_run), m_state(State::READY)
+	{
+	}
+
+	void run()
+	{
+		m_state = State::RUNNING;
+		m_run();
+		m_state = State::FINISHED;
+	}
+
+	void wait() const
+	{
+		while (m_state == State::RUNNING)
+			Poco::Thread::sleep(250);
 	}
 
 private:
-	Poco::NotificationQueue &m_queue;
+	std::function<void(void)> m_run;
+	std::atomic<State> m_state;
 };
 
 } // namespace soltest
 
-#endif //SOLTEST_WORKER_H
+#endif //SOLTEST_WORKITEM_H
