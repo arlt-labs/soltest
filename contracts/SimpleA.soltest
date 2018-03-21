@@ -1,7 +1,7 @@
-{test 01}
+{simple a test 01}
     uint32 one = 1;
 
-{test 02}
+{simple a test 02}
     uint32 one = 1;
     uint32 two = 2;
     uint32 three = two + one;

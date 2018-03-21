@@ -72,14 +72,14 @@ bool Soltest::parseCommandLineArguments(int argc, char **argv)
 			m_options[argument] = argv[i + 1];
 			try
 			{
-				m_threads = boost::lexical_cast<int>(argv[i + 1]);
+				m_threads = boost::lexical_cast<unsigned int>(argv[i + 1]);
+				if (m_threads > 64)
+					m_threads = std::thread::hardware_concurrency();
 			}
 			catch (...)
 			{
 				m_threads = std::thread::hardware_concurrency();
 			}
-			if (m_threads > 64)
-				m_threads = std::thread::hardware_concurrency();
 			if (m_threads == 0)
 				m_threads = 1;
 			++i;
@@ -371,7 +371,7 @@ bool Soltest::parseSoltest(uint32_t _line, std::string const &_filename, std::st
 	bool result = true;
 	std::stringstream content(_content);
 	std::string section;
-	uint32_t lineCounter(_line);
+	uint32_t lineCounter(_line + 1);
 	std::map<std::string, uint32_t> lines;
 	std::map<std::string, std::stringstream> sections;
 	for (std::string line; getline(content, line);)

@@ -22,6 +22,10 @@
 #include "Testcases.h"
 #include "Soltest.h"
 
+#include <libsolidity/interface/CompilerStack.h>
+#include <libsolidity/interface/SourceReferenceFormatter.h>
+#include <libevmasm/SourceLocation.h>
+
 #include <boost/algorithm/string.hpp>
 
 #include <map>
@@ -94,48 +98,48 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 		}
 		testContractContent << "}" << std::endl;
 
-		// std::cout << testContractContent.str() << std::endl;
+		std::cout << std::endl << _filename << std::endl << testContractContent.str() << std::endl;
 
 		m_compiler->addSource(testContractFileName, testContractContent.str());
 	}
 
-	bool errors = true;
 	static Poco::Mutex parse_and_analyze_mutex;
 	{
-		// some how z3 is using a global shared state - not good for our multi-threaded execution...
+		// somehow z3 is using a global shared state - not good for our multi-threaded execution...
 		// so we sequentially call parseAndAnalyze();
 		// todo: file issue on ethereum/solidity
 
 		Poco::Mutex::ScopedLock lock(parse_and_analyze_mutex);
-		errors = m_compiler->parseAndAnalyze();
+		m_errors = !m_compiler->parseAndAnalyze();
 	}
 
-	if (!errors)
+	m_scannerFromSourceName =
+		[&](std::string const &_sourceName) -> dev::solidity::Scanner const &
+		{
+			return m_compiler->scanner(_sourceName);
+		};
+
+	if (m_errors)
 	{
 		for (auto &e : m_compiler->errors())
 		{
-			(void) e;
-//				std::cout << e->lineInfo() << " @ " << e->what() << std::endl;
+			auto const &err = dynamic_cast<dev::solidity::Error const &>(*e);
+			if (err.type() != dev::solidity::Error::Type::Warning)
+			{
+				std::cout << formattedErrorMessage(_filename, err) << std::endl;
+			}
 		}
 	}
-	else
-		for (auto &c : m_compiler->contractNames())
-		{
-			(void) c;
-//				std::cout << c << std::endl;
-		}
 }
 
 void Testcases::executeTestcase(std::string const &_testcase)
 {
-	(void) _testcase;
-	/*
 	if (!m_errors)
 	{
 		std::string testcaseFunctionName("test_" + normalize(_testcase));
 		(void) testcaseFunctionName;
 	}
-	 */
+
 }
 
 std::string Testcases::normalize(std::string const &name)
@@ -143,6 +147,64 @@ std::string Testcases::normalize(std::string const &name)
 	std::string result(name);
 	boost::replace_all(result, " ", "_");
 	return result;
+}
+
+std::string Testcases::formattedErrorMessage(const std::string &_filename, const dev::solidity::Error &_error)
+{
+	std::string formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
+		_error, _error.typeName(), m_scannerFromSourceName
+	);
+	dev::SourceLocation const *location = boost::get_error_info<dev::solidity::errinfo_sourceLocation>(_error);
+	auto secondarylocation = boost::get_error_info<dev::solidity::errinfo_secondarySourceLocation>(_error);
+
+	auto const &scanner = m_compiler->scanner(*location->sourceName);
+	int startLine;
+	int startColumn;
+	std::tie(startLine, startColumn) = scanner.translatePositionToLineColumn(location->start);
+	std::stringstream originalLocation;
+	originalLocation << *location->sourceName << ":" << (startLine + 1) << ":" << (startColumn + 1) << ": ";
+
+	std::string::size_type soltestLinePosition = formattedMessage.find("//soltest_line:");
+	if (soltestLinePosition != std::string::npos)
+	{
+		std::string::size_type nextNewline = formattedMessage.find('\n', soltestLinePosition);
+		std::string line
+			(formattedMessage.substr(soltestLinePosition + 15, nextNewline - (soltestLinePosition + 15)));
+
+		std::stringstream soltestLocation;
+		soltestLocation << _filename << ":";
+		soltestLocation << line << ":" << (startColumn - 3) << ": ";
+		if (nextNewline != std::string::npos)
+		{
+			formattedMessage =
+				formattedMessage.erase(soltestLinePosition, nextNewline - soltestLinePosition);
+			boost::replace_first(formattedMessage, originalLocation.str(), soltestLocation.str());
+		}
+	}
+
+	if (!secondarylocation->infos.empty()) {
+		std::tie(startLine, startColumn) = scanner.translatePositionToLineColumn(secondarylocation->infos[0].second.start);
+		originalLocation.str("");
+		originalLocation << *location->sourceName << ":" << (startLine + 1) << ":" << (startColumn + 1) << ": ";
+
+		soltestLinePosition = formattedMessage.find("//soltest_line:");
+		std::string::size_type nextNewline = formattedMessage.find('\n', soltestLinePosition);
+		std::string line
+			(formattedMessage.substr(soltestLinePosition + 15, nextNewline - (soltestLinePosition + 15)));
+
+		std::stringstream soltestLocation;
+		soltestLocation << _filename << ":";
+		soltestLocation << line << ":" << (startColumn - 3) << ": ";
+		if (nextNewline != std::string::npos)
+		{
+			formattedMessage =
+				formattedMessage.erase(soltestLinePosition, nextNewline - soltestLinePosition);
+			boost::replace_first(formattedMessage, originalLocation.str(), soltestLocation.str());
+		}
+	}
+
+	boost::trim(formattedMessage);
+	return formattedMessage;
 }
 
 } // namespace soltest

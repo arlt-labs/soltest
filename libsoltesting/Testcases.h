@@ -44,8 +44,12 @@ public:
 
 	void executeTestcase(std::string const &_testcase);
 
+	std::string formattedErrorMessage(std::string const& _filename, dev::solidity::Error const &_error);
+
 private:
+	bool m_errors;
 	const soltest::Soltest* m_soltest;
+	std::function<const dev::solidity::Scanner &(const std::string &)> m_scannerFromSourceName;
 	std::shared_ptr<dev::solidity::CompilerStack> m_compiler;
 };
 

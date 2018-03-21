@@ -22,21 +22,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="693c209a-fbdb-4c9f-98c2-e9af5a9ff988" name="Default" comment="Basic loading of .abi files and corresponding .bin files implemented.">
-      <change beforePath="" afterPath="$PROJECT_DIR$/sanitizer-blacklist.txt" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/contracts/SimpleA.soltest" afterPath="$PROJECT_DIR$/contracts/SimpleA.soltest" />
-      <change beforePath="$PROJECT_DIR$/contracts/SimpleB.soltest" afterPath="$PROJECT_DIR$/contracts/SimpleB.soltest" />
-      <change beforePath="$PROJECT_DIR$/libsoltesting/Environment.cpp" afterPath="$PROJECT_DIR$/libsoltesting/Environment.cpp" />
-      <change beforePath="$PROJECT_DIR$/libsoltesting/Environment.h" afterPath="$PROJECT_DIR$/libsoltesting/Environment.h" />
+      <change beforePath="$PROJECT_DIR$/libsoltesting/SolidityExtractor.h" afterPath="$PROJECT_DIR$/libsoltesting/SolidityExtractor.h" />
       <change beforePath="$PROJECT_DIR$/libsoltesting/Soltest.cpp" afterPath="$PROJECT_DIR$/libsoltesting/Soltest.cpp" />
-      <change beforePath="$PROJECT_DIR$/libsoltesting/Soltest.h" afterPath="$PROJECT_DIR$/libsoltesting/Soltest.h" />
       <change beforePath="$PROJECT_DIR$/libsoltesting/Testcases.cpp" afterPath="$PROJECT_DIR$/libsoltesting/Testcases.cpp" />
       <change beforePath="$PROJECT_DIR$/libsoltesting/Testcases.h" afterPath="$PROJECT_DIR$/libsoltesting/Testcases.h" />
-      <change beforePath="$PROJECT_DIR$/libsoltesting/WorkItem.h" afterPath="$PROJECT_DIR$/libsoltesting/Testcase.h" />
-      <change beforePath="$PROJECT_DIR$/libsoltesting/Worker.h" afterPath="$PROJECT_DIR$/libsoltesting/Executor.h" />
-      <change beforePath="$PROJECT_DIR$/soltest/TestSuiteGenerator.cpp" afterPath="$PROJECT_DIR$/soltest/TestSuiteGenerator.cpp" />
-      <change beforePath="$PROJECT_DIR$/soltest/TestSuiteGenerator.h" afterPath="$PROJECT_DIR$/soltest/TestSuiteGenerator.h" />
-      <change beforePath="$PROJECT_DIR$/soltest/main.cpp" afterPath="$PROJECT_DIR$/soltest/main.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,12 +40,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Testcases.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Testcases.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="758">
-              <caret line="128" column="60" lean-forward="false" selection-start-line="128" selection-start-column="60" selection-end-line="128" selection-end-column="60" />
-              <folding />
+            <state relative-caret-position="1145">
+              <caret line="205" column="33" lean-forward="false" selection-start-line="205" selection-start-column="33" selection-end-line="205" selection-end-column="33" />
+              <folding>
+                <element signature="e#745#767#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,8 +55,8 @@
       <file leaf-file-name="Testcases.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+            <state relative-caret-position="413">
+              <caret line="46" column="67" lean-forward="false" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -72,83 +65,79 @@
       <file leaf-file-name="Soltest.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="81" column="16" lean-forward="false" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
-              <folding>
-                <element signature="e#743#763#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ThreadPool.h" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/include/Poco/ThreadPool.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="78" column="9" lean-forward="false" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+            <state relative-caret-position="466">
+              <caret line="409" column="21" lean-forward="false" selection-start-line="409" selection-start-column="21" selection-end-line="409" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/soltest/main.cpp">
+      <file leaf-file-name="SimpleEmbedded.sol" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contracts/SimpleEmbedded.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="129" column="8" lean-forward="false" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
+            <state relative-caret-position="382">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_framework_init_observer.hpp" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/include/boost/test/test_framework_init_observer.hpp">
+      <file leaf-file-name="SolidityExtractor.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/SolidityExtractor.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="55" column="52" lean-forward="false" selection-start-line="55" selection-start-column="52" selection-end-line="55" selection-end-column="52" />
+            <state relative-caret-position="352">
+              <caret line="52" column="7" lean-forward="false" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestSuiteGenerator.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/soltest/TestSuiteGenerator.cpp">
+      <file leaf-file-name="SourceReferenceFormatter.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/SourceReferenceFormatter.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="83" column="18" lean-forward="false" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
+            <state relative-caret-position="416">
+              <caret line="71" column="23" lean-forward="false" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestSuiteGenerator.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/soltest/TestSuiteGenerator.h">
+      <file leaf-file-name="SourceReferenceFormatter.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/SourceReferenceFormatter.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="41" column="30" lean-forward="false" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
+            <state relative-caret-position="339">
+              <caret line="102" column="4" lean-forward="false" selection-start-line="102" selection-start-column="4" selection-end-line="102" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Soltest.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.h">
+      <file leaf-file-name="SourceLocation.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libevmasm/SourceLocation.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="80" column="18" lean-forward="false" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+            <state relative-caret-position="193">
+              <caret line="71" column="39" lean-forward="false" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="framework.ipp" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/include/boost/test/impl/framework.ipp">
+      <file leaf-file-name="CompilerStack.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/CompilerStack.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="387" column="8" lean-forward="false" selection-start-line="387" selection-start-column="8" selection-end-line="387" selection-end-column="8" />
-              <folding>
-                <element signature="e#585#620#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="148">
+              <caret line="151" column="9" lean-forward="false" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleA.soltest" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contracts/SimpleA.soltest">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -193,8 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/libsoltesting/SoltestEnvironment.cpp" />
-        <option value="$PROJECT_DIR$/libsoltesting/SoltestEnvironment.hpp" />
         <option value="$PROJECT_DIR$/libsoltesting/Environment.hpp" />
         <option value="$PROJECT_DIR$/contracts/asd.sol" />
         <option value="$PROJECT_DIR$/contracts/Soltest.sol" />
@@ -202,7 +189,6 @@
         <option value="$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/ast/ASTVisitor.h" />
         <option value="$PROJECT_DIR$/contracts/Tests.test.sol" />
         <option value="$PROJECT_DIR$/libsoltesting/SolidityExtractor.cpp" />
-        <option value="$PROJECT_DIR$/libsoltesting/SolidityExtractor.h" />
         <option value="$PROJECT_DIR$/remix-plugin/main.cpp" />
         <option value="$PROJECT_DIR$/remix-plugin/handlers/StaticFileRequestHandler.h" />
         <option value="$PROJECT_DIR$/remix-plugin/handlers/SetCompilationDataHandler.h" />
@@ -229,7 +215,6 @@
         <option value="$PROJECT_DIR$/end2end-extractor/main.cpp" />
         <option value="$PROJECT_DIR$/libsoltesting/Environment.h" />
         <option value="$PROJECT_DIR$/libsoltesting/Environment.cpp" />
-        <option value="$PROJECT_DIR$/contracts/SimpleA.soltest" />
         <option value="$PROJECT_DIR$/contracts/SimpleB.soltest" />
         <option value="$PROJECT_DIR$/libsoltesting/WorkItem.h" />
         <option value="$PROJECT_DIR$/libsoltesting/Testcase.h" />
@@ -237,13 +222,17 @@
         <option value="$PROJECT_DIR$/libsoltesting/Executor.h" />
         <option value="$PROJECT_DIR$/libsoltesting/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/CompilerStack.cpp" />
-        <option value="$PROJECT_DIR$/libsoltesting/Testcases.h" />
-        <option value="$PROJECT_DIR$/libsoltesting/Testcases.cpp" />
-        <option value="$PROJECT_DIR$/libsoltesting/Soltest.h" />
         <option value="$PROJECT_DIR$/soltest/TestSuiteGenerator.cpp" />
         <option value="$PROJECT_DIR$/soltest/TestSuiteGenerator.h" />
-        <option value="$PROJECT_DIR$/libsoltesting/Soltest.cpp" />
         <option value="$PROJECT_DIR$/soltest/main.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/SolidityExtractor.h" />
+        <option value="$PROJECT_DIR$/libsoltesting/Soltest.h" />
+        <option value="$PROJECT_DIR$/contracts/SimpleA.soltest" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/SourceReferenceFormatter.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/Testcases.h" />
+        <option value="$PROJECT_DIR$/libsoltesting/Testcases.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/Soltest.cpp" />
+        <option value="$PROJECT_DIR$/contracts/SimpleEmbedded.sol" />
       </list>
     </option>
   </component>
@@ -255,10 +244,9 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="40" />
     <option name="y" value="23" />
-    <option name="width" value="1839" />
-    <option name="height" value="951" />
+    <option name="width" value="1920" />
+    <option name="height" value="979" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -281,6 +269,11 @@
             <path>
               <item name="soltest" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="soltest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="soltest" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="soltest" type="462c0819:PsiDirectoryNode" />
+              <item name="contracts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="soltest" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
@@ -334,7 +327,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.soltest - contracts/end2end">
+  <component name="RunManager" selected="Application.soltest - contracts/SimpleEmbedded.sol">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
     </configuration>
@@ -447,7 +440,7 @@
       <workItem from="1521232032562" duration="326000" />
       <workItem from="1521240100839" duration="9972000" />
       <workItem from="1521286980454" duration="1829000" />
-      <workItem from="1521541528365" duration="35567000" />
+      <workItem from="1521541528365" duration="44359000" />
     </task>
     <task id="LOCAL-00001" summary="remix-plugin: initial source loading implemented">
       <created>1520691439980</created>
@@ -474,7 +467,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120566000" />
+    <option name="totallyTimeSpent" value="129358000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="979" extended-state="6" />
@@ -482,7 +475,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1864139" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2850679" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2850679" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32579187" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -517,105 +510,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file:///usr/local/include/boost/test/impl/framework.ipp</url>
-          <line>1525</line>
-          <option name="timeStamp" value="183" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="187" />
+      <option name="time" value="197" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="276" column="175" lean-forward="false" selection-start-line="276" selection-start-column="175" selection-end-line="276" selection-end-column="175" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake/EthOptions.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="34" lean-forward="false" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/test/libsolidity/SolidityEndToEndTest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="5123" column="0" lean-forward="false" selection-start-line="5123" selection-start-column="0" selection-end-line="5123" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/end2end-extractor/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/remix-plugin/handlers/SetCompilationDataHandler.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="957">
-          <caret line="106" column="18" lean-forward="false" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/end2end/solidity/access_base_storage.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libsoltesting/Environment.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/end2end-extractor/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/contracts/end2end/solidity/access_base_storage.test.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/Simple.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="20" lean-forward="false" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/SimpleA.soltest">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -768,14 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/CompilerStack.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="306" column="40" lean-forward="false" selection-start-line="306" selection-start-column="40" selection-end-line="306" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/CompilerStack.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
@@ -875,44 +773,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/include/boost/test/impl/framework.ipp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="387" column="8" lean-forward="false" selection-start-line="387" selection-start-column="8" selection-end-line="387" selection-end-column="8" />
-          <folding>
-            <element signature="e#585#620#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/include/Poco/ThreadPool.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="78" column="9" lean-forward="false" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="80" column="18" lean-forward="false" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/soltest/TestSuiteGenerator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="83" column="18" lean-forward="false" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -925,29 +789,149 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/soltest/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="65" column="26" lean-forward="false" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/soltest/TestSuiteGenerator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="174" column="4" lean-forward="false" selection-start-line="174" selection-start-column="4" selection-end-line="174" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/Simple.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="20" lean-forward="false" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/boost/test/impl/framework.ipp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="1525" column="0" lean-forward="false" selection-start-line="1525" selection-start-column="0" selection-end-line="1525" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remix-plugin/handlers/SetCompilationDataHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="82" column="89" lean-forward="false" selection-start-line="82" selection-start-column="89" selection-end-line="82" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/Exceptions.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1717">
+          <caret line="127" column="6" lean-forward="false" selection-start-line="127" selection-start-column="6" selection-end-line="127" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/tuple">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="1057" column="0" lean-forward="false" selection-start-line="1057" selection-start-column="0" selection-end-line="1057" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/SimpleA.soltest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libevmasm/SourceLocation.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="71" column="39" lean-forward="false" selection-start-line="71" selection-start-column="39" selection-end-line="71" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/CompilerStack.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="151" column="9" lean-forward="false" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/SourceReferenceFormatter.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="71" column="23" lean-forward="false" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/SourceReferenceFormatter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="102" column="4" lean-forward="false" selection-start-line="102" selection-start-column="4" selection-end-line="102" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="46" column="67" lean-forward="false" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="81" column="16" lean-forward="false" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
-          <folding>
-            <element signature="e#743#763#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="466">
+          <caret line="409" column="21" lean-forward="false" selection-start-line="409" selection-start-column="21" selection-end-line="409" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/SimpleEmbedded.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/SolidityExtractor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="52" column="7" lean-forward="false" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="758">
-          <caret line="128" column="60" lean-forward="false" selection-start-line="128" selection-start-column="60" selection-end-line="128" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/soltest/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="129" column="8" lean-forward="false" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
-          <folding />
+        <state relative-caret-position="1145">
+          <caret line="205" column="33" lean-forward="false" selection-start-line="205" selection-start-column="33" selection-end-line="205" selection-end-column="33" />
+          <folding>
+            <element signature="e#745#767#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
