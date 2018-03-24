@@ -122,11 +122,11 @@ int main(int argc, char *argv[])
 			std::cout << "\rRunning " << counter.count - 1 << " test cases using "
 					  << g_soltest->threads() << " threads... done" << std::endl;
 
-			std::cout << "Collecting results..." << std::endl;
+			std::cout << "Processing results..." << std::endl;
 
 			framework::run();
 
-			std::cout << "Collecting results... done" << std::endl;
+			std::cout << "Processing results... done" << std::endl;
 		}
 		else
 			return boost::exit_failure;

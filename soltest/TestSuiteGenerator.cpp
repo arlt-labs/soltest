@@ -48,11 +48,12 @@ void TestSuiteGenerator::load(bool _printWarnings)
 			for (auto const &testcase: soltestFile.second)
 			{
 				auto processTestcase =
-					std::bind(&TestSuiteGenerator::processTestcase, this, soltestFile.first, testcase.first);
+					std::bind(&TestSuiteGenerator::processTestcaseResults, this, soltestFile.first, testcase.first);
 				size_t line(m_soltest.soltestLine(soltestFile.first, testcase.first));
 
 				// tests are executed asynchronously, we need a valid reference to the dynamically created string,
 				// where the c-string pointer need to be valid for a while.
+
 				std::shared_ptr<std::string> filename_ptr(new std::string(soltestFile.first));
 				strings.emplace_back(filename_ptr);
 
@@ -72,16 +73,41 @@ void TestSuiteGenerator::load(bool _printWarnings)
 	}
 }
 
-void TestSuiteGenerator::processTestcase(std::string const &soltestFile, std::string const &testcase)
+void TestSuiteGenerator::processTestcaseResults(std::string const &_soltestFile, std::string const &_testcase)
 {
-	(void)soltestFile;
-	(void)testcase;
-	BOOST_REQUIRE(true);
+	std::map<std::string, soltest::Testcases::Ptr> testcasesMap = m_soltest.testcases();
+	auto testcasesIter = testcasesMap.find(_soltestFile);
+	BOOST_REQUIRE(testcasesIter != testcasesMap.end());
+	soltest::Testcases::Ptr testcases = testcasesIter->second;
+	if (testcases->errors().empty())
+	{
+		// todo
+	}
+	else
+	{
+		std::stringstream messages;
+		for (auto &error : testcases->errors())
+		{
+			if (error->testcase == _testcase)
+			{
+				std::vector<std::string> lines;
+				boost::split(lines, error->what, boost::is_any_of("\n"));
+				messages << "\n";
+				for (auto &line : lines)
+					messages << "    " << line << std::endl;
+			}
+		}
+		if (!messages.str().empty())
+			SOLTEST_ERROR_MESSAGE(_soltestFile.c_str(),
+								  m_soltest.soltestLine(_soltestFile, _testcase),
+								  (std::string("\n    ") + boost::trim_copy(messages.str())).c_str());
+	}
+	(void) _testcase;
 }
 
-void TestSuiteGenerator::runTestcases(unsigned int threads)
+void TestSuiteGenerator::runTestcases(unsigned int _threads)
 {
-	m_soltest.runTestcases(threads);
+	m_soltest.runTestcases(_threads);
 }
 
 bool TestSuiteGenerator::checkForWarningsAndErrors(bool _printWarnings)

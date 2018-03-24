@@ -140,9 +140,18 @@ public:
 		return "";
 	}
 
-	unsigned int threads() {
+	unsigned int threads()
+	{
 		return m_threads;
 	}
+
+	std::string testcaseName(std::string const &_filename, int _line) const;
+
+	std::map<std::string, soltest::Testcases::Ptr> testcases()
+	{
+		Poco::Mutex::ScopedLock scopedLock(m_testcases_mutex);
+		return this->m_testcases;
+	};
 
 private:
 	void preloadContracts();
@@ -168,7 +177,7 @@ private:
 	std::map<std::string, std::string> m_soltestSolidityFile;
 
 	std::map<std::string, std::map<std::string, std::string>> m_soltests;
-	std::map<std::string, std::map<std::string, size_t>> m_soltestsLine;
+	std::map<std::string, std::map<std::string, int>> m_soltestsLine;
 
 	dev::solidity::CompilerStack m_compiler;
 	dev::solidity::CompilerStack m_testCompiler;
@@ -179,10 +188,8 @@ private:
 
 	soltest::Environment m_environment;
 
-	std::mutex m_testcases_mutex;
+	Poco::Mutex m_testcases_mutex;
 	std::map<std::string, soltest::Testcases::Ptr> m_testcases;
-	std::map<std::string, soltest::Testcase::Ptr> m_prepare_tests;
-	std::map<std::pair<std::string, std::string>, soltest::Testcase::Ptr> m_testcase;
 };
 
 } // namespace soltest

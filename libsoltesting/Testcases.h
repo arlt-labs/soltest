@@ -36,19 +36,49 @@ class Soltest;
 class Testcases
 {
 public:
+	struct Error
+	{
+		typedef typename std::shared_ptr<Error> Ptr;
+		std::string file;
+		std::string testcase;
+		int line;
+		int column;
+		std::string what;
+	};
+
+	struct Assertion : public Error
+	{
+		typedef typename std::shared_ptr<Assertion> Ptr;
+		explicit Assertion(bool result) : result(result) {}
+		bool result;
+	};
+
 	typedef typename Poco::SharedPtr<Testcases> Ptr;
 
-	Testcases(const soltest::Soltest* _soltest, std::string _filename, std::map<std::string, std::string> _testcases);
+	Testcases(const soltest::Soltest *_soltest, std::string _filename, std::map<std::string, std::string> _testcases);
 
-	std::string normalize(std::string const& name);
+	std::string normalize(std::string const &name);
 
 	void executeTestcase(std::string const &_testcase);
 
-	std::string formattedErrorMessage(std::string const& _filename, dev::solidity::Error const &_error);
+	Error::Ptr createError(std::string const &_filename, dev::solidity::Error const &_error);
+
+	std::vector<Error::Ptr> const &errors() const
+	{
+		return m_errors;
+	}
+
+	std::vector<Error::Ptr> const &warnings() const
+	{
+		return m_warnings;
+	}
 
 private:
-	bool m_errors;
-	const soltest::Soltest* m_soltest;
+	std::vector<Error::Ptr> m_errors;
+	std::vector<Error::Ptr> m_warnings;
+	std::map<std::string, std::vector<Assertion::Ptr>> m_assertions;
+
+	const soltest::Soltest *m_soltest;
 	std::function<const dev::solidity::Scanner &(const std::string &)> m_scannerFromSourceName;
 	std::shared_ptr<dev::solidity::CompilerStack> m_compiler;
 };

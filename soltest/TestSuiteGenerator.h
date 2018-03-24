@@ -27,6 +27,22 @@
 #include <thread>
 #include <memory>
 
+#define SOLTEST_TEST_TOOL_IMPL(frwd_type, P, assertion_descr, FILE, LINE, TL, CT, ARGS)     \
+do {                                                                            \
+    BOOST_TEST_PASSPOINT();                                                     \
+    ::boost::test_tools::tt_detail::                                            \
+    BOOST_PP_IF( frwd_type, report_assertion, check_frwd ) (                    \
+        BOOST_JOIN( BOOST_TEST_TOOL_PASS_PRED, frwd_type )( P, ARGS ),          \
+        BOOST_TEST_LAZY_MSG( assertion_descr ),                                 \
+        FILE,                                                                   \
+        static_cast<std::size_t>(LINE),                                         \
+        ::boost::test_tools::tt_detail::TL,                                     \
+        ::boost::test_tools::tt_detail::CT                                      \
+        BOOST_JOIN( BOOST_TEST_TOOL_PASS_ARGS, frwd_type )( ARGS ) );           \
+} while( ::boost::test_tools::tt_detail::dummy_cond() )                         \
+
+#define SOLTEST_ERROR_MESSAGE(FILE, LINE, M)         SOLTEST_TEST_TOOL_IMPL( 2, (false), M, FILE, LINE, CHECK, CHECK_MSG, _ )
+
 namespace soltest
 {
 
@@ -37,9 +53,9 @@ public:
 
 	void load(bool _printWarnings);
 
-	void processTestcase(std::string const &soltestFile, std::string const &testcase);
+	void processTestcaseResults(std::string const &_soltestFile, std::string const &_testcase);
 
-	void runTestcases(unsigned int threads);
+	void runTestcases(unsigned int _threads);
 
 	bool error()
 	{

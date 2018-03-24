@@ -40,7 +40,9 @@ std::string Environment::contracts() const
 pragma solidity ^0.4.0;
 
 contract Soltest {
-    function Soltest(){
+    function Soltest() {
+    }
+    function setAccount(string account) public {
     }
 }
 	)";

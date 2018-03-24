@@ -328,12 +328,12 @@ bool Soltest::loadTestcases()
 		if (!success)
 			break;
 		// parse contract annotation
-		parseSoltest(devDoc["external"]["soltest"]["line"].asUInt(),
+		parseSoltest(devDoc["external"]["soltest"]["line"].asUInt() + 1,
 					 components[0],
 					 devDoc["external"]["soltest"]["content"].asString());
 		// parse method annotations
 		for (auto &method : devDoc["methods"])
-			parseSoltest(method["external"]["soltest"]["line"].asUInt(),
+			parseSoltest(method["external"]["soltest"]["line"].asUInt() + 1,
 						 components[0],
 						 method["external"]["soltest"]["content"].asString());
 	}
@@ -371,7 +371,7 @@ bool Soltest::parseSoltest(uint32_t _line, std::string const &_filename, std::st
 	bool result = true;
 	std::stringstream content(_content);
 	std::string section;
-	uint32_t lineCounter(_line + 1);
+	uint32_t lineCounter(_line);
 	std::map<std::string, uint32_t> lines;
 	std::map<std::string, std::stringstream> sections;
 	for (std::string line; getline(content, line);)
@@ -436,10 +436,6 @@ void Soltest::runTestcases(unsigned int threads)
 				m_testcases_mutex.unlock();
 			}
 		);
-		m_testcases_mutex.lock();
-		m_prepare_tests[test.first] = testcasePtr;
-		m_testcases_mutex.unlock();
-
 		queue.enqueueNotification(testcasePtr);
 	}
 	for (auto &test : m_soltests)
@@ -448,12 +444,6 @@ void Soltest::runTestcases(unsigned int threads)
 			soltest::Testcase::Ptr testcasePtr = new soltest::Testcase(
 				[&]()
 				{
-					m_testcases_mutex.lock();
-					soltest::Testcase::Ptr prepare = m_prepare_tests[test.first];
-					m_testcases_mutex.unlock();
-
-					prepare->wait();
-
 					m_testcases_mutex.lock();
 					soltest::Testcases::Ptr testcasesPtr(m_testcases[test.first]);
 					m_testcases_mutex.unlock();
@@ -464,10 +454,6 @@ void Soltest::runTestcases(unsigned int threads)
 				}
 			);
 			queue.enqueueNotification(testcasePtr);
-
-			m_testcases_mutex.lock();
-			m_testcase[std::make_pair(test.first, data.first)] = testcasePtr;
-			m_testcases_mutex.unlock();
 		}
 
 	if (Poco::ThreadPool::defaultPool().capacity() < 64)
@@ -487,6 +473,30 @@ void Soltest::runTestcases(unsigned int threads)
 	queue.wakeUpAll();
 
 	Poco::ThreadPool::defaultPool().joinAll();
+}
+
+std::string Soltest::testcaseName(std::string const &_filename, int _line) const
+{
+	std::string testcaseName;
+	if (_line > 0)
+	{
+		auto iter = m_soltestsLine.find(_filename);
+		if (iter != m_soltestsLine.end())
+		{
+			std::map<std::string, int> testcases = iter->second;
+			if (!testcases.empty())
+			{
+				testcaseName = testcases.begin()->first;
+				for (auto &testcase : testcases)
+				{
+					if (testcase.second > _line)
+						break;
+					testcaseName = testcase.first;
+				}
+			}
+		}
+	}
+	return testcaseName;
 }
 
 } // namespace soltest
