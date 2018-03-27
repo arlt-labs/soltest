@@ -22,7 +22,7 @@
 #ifndef SOLTEST_WORKER_H
 #define SOLTEST_WORKER_H
 
-#include "Testcase.h"
+#include "Task.h"
 
 #include <Poco/Runnable.h>
 #include <Poco/NotificationQueue.h>
@@ -47,7 +47,7 @@ public:
 			Poco::AutoPtr<Poco::Notification> pNf(m_queue.waitDequeueNotification(100));
 			while (pNf)
 			{
-				auto pWorkNf = dynamic_cast<Testcase *>(pNf.get());
+				auto pWorkNf = dynamic_cast<Task *>(pNf.get());
 				if (pWorkNf)
 					pWorkNf->run();
 				pNf = m_queue.waitDequeueNotification(100);

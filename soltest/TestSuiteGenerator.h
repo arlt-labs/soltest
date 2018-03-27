@@ -53,9 +53,11 @@ public:
 
 	void load(bool _printWarnings);
 
-	void processTestcaseResults(std::string const &_soltestFile, std::string const &_testcase);
+	bool generateTestcases();
 
-	void runTestcases(unsigned int _threads);
+	void runTestcases();
+
+	void processTestcaseResults(std::string const &_soltestFile, std::string const &_testcase);
 
 	bool error()
 	{

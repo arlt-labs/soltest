@@ -32,10 +32,10 @@
 namespace soltest
 {
 
-class Testcase : public Poco::Notification
+class Task : public Poco::Notification
 {
 public:
-	typedef typename Poco::AutoPtr<Testcase> Ptr;
+	typedef typename Poco::AutoPtr<Task> Ptr;
 
 	enum class State
 	{
@@ -43,7 +43,7 @@ public:
 		RUNNING,
 		FINISHED
 	};
-	explicit Testcase(std::function<void(void)> _run) : m_run(_run), m_state(State::READY)
+	explicit Task(std::function<void(void)> _run) : m_run(_run), m_state(State::READY)
 	{
 	}
 

@@ -114,19 +114,39 @@ int main(int argc, char *argv[])
 		{
 			TestcaseCounter counter;
 			traverse_test_tree(boost::unit_test::framework::master_test_suite().p_id, counter, true);
-			std::cout << "Running " << counter.count - 1 << " test cases using "
-					  << g_soltest->threads() << " threads..." << std::flush;
 
-			g_testSuiteGenerator->runTestcases(g_soltest->threads());
+			std::cout << "Generating " << counter.count - 1 << " test cases..." << std::flush;
+			bool generationFailed = g_testSuiteGenerator->generateTestcases();
+			std::cout << "\rGenerating " << counter.count - 1 << " test cases... done" << std::endl;
 
-			std::cout << "\rRunning " << counter.count - 1 << " test cases using "
-					  << g_soltest->threads() << " threads... done" << std::endl;
+			if (generationFailed)
+			{
+				std::map<std::string, soltest::Testcases::Ptr> testcases = g_soltest->testcases();
+				for (auto &testcase : testcases)
+				{
+					std::vector<soltest::Testcases::Error::Ptr> const &errors = testcase.second->errors();
+					for (auto &error : errors)
+					{
+						std::cerr << error->what << std::endl << std::endl;
+					}
+				}
+				return boost::exit_failure;
+			}
+			else
+			{
+				std::cout << "Running " << counter.count - 1 << " test cases using "
+						  << g_soltest->threads() << " threads..." << std::flush;
+				g_testSuiteGenerator->runTestcases();
 
-			std::cout << "Processing results..." << std::endl;
+				std::cout << "\rRunning " << counter.count - 1 << " test cases using "
+						  << g_soltest->threads() << " threads... done" << std::endl;
 
-			framework::run();
+				std::cout << "Processing results..." << std::endl;
 
-			std::cout << "Processing results... done" << std::endl;
+				framework::run();
+
+				std::cout << "Processing results... done" << std::endl;
+			}
 		}
 		else
 			return boost::exit_failure;

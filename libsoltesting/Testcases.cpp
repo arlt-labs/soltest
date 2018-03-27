@@ -31,6 +31,7 @@
 
 #include <map>
 #include <string>
+#include <libsoltesting/interpreter/AstChecker.h>
 
 namespace soltest
 {
@@ -62,20 +63,28 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 		}
 	);
 
+	std::string testContractFileName;
+	std::string testContractName;
 	if (boost::ends_with(_filename, ".test.sol"))
 	{
-		m_compiler->addSource(_filename, solidityTestContents[_filename]);
+		testContractFileName = _filename;
+		if (boost::filesystem::path(testContractFileName).is_relative())
+			testContractFileName = boost::filesystem::absolute(boost::filesystem::path(testContractFileName)).string();
+		testContractName = boost::filesystem::path(_filename).filename().string();
+		m_compiler->addSource(testContractFileName, solidityTestContents[_filename]);
 	}
 	else
 	{
 		std::string solidityFile(m_soltest->solidityFile(_filename));
 		if (solidityFile.empty())
 			solidityFile = _filename;
+		if (boost::filesystem::path(solidityFile).is_relative())
+			solidityFile = boost::filesystem::absolute(boost::filesystem::path(solidityFile)).string();
 
 		m_compiler->addSource(solidityFile, solidityContents[solidityFile]);
 
-		std::string testContractFileName(solidityFile);
-		std::string testContractName(boost::filesystem::path(solidityFile).filename().string());
+		testContractFileName = solidityFile;
+		testContractName = boost::filesystem::path(solidityFile).filename().string();
 		boost::replace_all(testContractName, ".sol", "");
 		boost::replace_all(testContractFileName, ".sol", ".test.sol");
 
@@ -120,7 +129,13 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 			return m_compiler->scanner(_sourceName);
 		};
 
-	if (errors)
+	if (!errors)
+	{
+		dev::solidity::SourceUnit const &ast = m_compiler->ast(testContractFileName);
+		soltest::interpeter::AstChecker checker(ast);
+	}
+	else
+	{
 		for (auto &e : m_compiler->errors())
 		{
 			auto const &err = dynamic_cast<dev::solidity::Error const &>(*e);
@@ -130,6 +145,7 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 			else
 				m_errors.push_back(warningOrError);
 		}
+	}
 }
 
 void Testcases::executeTestcase(std::string const &_testcase)

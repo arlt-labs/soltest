@@ -24,11 +24,12 @@
 
 #include <libsoltesting/SolidityExtractor.h>
 #include <libsoltesting/Environment.h>
-#include <libsoltesting/Testcase.h>
+#include <libsoltesting/Task.h>
 #include <libsoltesting/Testcases.h>
 
 #include <libsolidity/interface/CompilerStack.h>
 
+#include <Poco/ThreadPool.h>
 #include <Poco/NotificationQueue.h>
 
 #include <string>
@@ -78,7 +79,9 @@ public:
 
 	bool loadTestcases();
 
-	void runTestcases(unsigned int threads);
+	bool generateTestcases();
+
+	void runTestcases();
 
 	CompilerErrors const &compilerErrors() const
 	{
@@ -105,7 +108,7 @@ public:
 		return m_soltests;
 	};
 
-	size_t soltestLine(std::string const &soltestFile, std::string const &testcase)
+	int soltestLine(std::string const &soltestFile, std::string const &testcase)
 	{
 		return m_soltestsLine[soltestFile][testcase];
 	}
@@ -165,6 +168,10 @@ private:
 	std::string m_ipcpath;
 
 	unsigned int m_threads;
+	unsigned int m_solidityThreads;
+
+	Poco::SharedPtr<Poco::ThreadPool> m_solidityThreadPool;
+	Poco::SharedPtr<Poco::ThreadPool> m_testcaseThreadPool;
 
 	std::set<std::string> m_contracts;
 	std::set<std::string> m_testContracts;

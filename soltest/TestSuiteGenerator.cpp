@@ -105,9 +105,14 @@ void TestSuiteGenerator::processTestcaseResults(std::string const &_soltestFile,
 	(void) _testcase;
 }
 
-void TestSuiteGenerator::runTestcases(unsigned int _threads)
+bool TestSuiteGenerator::generateTestcases()
 {
-	m_soltest.runTestcases(_threads);
+	return m_soltest.generateTestcases();
+}
+
+void TestSuiteGenerator::runTestcases()
+{
+	m_soltest.runTestcases();
 }
 
 bool TestSuiteGenerator::checkForWarningsAndErrors(bool _printWarnings)

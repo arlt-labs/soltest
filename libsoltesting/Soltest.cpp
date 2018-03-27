@@ -40,6 +40,7 @@ namespace soltest
 Soltest::Soltest()
 {
 	m_threads = std::thread::hardware_concurrency();
+	m_solidityThreads = 1;
 	if (m_threads == 0)
 		m_threads = 1;
 	m_scannerFromSourceName =
@@ -65,6 +66,23 @@ bool Soltest::parseCommandLineArguments(int argc, char **argv)
 		{
 			m_options[argument] = argv[i + 1];
 			m_ipcpath = argv[i + 1];
+			++i;
+		}
+		else if (argument == "--solidity-threads")
+		{
+			m_options[argument] = argv[i + 1];
+			try
+			{
+				m_solidityThreads = boost::lexical_cast<unsigned int>(argv[i + 1]);
+				if (m_solidityThreads > 64)
+					m_solidityThreads = std::thread::hardware_concurrency();
+			}
+			catch (...)
+			{
+				m_solidityThreads = 1;
+			}
+			if (m_solidityThreads == 0)
+				m_solidityThreads = 1;
 			++i;
 		}
 		else if (argument == "--threads")
@@ -105,6 +123,9 @@ bool Soltest::parseCommandLineArguments(int argc, char **argv)
 
 bool Soltest::initialize()
 {
+	m_solidityThreadPool = new Poco::ThreadPool(m_solidityThreads);
+	m_testcaseThreadPool = new Poco::ThreadPool(m_threads);
+
 	preloadContracts();
 	searchSoltestFiles();
 	return !m_solidityContents.empty() || !m_solidityTestContents.empty();
@@ -421,12 +442,12 @@ bool Soltest::parseSoltest(uint32_t _line, std::string const &_filename, std::st
 	return result;
 }
 
-void Soltest::runTestcases(unsigned int threads)
+bool Soltest::generateTestcases()
 {
 	Poco::NotificationQueue queue;
 	for (auto &test : m_soltests)
 	{
-		soltest::Testcase::Ptr testcasePtr = new soltest::Testcase(
+		soltest::Task::Ptr testcasePtr = new soltest::Task(
 			[&]()
 			{
 				soltest::Testcases::Ptr testcasesPtr(new soltest::Testcases(this, test.first, test.second));
@@ -438,17 +459,41 @@ void Soltest::runTestcases(unsigned int threads)
 		);
 		queue.enqueueNotification(testcasePtr);
 	}
+
+	std::vector<soltest::Executor::Ptr> workers;
+	for (unsigned int i = 0; i < m_solidityThreads; ++i)
+	{
+		soltest::Executor::Ptr worker(new Executor(queue));
+		workers.push_back(worker);
+
+		m_solidityThreadPool->start(*worker);
+	}
+
+	while (!queue.empty())
+		Poco::Thread::sleep(100);
+
+	queue.wakeUpAll();
+	m_solidityThreadPool->joinAll();
+
+	int errors = 0;
+	for (auto &testcase : m_testcases)
+		errors += testcase.second->errors().size();
+
+	return errors > 0;
+}
+
+void Soltest::runTestcases()
+{
+	Poco::NotificationQueue queue;
 	for (auto &test : m_soltests)
 		for (auto &data : test.second)
 		{
-			soltest::Testcase::Ptr testcasePtr = new soltest::Testcase(
+			soltest::Task::Ptr testcasePtr = new soltest::Task(
 				[&]()
 				{
 					m_testcases_mutex.lock();
 					soltest::Testcases::Ptr testcasesPtr(m_testcases[test.first]);
 					m_testcases_mutex.unlock();
-
-					Poco::Thread::sleep(100);
 
 					testcasesPtr->executeTestcase(data.first);
 				}
@@ -456,15 +501,12 @@ void Soltest::runTestcases(unsigned int threads)
 			queue.enqueueNotification(testcasePtr);
 		}
 
-	if (Poco::ThreadPool::defaultPool().capacity() < 64)
-		Poco::ThreadPool::defaultPool().addCapacity(64);
-
 	std::vector<soltest::Executor::Ptr> workers;
-	for (unsigned int i = 0; i < threads; ++i)
+	for (unsigned int i = 0; i < m_threads; ++i)
 	{
 		soltest::Executor::Ptr worker(new Executor(queue));
 		workers.push_back(worker);
-		Poco::ThreadPool::defaultPool().start(*worker);
+		m_testcaseThreadPool->start(*worker);
 	}
 
 	while (!queue.empty())
@@ -472,7 +514,7 @@ void Soltest::runTestcases(unsigned int threads)
 
 	queue.wakeUpAll();
 
-	Poco::ThreadPool::defaultPool().joinAll();
+	m_testcaseThreadPool->joinAll();
 }
 
 std::string Soltest::testcaseName(std::string const &_filename, int _line) const
