@@ -133,6 +133,9 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 	{
 		dev::solidity::SourceUnit const &ast = m_compiler->ast(testContractFileName);
 		soltest::interpeter::AstChecker checker(ast);
+		if (!checker.isValid())
+			for (auto &error : checker.errors())
+				m_errors.push_back(createError(testContractFileName, *error, _filename));
 	}
 	else
 	{
@@ -164,7 +167,9 @@ std::string Testcases::normalize(std::string const &name)
 	return result;
 }
 
-Testcases::Error::Ptr Testcases::createError(std::string const &_filename, dev::solidity::Error const &_error)
+Testcases::Error::Ptr Testcases::createError(std::string const &_filename,
+											 dev::solidity::Error const &_error,
+											 std::string const &_realFilename /* = "" */)
 {
 	std::string formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
 		_error, _error.typeName(), m_scannerFromSourceName
@@ -205,6 +210,8 @@ Testcases::Error::Ptr Testcases::createError(std::string const &_filename, dev::
 			formattedMessage =
 				formattedMessage.erase(soltestLinePosition, nextNewline - soltestLinePosition);
 			boost::replace_first(formattedMessage, originalLocation.str(), soltestLocation.str());
+			if (!_realFilename.empty())
+				boost::replace_first(formattedMessage, *location->sourceName, _realFilename);
 		}
 	}
 
@@ -239,6 +246,8 @@ Testcases::Error::Ptr Testcases::createError(std::string const &_filename, dev::
 			formattedMessage =
 				formattedMessage.erase(soltestLinePosition, nextNewline - soltestLinePosition);
 			boost::replace_first(formattedMessage, originalLocation.str(), soltestLocation.str());
+			if (!_realFilename.empty())
+				boost::replace_first(formattedMessage, *location->sourceName, _realFilename);
 		}
 	}
 

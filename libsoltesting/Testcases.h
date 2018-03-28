@@ -61,7 +61,7 @@ public:
 
 	void executeTestcase(std::string const &_testcase);
 
-	Error::Ptr createError(std::string const &_filename, dev::solidity::Error const &_error);
+	Error::Ptr createError(std::string const &_filename, dev::solidity::Error const &_error, std::string const& _realFilename = "");
 
 	std::vector<Error::Ptr> const &errors() const
 	{
