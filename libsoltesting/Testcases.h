@@ -61,7 +61,9 @@ public:
 
 	void executeTestcase(std::string const &_testcase);
 
-	Error::Ptr createError(std::string const &_filename, dev::solidity::Error const &_error, std::string const& _realFilename = "");
+	Error::Ptr createError(std::string const &_filename,
+						   dev::solidity::Error const &_error,
+						   std::string const &_realFilename = "");
 
 	std::vector<Error::Ptr> const &errors() const
 	{
@@ -73,14 +75,25 @@ public:
 		return m_warnings;
 	}
 
+	std::map<std::string, std::vector<Assertion::Ptr>> const &assertions() const
+	{
+		return m_assertions;
+	};
+
 private:
 	std::vector<Error::Ptr> m_errors;
 	std::vector<Error::Ptr> m_warnings;
 	std::map<std::string, std::vector<Assertion::Ptr>> m_assertions;
 
 	const soltest::Soltest *m_soltest;
+	std::string m_filename;
 	std::function<const dev::solidity::Scanner &(const std::string &)> m_scannerFromSourceName;
 	std::shared_ptr<dev::solidity::CompilerStack> m_compiler;
+
+	std::string m_testContractFileName;
+	std::string m_testContractName;
+
+	Poco::Mutex m_mutex;
 };
 
 } // namespace soltest

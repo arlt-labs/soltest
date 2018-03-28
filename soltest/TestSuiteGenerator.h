@@ -42,6 +42,7 @@ do {                                                                            
 } while( ::boost::test_tools::tt_detail::dummy_cond() )                         \
 
 #define SOLTEST_ERROR_MESSAGE(FILE, LINE, M)         SOLTEST_TEST_TOOL_IMPL( 2, (false), M, FILE, LINE, CHECK, CHECK_MSG, _ )
+#define SOLTEST_CHECK_MESSAGE(FILE, LINE, P, M)         SOLTEST_TEST_TOOL_IMPL( 2, (P), M, FILE, LINE, CHECK, CHECK_MSG, _ )
 
 namespace soltest
 {

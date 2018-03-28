@@ -115,9 +115,9 @@ int main(int argc, char *argv[])
 			TestcaseCounter counter;
 			traverse_test_tree(boost::unit_test::framework::master_test_suite().p_id, counter, true);
 
-			std::cout << "Generating " << counter.count - 1 << " test cases..." << std::flush;
+			std::cout << "Preparing " << counter.count - 1 << " test cases..." << std::flush;
 			bool generationFailed = g_testSuiteGenerator->generateTestcases();
-			std::cout << "\rGenerating " << counter.count - 1 << " test cases... done" << std::endl;
+			std::cout << "\rPreparing " << counter.count - 1 << " test cases... done" << std::endl;
 
 			if (generationFailed)
 			{

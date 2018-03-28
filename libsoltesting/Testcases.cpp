@@ -38,7 +38,7 @@ namespace soltest
 
 Testcases::Testcases(const soltest::Soltest *_soltest,
 					 std::string _filename,
-					 std::map<std::string, std::string> _testcases) : m_soltest(_soltest)
+					 std::map<std::string, std::string> _testcases) : m_soltest(_soltest), m_filename(_filename)
 {
 	std::map<std::string, std::string> solidityContents = m_soltest->solidityContents();
 	std::map<std::string, std::string> solidityTestContents = m_soltest->solidityTestContents();
@@ -63,15 +63,14 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 		}
 	);
 
-	std::string testContractFileName;
-	std::string testContractName;
 	if (boost::ends_with(_filename, ".test.sol"))
 	{
-		testContractFileName = _filename;
-		if (boost::filesystem::path(testContractFileName).is_relative())
-			testContractFileName = boost::filesystem::absolute(boost::filesystem::path(testContractFileName)).string();
-		testContractName = boost::filesystem::path(_filename).filename().string();
-		m_compiler->addSource(testContractFileName, solidityTestContents[_filename]);
+		m_testContractFileName = _filename;
+		if (boost::filesystem::path(m_testContractFileName).is_relative())
+			m_testContractFileName =
+				boost::filesystem::absolute(boost::filesystem::path(m_testContractFileName)).string();
+		m_testContractName = boost::filesystem::path(_filename).filename().string();
+		m_compiler->addSource(m_testContractFileName, solidityTestContents[_filename]);
 	}
 	else
 	{
@@ -83,16 +82,16 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 
 		m_compiler->addSource(solidityFile, solidityContents[solidityFile]);
 
-		testContractFileName = solidityFile;
-		testContractName = boost::filesystem::path(solidityFile).filename().string();
-		boost::replace_all(testContractName, ".sol", "");
-		boost::replace_all(testContractFileName, ".sol", ".test.sol");
+		m_testContractFileName = solidityFile;
+		m_testContractName = boost::filesystem::path(solidityFile).filename().string();
+		boost::replace_all(m_testContractName, ".sol", "");
+		boost::replace_all(m_testContractFileName, ".sol", ".test.sol");
 
 		std::stringstream testContractContent;
 		testContractContent << "pragma solidity ^0.4.0;" << std::endl << std::endl;
 		testContractContent << "import '" << solidityFile << "';" << std::endl;
 		testContractContent << "import 'Soltest.sol';" << std::endl << std::endl;
-		testContractContent << "contract " << testContractName << "Test is Soltest {" << std::endl;
+		testContractContent << "contract " << m_testContractName << "Test is Soltest {" << std::endl;
 		for (auto &testcase : _testcases)
 		{
 			std::vector<std::string> soltestLines;
@@ -110,7 +109,7 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 
 //		std::cout << std::endl << _filename << std::endl << testContractContent.str() << std::endl;
 
-		m_compiler->addSource(testContractFileName, testContractContent.str());
+		m_compiler->addSource(m_testContractFileName, testContractContent.str());
 	}
 
 	bool errors;
@@ -131,11 +130,21 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 
 	if (!errors)
 	{
-		dev::solidity::SourceUnit const &ast = m_compiler->ast(testContractFileName);
+		dev::solidity::SourceUnit const &ast = m_compiler->ast(m_testContractFileName);
 		soltest::interpeter::AstChecker checker(ast);
-		if (!checker.isValid())
+		if (checker.isValid())
+		{
+			if (!m_compiler->compile())
+			{
+				Error::Ptr error(new Error);
+				error->file = m_testContractFileName;
+				error->what = "Compilation failed. This should never happen!";
+				m_errors.push_back(error);
+			}
+		}
+		else
 			for (auto &error : checker.errors())
-				m_errors.push_back(createError(testContractFileName, *error, _filename));
+				m_errors.push_back(createError(m_testContractFileName, *error, _filename));
 	}
 	else
 	{
@@ -155,8 +164,29 @@ void Testcases::executeTestcase(std::string const &_testcase)
 {
 	if (m_errors.empty())
 	{
-		std::string testcaseFunctionName("test_" + normalize(_testcase));
-		(void) testcaseFunctionName;
+		try
+		{
+			dev::solidity::SourceUnit const &testcasesAST = m_compiler->ast(m_testContractFileName);
+			(void) testcasesAST;
+
+			std::string testcaseFunctionName("test_" + normalize(_testcase));
+			std::cout << testcaseFunctionName << std::endl;
+			(void) testcaseFunctionName;
+		}
+		catch (...)
+		{
+			Assertion::Ptr assertion;
+			assertion.reset(new Assertion(false));
+			assertion->file = m_filename;
+			assertion->line = 0;
+			assertion->column = 0;
+			assertion->testcase = _testcase;
+			assertion->what = "Could not query AST. This should never happen!";
+
+			Poco::Mutex::ScopedLock lock(m_mutex);
+			m_assertions[m_testContractFileName].push_back(assertion);
+			m_assertions[m_filename].push_back(assertion);
+		}
 	}
 }
 
@@ -204,7 +234,7 @@ Testcases::Error::Ptr Testcases::createError(std::string const &_filename,
 		}
 		std::stringstream soltestLocation;
 		soltestLocation << _filename << ":";
-		soltestLocation << errorLine << ":" << (startColumn - 3) << ": ";
+		soltestLocation << errorLine << ":" << startColumn << ": ";
 		if (nextNewline != std::string::npos)
 		{
 			formattedMessage =
@@ -240,7 +270,7 @@ Testcases::Error::Ptr Testcases::createError(std::string const &_filename,
 		}
 		std::stringstream soltestLocation;
 		soltestLocation << _filename << ":";
-		soltestLocation << errorLine << ":" << (startColumn - 3) << ": ";
+		soltestLocation << errorLine << ":" << startColumn << ": ";
 		if (nextNewline != std::string::npos)
 		{
 			formattedMessage =

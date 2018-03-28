@@ -63,7 +63,7 @@ private:
 	std::shared_ptr<dev::solidity::Error> createError(dev::solidity::ASTNode const &astNode, std::string const &what)
 	{
 		std::shared_ptr<dev::solidity::Error> result;
-		result.reset(new dev::solidity::Error(dev::solidity::Error::Type::ParserError, astNode.location(), what));
+		result.reset(new dev::solidity::Error(dev::solidity::Error::Type::SyntaxError, astNode.location(), what));
 		return result;
 	}
 

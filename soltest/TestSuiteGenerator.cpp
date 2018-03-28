@@ -81,7 +81,17 @@ void TestSuiteGenerator::processTestcaseResults(std::string const &_soltestFile,
 	soltest::Testcases::Ptr testcases = testcasesIter->second;
 	if (testcases->errors().empty())
 	{
-		// todo
+		std::map<std::string,
+				 std::vector<soltest::Testcases::Assertion::Ptr>
+		> const &assertions(testcases->assertions());
+
+		auto entry = assertions.find(_soltestFile);
+		if (entry != assertions.end())
+			for (auto &assertion : entry->second)
+				SOLTEST_CHECK_MESSAGE(
+					assertion->file.c_str(),
+					assertion->line,
+					assertion->result, assertion->what.c_str());
 	}
 	else
 	{
