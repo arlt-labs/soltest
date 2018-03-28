@@ -1,5 +1,7 @@
 # soltest
 
+_Attention: `soltest` is still under development and not usable right now._
+
 ## Get the source code
 
 ```
