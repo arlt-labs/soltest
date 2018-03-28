@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ubuntu:17.10
+    steps:
+      - checkout
+      - run:
+          name: Install build dependencies
+          command: |
+            apt-get -qq update
+            apt-get -qy install libpoco-dev libleveldb-dev git-core cmake build-essential libboost-regex-dev libboost-filesystem-dev libboost-test-dev libboost-system-dev libboost-program-options-dev libz3-dev
+      - run:
+          name: Fix host authenticity for github.com 
+          command: |
+            mkdir -p ~/.ssh/
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run:
+          name: Build
+          command: |
+            mkdir -p build
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
+            make
+      - store_artifacts:
+          path: build/soltest/soltest
+          destination: soltest
+      - persist_to_workspace:
+          root: build
+          paths:
+            - soltest/soltest
+            - test/soltest-unittests
