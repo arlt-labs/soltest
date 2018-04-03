@@ -26,6 +26,19 @@ jobs:
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
             make
+      - run:
+          name: Test
+          command: |
+            mkdir -p build/test/report
+            build/test/soltest-unittests --log_format=XML --logger=XML,all,build/test/report/results.xml --report_level=detailed
+      - store_artifacts:
+          path: build/soltest/soltest
+          destination: soltest
+      - store_artifacts:
+          path: build/test/report
+          destination: report
+      - store_test_results:
+          path: report
       - save_cache:
           name: Save cache
           key: build-{{ checksum "CMakeLists.txt" }}
@@ -33,9 +46,6 @@ jobs:
             - ~/.hunter
             - build/cpp-ethereum-git
             - build/solidity-git
-      - store_artifacts:
-          path: build/soltest/soltest
-          destination: soltest
       - persist_to_workspace:
           root: build
           paths:

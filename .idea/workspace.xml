@@ -22,8 +22,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="693c209a-fbdb-4c9f-98c2-e9af5a9ff988" name="Default" comment="Basic loading of .abi files and corresponding .bin files implemented.">
-      <change afterPath="$PROJECT_DIR$/test/libsoltesting/Dummy.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/test/libsoltesting/Dummy.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
               <folding>
                 <element signature="e#762#797#0" expanded="true" />
               </folding>
@@ -64,15 +63,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="boostTest.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="boostTest.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/boostTest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="426">
+              <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
               <folding>
                 <element signature="e#983#1078#0" expanded="true" />
                 <element signature="e#1153#1173#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="395">
+              <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -177,9 +185,9 @@
         <option value="$PROJECT_DIR$/libsoltesting/Soltest.h" />
         <option value="$PROJECT_DIR$/soltest/TestSuiteGenerator.cpp" />
         <option value="$PROJECT_DIR$/libsoltesting/Testcases.cpp" />
-        <option value="$PROJECT_DIR$/.circleci/config.yml" />
         <option value="$PROJECT_DIR$/test/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/test/libsoltesting/Dummy.cpp" />
+        <option value="$PROJECT_DIR$/.circleci/config.yml" />
       </list>
     </option>
   </component>
@@ -221,56 +229,6 @@
             <path>
               <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
               <item name="soltest" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
-              <item name="solidity-git" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="soltest" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
-              <item name="solidity-git" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="soltest" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
-              <item name="solidity-git" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="solidity-git" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="soltest" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
-              <item name="solidity-git" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="solidity-git" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="soltest" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
-              <item name="solidity-git" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="solidity-git" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="contracts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="soltest" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
-              <item name="solidity-git" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="solidity-git" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="libsolidity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="soltest" type="462c0819:PsiDirectoryNode" />
               <item name="soltest" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -299,11 +257,12 @@
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/libsoltesting" />
+      <recent name="$PROJECT_DIR$/contracts" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/libsoltesting" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/contracts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -453,20 +412,20 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208327000" />
+    <option name="totallyTimeSpent" value="212945000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="979" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1864139" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1864139" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.2857143" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.32426304" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32918552" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2585034" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2585034" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -782,13 +741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/test/libsolidity/ABIDecoderTests.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-221" />
@@ -814,7 +766,7 @@
     <entry file="file://$PROJECT_DIR$/test/libsoltesting/Dummy.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
           <folding>
             <element signature="e#762#797#0" expanded="true" />
           </folding>
@@ -823,12 +775,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/boostTest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        <state relative-caret-position="426">
+          <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
           <folding>
             <element signature="e#983#1078#0" expanded="true" />
             <element signature="e#1153#1173#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
         </state>
       </provider>
     </entry>
