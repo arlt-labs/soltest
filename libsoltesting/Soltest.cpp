@@ -24,7 +24,6 @@
 #include "Executor.h"
 
 #include <libdevcore/JSON.h>
-#include <boost/test/unit_test.hpp>
 #include <boost/filesystem.hpp>
 
 #include <boost/algorithm/string.hpp>

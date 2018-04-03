@@ -49,7 +49,7 @@ void TestSuiteGenerator::load(bool _printWarnings)
 			{
 				auto processTestcase =
 					std::bind(&TestSuiteGenerator::processTestcaseResults, this, soltestFile.first, testcase.first);
-				size_t line(m_soltest.soltestLine(soltestFile.first, testcase.first));
+				int line(m_soltest.soltestLine(soltestFile.first, testcase.first));
 
 				// tests are executed asynchronously, we need a valid reference to the dynamically created string,
 				// where the c-string pointer need to be valid for a while.
@@ -77,7 +77,10 @@ void TestSuiteGenerator::processTestcaseResults(std::string const &_soltestFile,
 {
 	std::map<std::string, soltest::Testcases::Ptr> testcasesMap = m_soltest.testcases();
 	auto testcasesIter = testcasesMap.find(_soltestFile);
-	BOOST_REQUIRE(testcasesIter != testcasesMap.end());
+	SOLTEST_CHECK_MESSAGE(_soltestFile.c_str(),
+						  m_soltest.soltestLine(_soltestFile, _testcase),
+						  testcasesIter != testcasesMap.end(),
+						  "init " + _testcase);
 	soltest::Testcases::Ptr testcases = testcasesIter->second;
 	if (testcases->errors().empty())
 	{
@@ -88,10 +91,11 @@ void TestSuiteGenerator::processTestcaseResults(std::string const &_soltestFile,
 		auto entry = assertions.find(_soltestFile);
 		if (entry != assertions.end())
 			for (auto &assertion : entry->second)
-				SOLTEST_CHECK_MESSAGE(
-					assertion->file.c_str(),
-					assertion->line,
-					assertion->result, assertion->what.c_str());
+				if (assertion->testcase == _testcase)
+					SOLTEST_CHECK_MESSAGE(
+						assertion->file.c_str(),
+						assertion->line,
+						assertion->result, assertion->what.c_str());
 	}
 	else
 	{

@@ -27,9 +27,9 @@
 #include <libevmasm/SourceLocation.h>
 
 #include <boost/algorithm/string.hpp>
-#include <boost/test/test_tools.hpp>
 
 #include <map>
+#include <memory>
 #include <string>
 #include <libsoltesting/interpreter/AstChecker.h>
 
@@ -46,15 +46,24 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 	m_compiler = std::make_shared<dev::solidity::CompilerStack>(
 		[&](std::string const &import) -> dev::solidity::ReadCallback::Result
 		{
+			std::string realImport(import);
 			dev::solidity::ReadCallback::Result result;
 			result.success = true;
 
-			auto solidityContentsImport = solidityContents.find(import);
-			auto solidityTestContentsImport = solidityTestContents.find(import);
+			if (boost::starts_with(realImport, "/virtual"))
+			{
+				realImport = boost::replace_first_copy(realImport, "/virtual", "");
+				realImport = boost::replace_all_copy(realImport, boost::filesystem::current_path().string(), "");
+				if (!boost::filesystem::exists(realImport) && boost::starts_with(realImport, "/"))
+					realImport = boost::replace_first_copy(realImport, "/", "");
+			}
+
+			auto solidityContentsImport = solidityContents.find(realImport);
+			auto solidityTestContentsImport = solidityTestContents.find(realImport);
 
 			if (solidityContentsImport != solidityContents.end())
 				result.responseOrErrorMessage = solidityContentsImport->second;
-			else if (solidityTestContents.find(import) != solidityTestContents.end())
+			else if (solidityTestContents.find(realImport) != solidityTestContents.end())
 				result.responseOrErrorMessage = solidityTestContentsImport->second;
 			else
 				result.success = false;
@@ -80,7 +89,7 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 		if (boost::filesystem::path(solidityFile).is_relative())
 			solidityFile = boost::filesystem::absolute(boost::filesystem::path(solidityFile)).string();
 
-		m_compiler->addSource(solidityFile, solidityContents[solidityFile]);
+		m_compiler->addSource(solidityFile, solidityContents[_filename]);
 
 		m_testContractFileName = solidityFile;
 		m_testContractName = boost::filesystem::path(solidityFile).filename().string();
@@ -89,7 +98,7 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 
 		std::stringstream testContractContent;
 		testContractContent << "pragma solidity ^0.4.0;" << std::endl << std::endl;
-		testContractContent << "import '" << solidityFile << "';" << std::endl;
+		testContractContent << "import '/virtual" << solidityFile << "';" << std::endl;
 		testContractContent << "import 'Soltest.sol';" << std::endl << std::endl;
 		testContractContent << "contract " << m_testContractName << "Test is Soltest {" << std::endl;
 		for (auto &testcase : _testcases)
@@ -170,15 +179,15 @@ void Testcases::executeTestcase(std::string const &_testcase)
 			(void) testcasesAST;
 
 			std::string testcaseFunctionName("test_" + normalize(_testcase));
-			std::cout << testcaseFunctionName << std::endl;
+//			std::cout << testcaseFunctionName << std::endl;
 			(void) testcaseFunctionName;
 		}
 		catch (...)
 		{
 			Assertion::Ptr assertion;
-			assertion.reset(new Assertion(false));
+			assertion = std::make_shared<Assertion>(false);
 			assertion->file = m_filename;
-			assertion->line = 0;
+			assertion->line = m_soltest->soltestLine(m_filename, _testcase);
 			assertion->column = 0;
 			assertion->testcase = _testcase;
 			assertion->what = "Could not query AST. This should never happen!";

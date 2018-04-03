@@ -16,4 +16,4 @@ add_dependencies(soltest soltesting solidity-git-build cpp-ethereum-git-build)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/../../)
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/../include)
-target_link_libraries(soltest soltesting ${Boost_UNIT_TEST_FRAMEWORK_LIBRARIES})
+target_link_libraries(soltest soltesting)

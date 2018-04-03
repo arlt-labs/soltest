@@ -108,9 +108,16 @@ public:
 		return m_soltests;
 	};
 
-	int soltestLine(std::string const &soltestFile, std::string const &testcase)
+	int soltestLine(std::string const &soltestFile, std::string const &testcase) const
 	{
-		return m_soltestsLine[soltestFile][testcase];
+		auto file = m_soltestsLine.find(soltestFile);
+		if (file != m_soltestsLine.end()) {
+			auto line = file->second.find(testcase);
+			if (line != file->second.end()) {
+				return line->second;
+			}
+		}
+		return 0;
 	}
 
 	std::map<std::string, std::string> const &solidityContents() const
