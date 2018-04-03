@@ -4,14 +4,18 @@ jobs:
     docker:
       - image: ubuntu:17.10
     steps:
-      - checkout
       - run:
           name: Install build dependencies
           command: |
             apt-get -qq update
-            apt-get -qy install libpoco-dev libleveldb-dev git-core cmake build-essential libboost-regex-dev libboost-filesystem-dev libboost-test-dev libboost-system-dev libboost-program-options-dev libz3-dev
+            apt-get -qy install ca-certificates libpoco-dev libleveldb-dev git-core cmake build-essential libboost-regex-dev libboost-filesystem-dev libboost-test-dev libboost-system-dev libboost-program-options-dev libz3-dev
+      - checkout
+      - restore_cache:
+          name: Restore cache
+          keys:
+            - build-{{ checksum "CMakeLists.txt" }}
       - run:
-          name: Fix host authenticity for github.com 
+          name: Fix host authenticity for github.com
           command: |
             mkdir -p ~/.ssh/
             ssh-keyscan github.com >> ~/.ssh/known_hosts
@@ -22,6 +26,13 @@ jobs:
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
             make
+      - save_cache:
+          name: Save cache
+          key: build-{{ checksum "CMakeLists.txt" }}
+          paths:
+            - ~/.hunter
+            - build/cpp-ethereum-git
+            - build/solidity-git
       - store_artifacts:
           path: build/soltest/soltest
           destination: soltest
