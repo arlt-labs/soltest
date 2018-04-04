@@ -2,7 +2,7 @@
 
 A test-framework for smart-contracts.
 
-[![Join the chat at https://gitter.im/soltest-chat/Lobby](https://badges.gitter.im/soltest-chat/Lobby.svg)](https://gitter.im/soltest-chat/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![License](https://img.shields.io/github/license/aarlt/soltest.svg)](LICENSE.txt)
+[![Join the chat at https://gitter.im/arlt-labs/soltest](https://badges.gitter.im/arlt-labs/soltest.svg)](https://gitter.im/arlt-labs/soltest) [![License](https://img.shields.io/github/license/aarlt/soltest.svg)](LICENSE.txt)
 
 _Attention: `soltest` is still under development and not usable right now._
 
@@ -36,9 +36,9 @@ make
 ```
 ## Contact
 
-[![Join the chat at https://gitter.im/soltest-chat/Lobby](https://badges.gitter.im/soltest-chat/Lobby.svg)](https://gitter.im/soltest-chat/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/arlt-labs/soltest](https://badges.gitter.im/arlt-labs/soltest.svg)](https://gitter.im/arlt-labs/soltest)
 
-- Chat @ [soltest-chat on Gitter](https://gitter.im/soltest-chat/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
+- Chat @ [arlt-labs/soltest on Gitter](https://gitter.im/arlt-labs/soltest).
 
 ## License
 
