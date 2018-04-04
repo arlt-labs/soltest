@@ -1,5 +1,7 @@
 # soltest
 
+[![Join the chat at https://gitter.im/soltest-chat/Lobby](https://badges.gitter.im/soltest-chat/Lobby.svg)](https://gitter.im/soltest-chat/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 _Attention: `soltest` is still under development and not usable right now._
 
 ## Get the source code
