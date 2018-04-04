@@ -116,7 +116,6 @@ void TestSuiteGenerator::processTestcaseResults(std::string const& _soltestFile,
 								  m_soltest.soltestLine(_soltestFile, _testcase),
 								  (std::string("\n    ") + boost::trim_copy(messages.str())).c_str());
 	}
-	(void) _testcase;
 }
 
 bool TestSuiteGenerator::generateTestcases()

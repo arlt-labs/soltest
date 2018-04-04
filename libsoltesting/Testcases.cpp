@@ -106,7 +106,7 @@ Testcases::Testcases(const soltest::Soltest* _soltest,
 		{
 			std::vector<std::string> soltestLines;
 			boost::split(soltestLines, testcase.second, boost::is_any_of("\n"));
-			testContractContent << "    function test_" << soltest::Testcases::normalize(testcase.first) << "() {"
+			testContractContent << "    function " << soltest::Testcases::normalize(testcase.first) << "() {"
 								<< std::endl;
 			for (auto& soltestLine : soltestLines)
 			{
@@ -133,16 +133,10 @@ Testcases::Testcases(const soltest::Soltest* _soltest,
 		errors = !m_compiler->parseAndAnalyze();
 	}
 
-	m_scannerFromSourceName =
-		[&](std::string const& _sourceName) -> dev::solidity::Scanner const&
-		{
-			return m_compiler->scanner(_sourceName);
-		};
-
 	if (!errors)
 	{
 		dev::solidity::SourceUnit const& ast = m_compiler->ast(m_testContractFileName);
-		soltest::interpeter::AstChecker checker(ast);
+		soltest::interpreter::AstChecker checker(ast);
 		if (checker.isValid())
 		{
 			if (!m_compiler->compile())
@@ -155,14 +149,20 @@ Testcases::Testcases(const soltest::Soltest* _soltest,
 		}
 		else
 			for (auto& error : checker.errors())
-				m_errors.push_back(createError(m_testContractFileName, *error, _filename));
+			{
+				Error::Ptr errorPtr =
+					CreateError(m_testContractFileName, *error, *m_compiler, _filename);
+				errorPtr->testcase = m_soltest->testcaseName(errorPtr->file, errorPtr->line);
+				m_errors.push_back(errorPtr);
+			}
 	}
 	else
 	{
 		for (auto& e : m_compiler->errors())
 		{
 			auto const& err = dynamic_cast<dev::solidity::Error const&>(*e);
-			Error::Ptr warningOrError = createError(_filename, err);
+			Error::Ptr warningOrError = CreateError(_filename, err, *m_compiler);
+			warningOrError->testcase = m_soltest->testcaseName(warningOrError->file, warningOrError->line);
 			if (err.type() == dev::solidity::Error::Type::Warning)
 				m_warnings.push_back(warningOrError);
 			else
@@ -177,9 +177,7 @@ void Testcases::executeTestcase(std::string const& _testcase)
 	{
 		try
 		{
-			dev::solidity::SourceUnit const& sourceUnit = m_compiler->ast(m_testContractFileName);
-			soltest::interpeter::Interpreter interpreter(sourceUnit);
-
+			soltest::interpreter::Interpreter interpreter(m_filename, m_testContractFileName, *m_compiler);
 			interpreter.run(_testcase);
 
 			Poco::Mutex::ScopedLock lock(m_mutex);
@@ -207,15 +205,21 @@ std::string Testcases::normalize(std::string const& name)
 {
 	std::string result(name);
 	boost::replace_all(result, " ", "_");
-	return result;
+	boost::replace_all(result, "-", "_");
+	return "test_" + result;
 }
 
-Testcases::Error::Ptr Testcases::createError(std::string const& _filename,
+Testcases::Error::Ptr Testcases::CreateError(std::string const& _filename,
 											 dev::solidity::Error const& _error,
+											 dev::solidity::CompilerStack const& _compilerStack,
 											 std::string const& _realFilename /* = "" */)
 {
 	std::string formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
-		_error, _error.typeName(), m_scannerFromSourceName
+		_error, _error.typeName(),
+		[&](std::string const& _sourceName) -> dev::solidity::Scanner const&
+		{
+			return _compilerStack.scanner(_sourceName);
+		}
 	);
 	dev::SourceLocation const* location = boost::get_error_info<dev::solidity::errinfo_sourceLocation>(_error);
 	auto secondarylocation = boost::get_error_info<dev::solidity::errinfo_secondarySourceLocation>(_error);
@@ -226,7 +230,7 @@ Testcases::Error::Ptr Testcases::createError(std::string const& _filename,
 	std::stringstream originalLocation;
 	if (location->sourceName != nullptr)
 	{
-		auto const& scanner = m_compiler->scanner(*location->sourceName);
+		auto const& scanner = _compilerStack.scanner(*location->sourceName);
 		std::tie(startLine, startColumn) = scanner.translatePositionToLineColumn(location->start);
 		originalLocation << *location->sourceName << ":" << (startLine + 1) << ":" << (startColumn + 1) << ": ";
 	}
@@ -262,7 +266,7 @@ Testcases::Error::Ptr Testcases::createError(std::string const& _filename,
 	{
 		if (location->sourceName != nullptr)
 		{
-			auto const& scanner = m_compiler->scanner(*location->sourceName);
+			auto const& scanner = _compilerStack.scanner(*location->sourceName);
 			std::tie(startLine, startColumn) =
 				scanner.translatePositionToLineColumn(secondarylocation->infos[0].second.start);
 			originalLocation.str("");
@@ -300,7 +304,6 @@ Testcases::Error::Ptr Testcases::createError(std::string const& _filename,
 	result->file = _filename;
 	result->what = formattedMessage;
 	result->line = errorLine;
-	result->testcase = m_soltest->testcaseName(result->file, result->line);
 	result->column = startColumn;
 
 	return result;

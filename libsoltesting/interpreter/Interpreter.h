@@ -22,18 +22,24 @@
 #ifndef SOLTEST_INTERPRETER_H
 #define SOLTEST_INTERPRETER_H
 
-#include <libsolidity/ast/ASTVisitor.h>
+#include "Stack.h"
+
 #include <libsoltesting/Testcases.h>
+
+#include <libevmasm/SourceLocation.h>
+#include <libsolidity/ast/ASTVisitor.h>
 
 namespace soltest
 {
-namespace interpeter
+namespace interpreter
 {
 
 class Interpreter: private dev::solidity::ASTConstVisitor
 {
 public:
-	explicit Interpreter(dev::solidity::SourceUnit const& _sourceUnit);
+	Interpreter(std::string const& _filename,
+				std::string const& _contractFilename,
+				dev::solidity::CompilerStack const& compilerStack);
 
 	void run(std::string const& _testcase);
 
@@ -43,10 +49,29 @@ public:
 	}
 
 private:
+	void addAssertion(bool _assertion, dev::SourceLocation const& _location);
+
+	bool visit(const dev::solidity::VariableDeclarationStatement& _node) override;
+	void endVisit(const dev::solidity::VariableDeclaration& _node) override;
+	void endVisit(const dev::solidity::Assignment& _node) override;
+	void endVisit(const dev::solidity::UnaryOperation& _node) override;
+	void endVisit(const dev::solidity::BinaryOperation& _node) override;
+	void endVisit(const dev::solidity::FunctionCall& _functionCall) override;
+	void endVisit(const dev::solidity::NewExpression& _node) override;
+	void endVisit(const dev::solidity::MemberAccess& _node) override;
+	void endVisit(const dev::solidity::IndexAccess& _node) override;
+	void endVisit(const dev::solidity::Identifier& _identifier) override;
+	void endVisit(const dev::solidity::Literal& _literal) override;
+
+	std::string m_filename;
+	std::string m_contractFilename;
+	dev::solidity::CompilerStack const& m_compilerStack;
 	std::string m_testcase;
 	std::string m_testcaseNormalized;
 	dev::solidity::SourceUnit const& m_sourceUnit;
 	std::vector<soltest::Testcases::Assertion::Ptr> m_assertions;
+
+	soltest::interpreter::Stack m_stack;
 };
 
 } // namespace interpreter

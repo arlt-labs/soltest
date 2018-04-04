@@ -34,7 +34,7 @@
 namespace soltest
 {
 
-namespace interpeter
+namespace interpreter
 {
 
 class AstChecker: private dev::solidity::ASTConstVisitor

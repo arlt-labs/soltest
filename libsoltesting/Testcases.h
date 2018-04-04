@@ -61,9 +61,10 @@ public:
 
 	void executeTestcase(std::string const& _testcase);
 
-	Error::Ptr createError(std::string const& _filename,
-						   dev::solidity::Error const& _error,
-						   std::string const& _realFilename = "");
+	static Error::Ptr CreateError(std::string const& _filename,
+								  dev::solidity::Error const& _error,
+								  dev::solidity::CompilerStack const& _compilerStack,
+								  std::string const& _realFilename = "");
 
 	std::vector<Error::Ptr> const& errors() const
 	{
@@ -87,7 +88,6 @@ private:
 
 	const soltest::Soltest* m_soltest;
 	std::string m_filename;
-	std::function<const dev::solidity::Scanner&(const std::string&)> m_scannerFromSourceName;
 	std::shared_ptr<dev::solidity::CompilerStack> m_compiler;
 
 	std::string m_testContractFileName;
