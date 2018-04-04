@@ -30,8 +30,8 @@
 namespace soltest
 {
 
-TestSuiteGenerator::TestSuiteGenerator(soltest::Soltest &_soltest,
-									   boost::unit_test::master_test_suite_t &_masterTestSuite)
+TestSuiteGenerator::TestSuiteGenerator(soltest::Soltest& _soltest,
+									   boost::unit_test::master_test_suite_t& _masterTestSuite)
 	: m_soltest(_soltest), m_masterTestSuite(_masterTestSuite)
 {
 }
@@ -44,8 +44,8 @@ void TestSuiteGenerator::load(bool _printWarnings)
 	if (!checkForWarningsAndErrors(_printWarnings))
 	{
 		static std::vector<std::shared_ptr<std::string>> strings;
-		for (auto const &soltestFile: m_soltest.soltests())
-			for (auto const &testcase: soltestFile.second)
+		for (auto const& soltestFile: m_soltest.soltests())
+			for (auto const& testcase: soltestFile.second)
 			{
 				auto processTestcase =
 					std::bind(&TestSuiteGenerator::processTestcaseResults, this, soltestFile.first, testcase.first);
@@ -73,7 +73,7 @@ void TestSuiteGenerator::load(bool _printWarnings)
 	}
 }
 
-void TestSuiteGenerator::processTestcaseResults(std::string const &_soltestFile, std::string const &_testcase)
+void TestSuiteGenerator::processTestcaseResults(std::string const& _soltestFile, std::string const& _testcase)
 {
 	std::map<std::string, soltest::Testcases::Ptr> testcasesMap = m_soltest.testcases();
 	auto testcasesIter = testcasesMap.find(_soltestFile);
@@ -86,11 +86,11 @@ void TestSuiteGenerator::processTestcaseResults(std::string const &_soltestFile,
 	{
 		std::map<std::string,
 				 std::vector<soltest::Testcases::Assertion::Ptr>
-		> const &assertions(testcases->assertions());
+		> const& assertions(testcases->assertions());
 
 		auto entry = assertions.find(_soltestFile);
 		if (entry != assertions.end())
-			for (auto &assertion : entry->second)
+			for (auto& assertion : entry->second)
 				if (assertion->testcase == _testcase)
 					SOLTEST_CHECK_MESSAGE(
 						assertion->file.c_str(),
@@ -100,14 +100,14 @@ void TestSuiteGenerator::processTestcaseResults(std::string const &_soltestFile,
 	else
 	{
 		std::stringstream messages;
-		for (auto &error : testcases->errors())
+		for (auto& error : testcases->errors())
 		{
 			if (error->testcase == _testcase)
 			{
 				std::vector<std::string> lines;
 				boost::split(lines, error->what, boost::is_any_of("\n"));
 				messages << "\n";
-				for (auto &line : lines)
+				for (auto& line : lines)
 					messages << "    " << line << std::endl;
 			}
 		}
@@ -136,11 +136,11 @@ bool TestSuiteGenerator::checkForWarningsAndErrors(bool _printWarnings)
 	std::set<std::string> errorSet;
 
 	std::stringstream stream;
-	for (auto &errors : m_soltest.compilerErrors())
+	for (auto& errors : m_soltest.compilerErrors())
 		if (errors.first == dev::solidity::Error::Type::Warning)
-			for (auto &em : errors.second)
+			for (auto& em : errors.second)
 			{
-				auto const &err = dynamic_cast<dev::solidity::Error const &>(*em);
+				auto const& err = dynamic_cast<dev::solidity::Error const&>(*em);
 				std::string
 					formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
 					*em, err.typeName(), m_soltest.scannerFromSourceName()
@@ -150,17 +150,17 @@ bool TestSuiteGenerator::checkForWarningsAndErrors(bool _printWarnings)
 			}
 	stream.str("");
 	stream << "\n    ";
-	for (auto &warning : warningSet)
+	for (auto& warning : warningSet)
 		stream << warning;
 
 	if (!warningSet.empty() && _printWarnings)
 		std::cerr << stream.str() << std::endl;
 
-	for (auto &errors : m_soltest.compilerErrors())
+	for (auto& errors : m_soltest.compilerErrors())
 		if (errors.first != dev::solidity::Error::Type::Warning)
-			for (auto &em : errors.second)
+			for (auto& em : errors.second)
 			{
-				auto const &err = dynamic_cast<dev::solidity::Error const &>(*em);
+				auto const& err = dynamic_cast<dev::solidity::Error const&>(*em);
 				std::string
 					formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
 					*em, err.typeName(), m_soltest.scannerFromSourceName()
@@ -170,14 +170,14 @@ bool TestSuiteGenerator::checkForWarningsAndErrors(bool _printWarnings)
 			}
 	stream.str("");
 	stream << "\n    ";
-	for (auto &error: errorSet)
+	for (auto& error: errorSet)
 		stream << error;
 
 	if (!errorSet.empty())
 		std::cerr << stream.str() << std::endl;
 
-	for (auto &errors : m_soltest.soltestErrors())
-		for (auto &e : errors.second)
+	for (auto& errors : m_soltest.soltestErrors())
+		for (auto& e : errors.second)
 		{
 			std::stringstream formattedMessageStream;
 			formattedMessageStream << e->file << ":" << e->line << ": " << e->what << std::endl;
@@ -187,7 +187,7 @@ bool TestSuiteGenerator::checkForWarningsAndErrors(bool _printWarnings)
 		}
 	stream.str("");
 	stream << "\n    ";
-	for (auto &error : soltestErrorSet)
+	for (auto& error : soltestErrorSet)
 		stream << error;
 
 	if (!soltestErrorSet.empty())

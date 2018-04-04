@@ -34,8 +34,8 @@
 namespace soltest
 {
 
-void SetCompilationDataHandler::handleRequest(Poco::Net::HTTPServerRequest &request,
-											  Poco::Net::HTTPServerResponse &response)
+void SetCompilationDataHandler::handleRequest(Poco::Net::HTTPServerRequest& request,
+											  Poco::Net::HTTPServerResponse& response)
 {
 	soltest::Soltest soltest;
 	soltest::Environment environment;
@@ -49,7 +49,7 @@ void SetCompilationDataHandler::handleRequest(Poco::Net::HTTPServerRequest &requ
 	Json::Value body;
 	dev::jsonParse(bodyRaw["data"].asString(), body);
 
-	for (auto &filename : body["value"]["source"]["sources"].getMemberNames())
+	for (auto& filename : body["value"]["source"]["sources"].getMemberNames())
 	{
 		std::cout << filename << std::endl;
 		if (filename == "browser/Soltest.sol")
@@ -74,11 +74,11 @@ void SetCompilationDataHandler::handleRequest(Poco::Net::HTTPServerRequest &requ
 	std::cout << "loading contracts returned " << loadContractsResult << std::endl;
 	std::cout << "loading testcases returned " << loadTestcasesResult << std::endl;
 
-	for (auto &errors : soltest.compilerErrors())
+	for (auto& errors : soltest.compilerErrors())
 		if (errors.first == dev::solidity::Error::Type::Warning)
-			for (auto &em : errors.second)
+			for (auto& em : errors.second)
 			{
-				auto const &err = dynamic_cast<dev::solidity::Error const &>(*em);
+				auto const& err = dynamic_cast<dev::solidity::Error const&>(*em);
 				std::string
 					formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
 					*em, err.typeName(), soltest.scannerFromSourceName()
@@ -88,15 +88,15 @@ void SetCompilationDataHandler::handleRequest(Poco::Net::HTTPServerRequest &requ
 			}
 	stream.str("");
 	stream << "\n    ";
-	for (auto &warning : warningSet)
+	for (auto& warning : warningSet)
 		stream << warning;
 	std::cout << stream.str() << std::endl;
 
-	for (auto &errors : soltest.compilerErrors())
+	for (auto& errors : soltest.compilerErrors())
 		if (errors.first != dev::solidity::Error::Type::Warning)
-			for (auto &em : errors.second)
+			for (auto& em : errors.second)
 			{
-				auto const &err = dynamic_cast<dev::solidity::Error const &>(*em);
+				auto const& err = dynamic_cast<dev::solidity::Error const&>(*em);
 				std::string
 					formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
 					*em, err.typeName(), soltest.scannerFromSourceName()
@@ -106,18 +106,18 @@ void SetCompilationDataHandler::handleRequest(Poco::Net::HTTPServerRequest &requ
 			}
 	stream.str("");
 	stream << "\n    ";
-	for (auto &error: errorSet)
+	for (auto& error: errorSet)
 		stream << error;
 	std::cout << stream.str() << std::endl;
 
-	for (auto const &soltestFile: soltest.soltests())
-		for (auto const &testcase: soltestFile.second)
+	for (auto const& soltestFile: soltest.soltests())
+		for (auto const& testcase: soltestFile.second)
 		{
 			std::cout << soltestFile.first << " - " << testcase.first << std::endl;
 			std::cout << "\t- " << testcase.second << std::endl;
 		}
 
-	std::ostream &ostr = response.send();
+	std::ostream& ostr = response.send();
 	ostr << "{\"\": \"HELLO FROM SERVER!\"}";
 
 }

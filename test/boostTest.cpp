@@ -35,7 +35,7 @@
 
 #pragma GCC diagnostic pop
 
-boost::unit_test::test_suite *init_unit_test_suite(int argc, char *argv[])
+boost::unit_test::test_suite* init_unit_test_suite(int argc, char* argv[])
 {
 	(void) argc;
 	(void) argv;

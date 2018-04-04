@@ -47,8 +47,8 @@ using namespace boost::unit_test;
 #include <iostream>
 #include <Poco/ThreadPool.h>
 
-static soltest::Soltest *g_soltest;
-static soltest::TestSuiteGenerator *g_testSuiteGenerator;
+static soltest::Soltest* g_soltest;
+static soltest::TestSuiteGenerator* g_testSuiteGenerator;
 
 #ifdef BOOST_TEST_ALTERNATIVE_INIT_API
 bool soltest_init_unit_test_suite()
@@ -56,7 +56,7 @@ bool soltest_init_unit_test_suite()
 test_suite *soltest_init_unit_test_suite(int argc, char **argv)
 #endif
 {
-	master_test_suite_t &master = framework::master_test_suite();
+	master_test_suite_t& master = framework::master_test_suite();
 	master.p_name.value = "soltest";
 
 	static soltest::TestSuiteGenerator testSuiteGenerator(*g_soltest, master);
@@ -72,20 +72,20 @@ test_suite *soltest_init_unit_test_suite(int argc, char **argv)
 #endif
 }
 
-struct TestcaseCounter : public boost::unit_test::test_tree_visitor
+struct TestcaseCounter: public boost::unit_test::test_tree_visitor
 {
 	TestcaseCounter() : count(0)
 	{
 	}
 	std::size_t count;
-	bool visit(test_unit const &unit) override
+	bool visit(test_unit const& unit) override
 	{
 		++count;
 		return test_tree_visitor::visit(unit);
 	}
 };
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
 	std::cout << "soltest v" << ETH_PROJECT_VERSION << std::endl;
 	std::cout << "By Alexander Arlt <alexander.arlt@arlt-labs.com>, 2018." << std::endl << std::endl;
@@ -122,10 +122,10 @@ int main(int argc, char *argv[])
 			if (generationFailed)
 			{
 				std::map<std::string, soltest::Testcases::Ptr> testcases = g_soltest->testcases();
-				for (auto &testcase : testcases)
+				for (auto& testcase : testcases)
 				{
-					std::vector<soltest::Testcases::Error::Ptr> const &errors = testcase.second->errors();
-					for (auto &error : errors)
+					std::vector<soltest::Testcases::Error::Ptr> const& errors = testcase.second->errors();
+					for (auto& error : errors)
 					{
 						std::cerr << error->what << std::endl << std::endl;
 					}

@@ -43,7 +43,7 @@ using Poco::Util::HelpFormatter;
 namespace soltest
 {
 
-class RemixPlugin : public ServerApplication
+class RemixPlugin: public ServerApplication
 {
 public:
 	RemixPlugin() : _helpRequested(false)
@@ -55,7 +55,7 @@ public:
 	}
 
 protected:
-	void initialize(Application &self) override
+	void initialize(Application& self) override
 	{
 		loadConfiguration(); // load default configuration files, if present
 		ServerApplication::initialize(self);
@@ -68,7 +68,7 @@ protected:
 		ServerApplication::uninitialize();
 	}
 
-	void defineOptions(OptionSet &options) override
+	void defineOptions(OptionSet& options) override
 	{
 		ServerApplication::defineOptions(options);
 
@@ -79,7 +79,7 @@ protected:
 				.callback(OptionCallback<RemixPlugin>(this, &RemixPlugin::handleHelp)));
 	}
 
-	void handleHelp(const std::string &name, const std::string &value)
+	void handleHelp(const std::string& name, const std::string& value)
 	{
 		(void) name;
 		(void) value;
@@ -98,7 +98,7 @@ protected:
 		helpFormatter.format(std::cout);
 	}
 
-	int main(const std::vector < std::string > & args) override
+	int main(const std::vector<std::string>& args) override
 	{
 		(void) args;
 		if (!_helpRequested)

@@ -21,19 +21,22 @@
 
 #include "Interpreter.h"
 
+#include <libsoltesting/Testcases.h>
+
 namespace soltest
 {
 namespace interpeter
 {
 
-Interpreter::Interpreter(dev::solidity::SourceUnit const &_sourceUnit) : m_sourceUnit(_sourceUnit)
+Interpreter::Interpreter(dev::solidity::SourceUnit const& _sourceUnit) : m_sourceUnit(_sourceUnit)
 {
-	(void)m_sourceUnit;
+	(void) m_sourceUnit;
 }
 
-void Interpreter::run(std::string const &_testcase)
+void Interpreter::run(std::string const& _testcase)
 {
-	(void)_testcase;
+	m_testcase = _testcase;
+	m_testcaseNormalized = "test_" + soltest::Testcases::normalize(_testcase);
 }
 
 } // namespace interpreter

@@ -43,7 +43,7 @@ Soltest::Soltest()
 	if (m_threads == 0)
 		m_threads = 1;
 	m_scannerFromSourceName =
-		[&](std::string const &_sourceName) -> dev::solidity::Scanner const &
+		[&](std::string const& _sourceName) -> dev::solidity::Scanner const&
 		{
 			if (boost::ends_with(_sourceName, ".test.sol") || boost::ends_with(_sourceName, "Soltest.sol"))
 				return m_testCompiler.scanner(_sourceName);
@@ -52,7 +52,7 @@ Soltest::Soltest()
 		};
 }
 
-bool Soltest::parseCommandLineArguments(int argc, char **argv)
+bool Soltest::parseCommandLineArguments(int argc, char** argv)
 {
 	for (auto i = 0; i < argc; i++)
 	{
@@ -136,34 +136,34 @@ void Soltest::preloadContracts()
 	dev::solidity::ErrorList compilerErrors;
 
 	dev::solidity::CompilerStack testCompilerStack;
-	for (auto &solidityContent : m_solidityTestContents)
+	for (auto& solidityContent : m_solidityTestContents)
 		testCompilerStack.addSource(solidityContent.first, solidityContent.second);
 	testCompilerStack.parseAndAnalyze();
-	for (auto const &error: testCompilerStack.errors())
+	for (auto const& error: testCompilerStack.errors())
 		if (error->type() != dev::solidity::Error::Type::Warning)
 			testCompilerErrors.push_back(error);
 	if (testCompilerErrors.empty() && !m_solidityTestContents.empty())
-		for (auto &contract : testCompilerStack.contractNames())
+		for (auto& contract : testCompilerStack.contractNames())
 			m_testContracts.insert(contract);
 
 	m_environment.reset();
 	m_environment.load(testCompilerStack);
 
 	dev::solidity::CompilerStack compilerStack;
-	for (auto &solidityContent : m_solidityContents)
+	for (auto& solidityContent : m_solidityContents)
 		compilerStack.addSource(solidityContent.first, solidityContent.second);
 	compilerStack.parseAndAnalyze();
-	for (auto const &error: compilerStack.errors())
+	for (auto const& error: compilerStack.errors())
 		if (error->type() != dev::solidity::Error::Type::Warning)
 			compilerErrors.push_back(error);
 	if (compilerErrors.empty() && !m_solidityContents.empty())
-		for (auto &contract : compilerStack.contractNames())
+		for (auto& contract : compilerStack.contractNames())
 			m_contracts.insert(contract);
 }
 
 void Soltest::searchSoltestFiles()
 {
-	for (auto &solidityContent : m_solidityContents)
+	for (auto& solidityContent : m_solidityContents)
 	{
 		std::string soltestFile = boost::filesystem::path(solidityContent.first).string() + "test";
 		if (boost::filesystem::exists(soltestFile))
@@ -172,7 +172,7 @@ void Soltest::searchSoltestFiles()
 			m_soltestSolidityFile[soltestFile] = solidityContent.first;
 		}
 	}
-	for (auto &contract : m_contracts)
+	for (auto& contract : m_contracts)
 	{
 		std::vector<std::string> contractComponents;
 		boost::split(contractComponents, contract, boost::is_any_of(":"));
@@ -196,7 +196,7 @@ void Soltest::searchSoltestFiles()
 	}
 }
 
-bool Soltest::addSolidityFile(std::string const &solidityFile)
+bool Soltest::addSolidityFile(std::string const& solidityFile)
 {
 	if (boost::filesystem::exists(solidityFile))
 	{
@@ -210,7 +210,7 @@ bool Soltest::addSolidityFile(std::string const &solidityFile)
 	return false;
 }
 
-void Soltest::addSolidityFile(std::string const &solidityFile, std::string const &solidityFileContent)
+void Soltest::addSolidityFile(std::string const& solidityFile, std::string const& solidityFileContent)
 {
 	std::string relative(solidityFile);
 	boost::replace_first(relative,
@@ -227,7 +227,7 @@ void Soltest::addSolidityFile(std::string const &solidityFile, std::string const
 	}
 }
 
-bool Soltest::addSoltestFile(std::string const &soltestFile)
+bool Soltest::addSoltestFile(std::string const& soltestFile)
 {
 	if (boost::filesystem::exists(soltestFile))
 	{
@@ -241,7 +241,7 @@ bool Soltest::addSoltestFile(std::string const &soltestFile)
 	return false;
 }
 
-void Soltest::addSoltestFile(std::string const &soltestFile, std::string const &soltestFileContent)
+void Soltest::addSoltestFile(std::string const& soltestFile, std::string const& soltestFileContent)
 {
 	std::string relative(soltestFile);
 	boost::replace_first(relative,
@@ -250,7 +250,7 @@ void Soltest::addSoltestFile(std::string const &soltestFile, std::string const &
 	m_soltestContents[relative] = soltestFileContent;
 }
 
-bool Soltest::addAbiFile(std::string const &abiFile)
+bool Soltest::addAbiFile(std::string const& abiFile)
 {
 	std::string binFile(abiFile);
 	boost::replace_last(binFile, ".abi", ".bin");
@@ -284,9 +284,9 @@ bool Soltest::addAbiFile(std::string const &abiFile)
 	return false;
 }
 
-void Soltest::addAbiFile(std::string const &abiFile,
-						 std::string const &abiFileContent,
-						 std::string const &binFileContent)
+void Soltest::addAbiFile(std::string const& abiFile,
+						 std::string const& abiFileContent,
+						 std::string const& binFileContent)
 {
 	std::string relative(abiFile);
 	boost::replace_first(relative,
@@ -303,10 +303,10 @@ bool Soltest::loadContracts()
 	dev::solidity::ErrorList errors;
 
 	m_compiler.reset();
-	for (auto &solidityContent : m_solidityContents)
+	for (auto& solidityContent : m_solidityContents)
 		m_compiler.addSource(solidityContent.first, solidityContent.second);
 	m_compiler.parseAndAnalyze();
-	for (auto const &error: m_compiler.errors())
+	for (auto const& error: m_compiler.errors())
 	{
 		m_compilerErrors[error->type()].push_back(error);
 		if (error->type() != dev::solidity::Error::Type::Warning)
@@ -314,10 +314,10 @@ bool Soltest::loadContracts()
 	}
 
 	m_testCompiler.reset();
-	for (auto &solidityContent : m_solidityTestContents)
+	for (auto& solidityContent : m_solidityTestContents)
 		m_testCompiler.addSource(solidityContent.first, solidityContent.second);
 	m_testCompiler.parseAndAnalyze();
-	for (auto const &error: m_testCompiler.errors())
+	for (auto const& error: m_testCompiler.errors())
 	{
 		m_compilerErrors[error->type()].push_back(error);
 		if (error->type() != dev::solidity::Error::Type::Warning)
@@ -333,13 +333,13 @@ bool Soltest::loadTestcases()
 	m_soltestsLine.clear();
 
 	bool success = true;
-	for (auto &soltestContent : m_soltestContents)
+	for (auto& soltestContent : m_soltestContents)
 	{
 		success &= parseSoltest(1, soltestContent.first, soltestContent.second);
 		if (!success)
 			break;
 	}
-	for (auto &contract : m_contracts)
+	for (auto& contract : m_contracts)
 	{
 		std::vector<std::string> components;
 		boost::split(components, contract, boost::is_any_of(":"));
@@ -352,12 +352,12 @@ bool Soltest::loadTestcases()
 					 components[0],
 					 devDoc["external"]["soltest"]["content"].asString());
 		// parse method annotations
-		for (auto &method : devDoc["methods"])
+		for (auto& method : devDoc["methods"])
 			parseSoltest(method["external"]["soltest"]["line"].asUInt() + 1,
 						 components[0],
 						 method["external"]["soltest"]["content"].asString());
 	}
-	for (auto &contract : m_testContracts)
+	for (auto& contract : m_testContracts)
 	{
 		std::vector<std::string> components;
 		boost::split(components, contract, boost::is_any_of(":"));
@@ -376,17 +376,17 @@ bool Soltest::loadTestcases()
 	return success;
 }
 
-void Soltest::parseSoltest(SolidityExtractor &_extractor)
+void Soltest::parseSoltest(SolidityExtractor& _extractor)
 {
 	std::map<std::string, std::string> testcases = _extractor.testcases();
-	for (auto &testcase : testcases)
+	for (auto& testcase : testcases)
 	{
 		m_soltests[_extractor.filename()][testcase.first] = testcase.second;
 		m_soltestsLine[_extractor.filename()][testcase.first] = _extractor.line(testcase.first);
 	}
 }
 
-bool Soltest::parseSoltest(uint32_t _line, std::string const &_filename, std::string const &_content)
+bool Soltest::parseSoltest(uint32_t _line, std::string const& _filename, std::string const& _content)
 {
 	bool result = true;
 	std::stringstream content(_content);
@@ -431,10 +431,10 @@ bool Soltest::parseSoltest(uint32_t _line, std::string const &_filename, std::st
 	}
 	if (result)
 	{
-		for (auto &currentSection : sections)
+		for (auto& currentSection : sections)
 			if (!currentSection.first.empty())
 				m_soltests[_filename][currentSection.first] = currentSection.second.str();
-		for (auto &currentLine : lines)
+		for (auto& currentLine : lines)
 			if (!currentLine.first.empty())
 				m_soltestsLine[_filename][currentLine.first] = currentLine.second;
 	}
@@ -444,7 +444,7 @@ bool Soltest::parseSoltest(uint32_t _line, std::string const &_filename, std::st
 bool Soltest::generateTestcases()
 {
 	Poco::NotificationQueue queue;
-	for (auto &test : m_soltests)
+	for (auto& test : m_soltests)
 	{
 		soltest::Task::Ptr testcasePtr = new soltest::Task(
 			[&]()
@@ -475,7 +475,7 @@ bool Soltest::generateTestcases()
 	m_solidityThreadPool->joinAll();
 
 	int errors = 0;
-	for (auto &testcase : m_testcases)
+	for (auto& testcase : m_testcases)
 		errors += testcase.second->errors().size();
 
 	return errors > 0;
@@ -484,8 +484,8 @@ bool Soltest::generateTestcases()
 void Soltest::runTestcases()
 {
 	Poco::NotificationQueue queue;
-	for (auto &test : m_soltests)
-		for (auto &data : test.second)
+	for (auto& test : m_soltests)
+		for (auto& data : test.second)
 		{
 			soltest::Task::Ptr testcasePtr = new soltest::Task(
 				[&]()
@@ -516,7 +516,7 @@ void Soltest::runTestcases()
 	m_testcaseThreadPool->joinAll();
 }
 
-std::string Soltest::testcaseName(std::string const &_filename, int _line) const
+std::string Soltest::testcaseName(std::string const& _filename, int _line) const
 {
 	std::string testcaseName;
 	if (_line > 0)
@@ -528,7 +528,7 @@ std::string Soltest::testcaseName(std::string const &_filename, int _line) const
 			if (!testcases.empty())
 			{
 				testcaseName = testcases.begin()->first;
-				for (auto &testcase : testcases)
+				for (auto& testcase : testcases)
 				{
 					if (testcase.second > _line)
 						break;

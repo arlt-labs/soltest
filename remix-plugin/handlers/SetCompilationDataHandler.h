@@ -27,10 +27,10 @@
 namespace soltest
 {
 
-class SetCompilationDataHandler : public Poco::Net::HTTPRequestHandler
+class SetCompilationDataHandler: public Poco::Net::HTTPRequestHandler
 {
 public:
-	void handleRequest(Poco::Net::HTTPServerRequest &request, Poco::Net::HTTPServerResponse &response) override;
+	void handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response) override;
 };
 
 } // namespace soltest

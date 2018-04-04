@@ -24,7 +24,7 @@
 namespace soltest
 {
 
-void Environment::load(dev::solidity::CompilerStack &_compilerStack)
+void Environment::load(dev::solidity::CompilerStack& _compilerStack)
 {
 	(void) _compilerStack;
 }

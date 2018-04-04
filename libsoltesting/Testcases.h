@@ -46,7 +46,7 @@ public:
 		std::string what;
 	};
 
-	struct Assertion : public Error
+	struct Assertion: public Error
 	{
 		typedef typename std::shared_ptr<Assertion> Ptr;
 		explicit Assertion(bool result) : result(result) {}
@@ -55,27 +55,27 @@ public:
 
 	typedef typename Poco::SharedPtr<Testcases> Ptr;
 
-	Testcases(const soltest::Soltest *_soltest, std::string _filename, std::map<std::string, std::string> _testcases);
+	Testcases(const soltest::Soltest* _soltest, std::string _filename, std::map<std::string, std::string> _testcases);
 
-	std::string normalize(std::string const &name);
+	static std::string normalize(std::string const& name);
 
-	void executeTestcase(std::string const &_testcase);
+	void executeTestcase(std::string const& _testcase);
 
-	Error::Ptr createError(std::string const &_filename,
-						   dev::solidity::Error const &_error,
-						   std::string const &_realFilename = "");
+	Error::Ptr createError(std::string const& _filename,
+						   dev::solidity::Error const& _error,
+						   std::string const& _realFilename = "");
 
-	std::vector<Error::Ptr> const &errors() const
+	std::vector<Error::Ptr> const& errors() const
 	{
 		return m_errors;
 	}
 
-	std::vector<Error::Ptr> const &warnings() const
+	std::vector<Error::Ptr> const& warnings() const
 	{
 		return m_warnings;
 	}
 
-	std::map<std::string, std::vector<Assertion::Ptr>> const &assertions() const
+	std::map<std::string, std::vector<Assertion::Ptr>> const& assertions() const
 	{
 		return m_assertions;
 	};
@@ -85,9 +85,9 @@ private:
 	std::vector<Error::Ptr> m_warnings;
 	std::map<std::string, std::vector<Assertion::Ptr>> m_assertions;
 
-	const soltest::Soltest *m_soltest;
+	const soltest::Soltest* m_soltest;
 	std::string m_filename;
-	std::function<const dev::solidity::Scanner &(const std::string &)> m_scannerFromSourceName;
+	std::function<const dev::solidity::Scanner&(const std::string&)> m_scannerFromSourceName;
 	std::shared_ptr<dev::solidity::CompilerStack> m_compiler;
 
 	std::string m_testContractFileName;

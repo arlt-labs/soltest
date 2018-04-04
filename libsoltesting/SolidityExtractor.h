@@ -28,36 +28,36 @@
 namespace soltest
 {
 
-class SolidityExtractor : private dev::solidity::ASTConstVisitor
+class SolidityExtractor: private dev::solidity::ASTConstVisitor
 {
 public:
-	explicit SolidityExtractor(dev::solidity::SourceUnit const &_sourceUnit,
+	explicit SolidityExtractor(dev::solidity::SourceUnit const& _sourceUnit,
 							   std::string _filename, std::string _source,
-							   dev::solidity::Scanner const &_scannerFromSourceName);
+							   dev::solidity::Scanner const& _scannerFromSourceName);
 
-	std::string const &filename() const
+	std::string const& filename() const
 	{
 		return m_filename;
 	}
 
-	size_t line(const std::string &testcase)
+	size_t line(const std::string& testcase)
 	{
 		return m_lines[testcase];
 	}
 
-	std::map<std::string, std::string> const &testcases() const
+	std::map<std::string, std::string> const& testcases() const
 	{
 		return m_content;
 	}
 
 private:
-	bool visit(dev::solidity::FunctionDefinition const &_node) override;
+	bool visit(dev::solidity::FunctionDefinition const& _node) override;
 
 	std::map<std::string, std::string> m_content;
 	std::map<std::string, size_t> m_lines;
 	std::string m_filename;
 	std::string m_source;
-	dev::solidity::Scanner const &m_scanner;
+	dev::solidity::Scanner const& m_scanner;
 };
 
 } // namesapce soltest

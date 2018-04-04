@@ -32,7 +32,7 @@
 namespace soltest
 {
 
-class Task : public Poco::Notification
+class Task: public Poco::Notification
 {
 public:
 	typedef typename Poco::AutoPtr<Task> Ptr;

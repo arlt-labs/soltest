@@ -28,12 +28,13 @@
 namespace soltest
 {
 
-class StaticFileRequestHandler : public Poco::Net::HTTPRequestHandler
+class StaticFileRequestHandler: public Poco::Net::HTTPRequestHandler
 {
 public:
-	explicit StaticFileRequestHandler(std::string const& _file) : m_file(_file) {
+	explicit StaticFileRequestHandler(std::string const& _file) : m_file(_file)
+	{
 	}
-	void handleRequest(Poco::Net::HTTPServerRequest &request, Poco::Net::HTTPServerResponse &response) override;
+	void handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response) override;
 
 private:
 	std::string m_file;

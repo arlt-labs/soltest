@@ -57,21 +57,21 @@ public:
 
 	Soltest();
 
-	bool parseCommandLineArguments(int argc, char **argv);
+	bool parseCommandLineArguments(int argc, char** argv);
 
 	bool initialize();
 
-	void addSolidityFile(std::string const &solidityFile, std::string const &solidityFileContent);
+	void addSolidityFile(std::string const& solidityFile, std::string const& solidityFileContent);
 
-	bool addSolidityFile(std::string const &solidityFile);
+	bool addSolidityFile(std::string const& solidityFile);
 
-	void addSoltestFile(std::string const &soltestFile, std::string const &soltestFileContent);
+	void addSoltestFile(std::string const& soltestFile, std::string const& soltestFileContent);
 
-	bool addSoltestFile(std::string const &soltestFile);
+	bool addSoltestFile(std::string const& soltestFile);
 
-	bool addAbiFile(std::string const &abiFile);
+	bool addAbiFile(std::string const& abiFile);
 
-	void addAbiFile(std::string const &abiFile, std::string const &abiFileContent, std::string const &binFileContent);
+	void addAbiFile(std::string const& abiFile, std::string const& abiFileContent, std::string const& binFileContent);
 
 	void searchSoltestFiles();
 
@@ -83,64 +83,66 @@ public:
 
 	void runTestcases();
 
-	CompilerErrors const &compilerErrors() const
+	CompilerErrors const& compilerErrors() const
 	{
 		return m_compilerErrors;
 	}
 
-	SoltestErrors const &soltestErrors() const
+	SoltestErrors const& soltestErrors() const
 	{
 		return m_soltestErrors;
 	}
 
-	std::function<const dev::solidity::Scanner &(const std::string &)> scannerFromSourceName() const
+	std::function<const dev::solidity::Scanner&(const std::string&)> scannerFromSourceName() const
 	{
 		return m_scannerFromSourceName;
 	}
 
-	std::set<std::string> const &contracts() const
+	std::set<std::string> const& contracts() const
 	{
 		return m_contracts;
 	}
 
-	std::map<std::string, std::map<std::string, std::string>> const &soltests() const
+	std::map<std::string, std::map<std::string, std::string>> const& soltests() const
 	{
 		return m_soltests;
 	};
 
-	int soltestLine(std::string const &soltestFile, std::string const &testcase) const
+	int soltestLine(std::string const& soltestFile, std::string const& testcase) const
 	{
 		auto file = m_soltestsLine.find(soltestFile);
-		if (file != m_soltestsLine.end()) {
+		if (file != m_soltestsLine.end())
+		{
 			auto line = file->second.find(testcase);
-			if (line != file->second.end()) {
+			if (line != file->second.end())
+			{
 				return line->second;
 			}
 		}
 		return 0;
 	}
 
-	std::map<std::string, std::string> const &solidityContents() const
+	std::map<std::string, std::string> const& solidityContents() const
 	{
 		return m_solidityContents;
 	}
 
-	std::map<std::string, std::string> const &solidityTestContents() const
+	std::map<std::string, std::string> const& solidityTestContents() const
 	{
 		return m_solidityTestContents;
 	}
 
-	std::map<std::string, std::string> const &soltestContents() const
+	std::map<std::string, std::string> const& soltestContents() const
 	{
 		return m_soltestContents;
 	}
 
-	std::map<std::string, std::pair<std::string, std::string>> const &abiContents() const
+	std::map<std::string, std::pair<std::string, std::string>> const& abiContents() const
 	{
 		return m_abiContents;
 	}
 
-	std::string solidityFile(std::string const &soltestFile) const
+	std::string solidityFile(std::string const& soltestFile) const
 	{
 		auto iter = m_soltestSolidityFile.find(soltestFile);
 		if (iter != m_soltestSolidityFile.end())
@@ -155,7 +157,7 @@ public:
 		return m_threads;
 	}
 
-	std::string testcaseName(std::string const &_filename, int _line) const;
+	std::string testcaseName(std::string const& _filename, int _line) const;
 
 	std::map<std::string, soltest::Testcases::Ptr> testcases()
 	{
@@ -166,9 +168,9 @@ public:
 private:
 	void preloadContracts();
 
-	bool parseSoltest(uint32_t _line, std::string const &_filename, std::string const &_content);
+	bool parseSoltest(uint32_t _line, std::string const& _filename, std::string const& _content);
 
-	void parseSoltest(SolidityExtractor &_extractor);
+	void parseSoltest(SolidityExtractor& _extractor);
 
 	std::map<std::string, std::string> m_options;
 
@@ -195,7 +197,7 @@ private:
 
 	dev::solidity::CompilerStack m_compiler;
 	dev::solidity::CompilerStack m_testCompiler;
-	std::function<const dev::solidity::Scanner &(const std::string &)> m_scannerFromSourceName;
+	std::function<const dev::solidity::Scanner&(const std::string&)> m_scannerFromSourceName;
 
 	CompilerErrors m_compilerErrors;
 	SoltestErrors m_soltestErrors;

@@ -30,21 +30,22 @@
 namespace soltest
 {
 
-void StaticFileRequestHandler::handleRequest(Poco::Net::HTTPServerRequest &request,
-											 Poco::Net::HTTPServerResponse &response)
+void StaticFileRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request,
+											 Poco::Net::HTTPServerResponse& response)
 {
 	(void) request;
 
 	response.setChunkedTransferEncoding(true);
 	response.setContentType("text/html");
 
-	std::ostream &ostr = response.send();
+	std::ostream& ostr = response.send();
 	if (boost::filesystem::exists(m_file))
 	{
 		std::ifstream file(m_file);
 		std::stringstream content;
 		ostr << file.rdbuf();
-	} else
+	}
+	else
 		ostr << "error: file '" << m_file << "' was not found!";
 }
 

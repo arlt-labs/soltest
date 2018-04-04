@@ -50,7 +50,7 @@ namespace soltest
 class TestSuiteGenerator
 {
 public:
-	TestSuiteGenerator(soltest::Soltest &_soltest, boost::unit_test::master_test_suite_t &_masterTestSuite);
+	TestSuiteGenerator(soltest::Soltest& _soltest, boost::unit_test::master_test_suite_t& _masterTestSuite);
 
 	void load(bool _printWarnings);
 
@@ -58,7 +58,7 @@ public:
 
 	void runTestcases();
 
-	void processTestcaseResults(std::string const &_soltestFile, std::string const &_testcase);
+	void processTestcaseResults(std::string const& _soltestFile, std::string const& _testcase);
 
 	bool error()
 	{
@@ -70,8 +70,8 @@ private:
 
 	bool m_error;
 
-	soltest::Soltest &m_soltest;
-	boost::unit_test::master_test_suite_t &m_masterTestSuite;
+	soltest::Soltest& m_soltest;
+	boost::unit_test::master_test_suite_t& m_masterTestSuite;
 };
 
 } // namespace soltest

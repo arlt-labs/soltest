@@ -37,7 +37,7 @@
 namespace soltest
 {
 
-Testcases::Testcases(const soltest::Soltest *_soltest,
+Testcases::Testcases(const soltest::Soltest* _soltest,
 					 std::string _filename,
 					 std::map<std::string, std::string> _testcases) : m_soltest(_soltest), m_filename(_filename)
 {
@@ -45,7 +45,7 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 	std::map<std::string, std::string> solidityTestContents = m_soltest->solidityTestContents();
 
 	m_compiler = std::make_shared<dev::solidity::CompilerStack>(
-		[&](std::string const &import) -> dev::solidity::ReadCallback::Result
+		[&](std::string const& import) -> dev::solidity::ReadCallback::Result
 		{
 			std::string realImport(import);
 			dev::solidity::ReadCallback::Result result;
@@ -102,12 +102,13 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 		testContractContent << "import '/virtual" << solidityFile << "';" << std::endl;
 		testContractContent << "import 'Soltest.sol';" << std::endl << std::endl;
 		testContractContent << "contract " << m_testContractName << "Test is Soltest {" << std::endl;
-		for (auto &testcase : _testcases)
+		for (auto& testcase : _testcases)
 		{
 			std::vector<std::string> soltestLines;
 			boost::split(soltestLines, testcase.second, boost::is_any_of("\n"));
-			testContractContent << "    function test_" << normalize(testcase.first) << "() {" << std::endl;
-			for (auto &soltestLine : soltestLines)
+			testContractContent << "    function test_" << soltest::Testcases::normalize(testcase.first) << "() {"
+								<< std::endl;
+			for (auto& soltestLine : soltestLines)
 			{
 				boost::trim(soltestLine);
 				if (!soltestLine.empty())
@@ -133,14 +134,14 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 	}
 
 	m_scannerFromSourceName =
-		[&](std::string const &_sourceName) -> dev::solidity::Scanner const &
+		[&](std::string const& _sourceName) -> dev::solidity::Scanner const&
 		{
 			return m_compiler->scanner(_sourceName);
 		};
 
 	if (!errors)
 	{
-		dev::solidity::SourceUnit const &ast = m_compiler->ast(m_testContractFileName);
+		dev::solidity::SourceUnit const& ast = m_compiler->ast(m_testContractFileName);
 		soltest::interpeter::AstChecker checker(ast);
 		if (checker.isValid())
 		{
@@ -153,14 +154,14 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 			}
 		}
 		else
-			for (auto &error : checker.errors())
+			for (auto& error : checker.errors())
 				m_errors.push_back(createError(m_testContractFileName, *error, _filename));
 	}
 	else
 	{
-		for (auto &e : m_compiler->errors())
+		for (auto& e : m_compiler->errors())
 		{
-			auto const &err = dynamic_cast<dev::solidity::Error const &>(*e);
+			auto const& err = dynamic_cast<dev::solidity::Error const&>(*e);
 			Error::Ptr warningOrError = createError(_filename, err);
 			if (err.type() == dev::solidity::Error::Type::Warning)
 				m_warnings.push_back(warningOrError);
@@ -170,19 +171,19 @@ Testcases::Testcases(const soltest::Soltest *_soltest,
 	}
 }
 
-void Testcases::executeTestcase(std::string const &_testcase)
+void Testcases::executeTestcase(std::string const& _testcase)
 {
 	if (m_errors.empty())
 	{
 		try
 		{
-			dev::solidity::SourceUnit const &sourceUnit = m_compiler->ast(m_testContractFileName);
+			dev::solidity::SourceUnit const& sourceUnit = m_compiler->ast(m_testContractFileName);
 			soltest::interpeter::Interpreter interpreter(sourceUnit);
 
-			interpreter.run("test_" + normalize(_testcase));
+			interpreter.run(_testcase);
 
 			Poco::Mutex::ScopedLock lock(m_mutex);
-			for (auto &assertion : interpreter.assertions())
+			for (auto& assertion : interpreter.assertions())
 				m_assertions[m_filename].push_back(assertion);
 		}
 		catch (...)
@@ -202,21 +203,21 @@ void Testcases::executeTestcase(std::string const &_testcase)
 	}
 }
 
-std::string Testcases::normalize(std::string const &name)
+std::string Testcases::normalize(std::string const& name)
 {
 	std::string result(name);
 	boost::replace_all(result, " ", "_");
 	return result;
 }
 
-Testcases::Error::Ptr Testcases::createError(std::string const &_filename,
-											 dev::solidity::Error const &_error,
-											 std::string const &_realFilename /* = "" */)
+Testcases::Error::Ptr Testcases::createError(std::string const& _filename,
+											 dev::solidity::Error const& _error,
+											 std::string const& _realFilename /* = "" */)
 {
 	std::string formattedMessage = dev::solidity::SourceReferenceFormatter::formatExceptionInformation(
 		_error, _error.typeName(), m_scannerFromSourceName
 	);
-	dev::SourceLocation const *location = boost::get_error_info<dev::solidity::errinfo_sourceLocation>(_error);
+	dev::SourceLocation const* location = boost::get_error_info<dev::solidity::errinfo_sourceLocation>(_error);
 	auto secondarylocation = boost::get_error_info<dev::solidity::errinfo_secondarySourceLocation>(_error);
 
 	int startLine(-1);
@@ -225,7 +226,7 @@ Testcases::Error::Ptr Testcases::createError(std::string const &_filename,
 	std::stringstream originalLocation;
 	if (location->sourceName != nullptr)
 	{
-		auto const &scanner = m_compiler->scanner(*location->sourceName);
+		auto const& scanner = m_compiler->scanner(*location->sourceName);
 		std::tie(startLine, startColumn) = scanner.translatePositionToLineColumn(location->start);
 		originalLocation << *location->sourceName << ":" << (startLine + 1) << ":" << (startColumn + 1) << ": ";
 	}
@@ -261,7 +262,7 @@ Testcases::Error::Ptr Testcases::createError(std::string const &_filename,
 	{
 		if (location->sourceName != nullptr)
 		{
-			auto const &scanner = m_compiler->scanner(*location->sourceName);
+			auto const& scanner = m_compiler->scanner(*location->sourceName);
 			std::tie(startLine, startColumn) =
 				scanner.translatePositionToLineColumn(secondarylocation->infos[0].second.start);
 			originalLocation.str("");

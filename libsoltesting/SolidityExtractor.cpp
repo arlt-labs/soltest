@@ -26,15 +26,15 @@
 namespace soltest
 {
 
-SolidityExtractor::SolidityExtractor(dev::solidity::SourceUnit const &_sourceUnit,
+SolidityExtractor::SolidityExtractor(dev::solidity::SourceUnit const& _sourceUnit,
 									 std::string _filename, std::string _source,
-									 dev::solidity::Scanner const &_scanner)
+									 dev::solidity::Scanner const& _scanner)
 	: m_filename(std::move(_filename)), m_source(std::move(_source)), m_scanner(_scanner)
 {
 	_sourceUnit.accept(*this);
 }
 
-bool SolidityExtractor::visit(dev::solidity::FunctionDefinition const &_node)
+bool SolidityExtractor::visit(dev::solidity::FunctionDefinition const& _node)
 {
 	if (boost::starts_with(_node.name(), "test"))
 	{
@@ -47,7 +47,7 @@ bool SolidityExtractor::visit(dev::solidity::FunctionDefinition const &_node)
 		std::vector<std::string> lines;
 		boost::split(lines, body, boost::is_any_of("\n"));
 		std::stringstream stream;
-		for (auto &line : lines)
+		for (auto& line : lines)
 		{
 			boost::trim(line);
 			if (!line.empty())

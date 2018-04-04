@@ -33,12 +33,12 @@
 namespace soltest
 {
 
-class Executor : public Poco::Runnable
+class Executor: public Poco::Runnable
 {
 public:
 	typedef typename std::shared_ptr<Executor> Ptr;
 
-	explicit Executor(Poco::NotificationQueue &queue) : m_queue(queue) {}
+	explicit Executor(Poco::NotificationQueue& queue) : m_queue(queue) {}
 
 	void run() override
 	{
@@ -47,7 +47,7 @@ public:
 			Poco::AutoPtr<Poco::Notification> pNf(m_queue.waitDequeueNotification(100));
 			while (pNf)
 			{
-				auto pWorkNf = dynamic_cast<Task *>(pNf.get());
+				auto pWorkNf = dynamic_cast<Task*>(pNf.get());
 				if (pWorkNf)
 					pWorkNf->run();
 				pNf = m_queue.waitDequeueNotification(100);
@@ -56,7 +56,7 @@ public:
 	}
 
 private:
-	Poco::NotificationQueue &m_queue;
+	Poco::NotificationQueue& m_queue;
 };
 
 } // namespace soltest

@@ -22,7 +22,7 @@
 #ifndef SOLTEST_INTERPRETER_H
 #define SOLTEST_INTERPRETER_H
 
-#include <libsolidity/ast/AST.h>
+#include <libsolidity/ast/ASTVisitor.h>
 #include <libsoltesting/Testcases.h>
 
 namespace soltest
@@ -30,20 +30,22 @@ namespace soltest
 namespace interpeter
 {
 
-class Interpreter
+class Interpreter: private dev::solidity::ASTConstVisitor
 {
 public:
-	explicit Interpreter(dev::solidity::SourceUnit const &_sourceUnit);
+	explicit Interpreter(dev::solidity::SourceUnit const& _sourceUnit);
 
-	void run(std::string const &_testcase);
+	void run(std::string const& _testcase);
 
-	std::vector<soltest::Testcases::Assertion::Ptr> const &assertions() const
+	std::vector<soltest::Testcases::Assertion::Ptr> const& assertions() const
 	{
 		return m_assertions;
 	}
 
 private:
-	dev::solidity::SourceUnit const &m_sourceUnit;
+	std::string m_testcase;
+	std::string m_testcaseNormalized;
+	dev::solidity::SourceUnit const& m_sourceUnit;
 	std::vector<soltest::Testcases::Assertion::Ptr> m_assertions;
 };
 
