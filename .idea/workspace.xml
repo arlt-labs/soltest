@@ -22,7 +22,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="693c209a-fbdb-4c9f-98c2-e9af5a9ff988" name="Default" comment="Basic loading of .abi files and corresponding .bin files implemented.">
-      <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libsoltesting/interpreter/Interpreter.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libsoltesting/interpreter/Interpreter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libsoltesting/Testcases.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/libsoltesting/Testcases.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,6 +38,18 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Testcases.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="183" column="49" selection-start-line="183" selection-start-column="49" selection-end-line="183" selection-end-column="49" />
+              <folding>
+                <element signature="e#745#767#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
@@ -44,10 +59,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewPureChecker.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/test/libsolidity/ViewPureChecker.cpp">
+      <file leaf-file-name="Testcases.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-700" />
+            <state relative-caret-position="218">
+              <caret line="85" column="26" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
+              <folding>
+                <element signature="e#800#848#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
@@ -76,11 +96,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="395">
               <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Interpreter.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/interpreter/Interpreter.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Interpreter.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/interpreter/Interpreter.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="39" column="51" lean-forward="true" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
+              <folding>
+                <element signature="e#806#838#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Soltest.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="149" column="11" selection-start-line="149" selection-start-column="11" selection-end-line="149" selection-end-column="11" />
+              <folding>
+                <element signature="e#743#763#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AstChecker.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/interpreter/AstChecker.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
         </entry>
@@ -137,8 +199,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/boostTest.cpp" />
-        <option value="$PROJECT_DIR$/soltest/WorkItem.cpp" />
         <option value="$PROJECT_DIR$/soltest/WorkItem.h" />
         <option value="$PROJECT_DIR$/soltest/Worker.cpp" />
         <option value="$PROJECT_DIR$/soltest/Worker.h" />
@@ -184,10 +244,12 @@
         <option value="$PROJECT_DIR$/contracts/SimpleA.soltest" />
         <option value="$PROJECT_DIR$/libsoltesting/Soltest.h" />
         <option value="$PROJECT_DIR$/soltest/TestSuiteGenerator.cpp" />
-        <option value="$PROJECT_DIR$/libsoltesting/Testcases.cpp" />
         <option value="$PROJECT_DIR$/test/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/test/libsoltesting/Dummy.cpp" />
         <option value="$PROJECT_DIR$/.circleci/config.yml" />
+        <option value="$PROJECT_DIR$/libsoltesting/interpreter/Interpreter.h" />
+        <option value="$PROJECT_DIR$/libsoltesting/Testcases.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/interpreter/Interpreter.cpp" />
       </list>
     </option>
   </component>
@@ -224,7 +286,13 @@
             <path>
               <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
               <item name="soltest" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
+              <item name="libsoltesting" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="soltest" type="462c0819:PsiDirectoryNode" />
+              <item name="libsoltesting" type="462c0819:PsiDirectoryNode" />
+              <item name="interpreter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
@@ -277,7 +345,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.soltest-unittests">
+  <component name="RunManager" selected="Application.soltest - Simple.sol">
     <configuration name="Boost.Test - contracts/end2end" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" PROGRAM_PARAMS="--log_format=HRF --log_level=all -- C99_scoping_activation.sol access_base_storage.sol accessor_for_const_state_variable.sol accessor_for_state_variable.sol accessor_involving_strings.sol accessors_mapping_for_array.sol addmod_mulmod.sol addmod_mulmod_zero.sol address_overload_resolution.sol array_accessor.sol array_copy_calldata_storage.sol array_copy_different_packing.sol array_copy_including_mapping.sol array_copy_nested_array.sol array_copy_storage_abi.sol array_copy_storage_abi_signed.sol array_copy_storage_storage_dyn_dyn.sol array_copy_storage_storage_static_dynamic.sol array_copy_storage_storage_static_static.sol array_copy_storage_storage_struct.sol array_copy_target_leftover.sol array_copy_target_leftover2.sol array_copy_target_simple.sol array_push.sol arrays_complex_from_and_to_storage.sol arrays_complex_memory_index_access.sol arrays_from_and_to_storage.sol arrays_in_constructors.sol assert_require.sol assignment_to_const_array_vars.sol assignment_to_const_var_involving_expression.sol assignment_to_const_var_involving_keccak.sol balance.sol bare_call_invalid_address.sol base_constructor_arguments.sol blockchain.sol bool_conversion.sol bound_function_in_var.sol bound_function_to_string.sol break_in_modifier.sol byte_array_push.sol bytes_comparison.sol bytes_delete_element.sol bytes_from_calldata_to_memory.sol bytes_in_arguments.sol bytes_in_constructors_packer.sol bytes_in_constructors_unpacker.sol bytes_in_function_calls.sol bytes_index_access.sol bytes_index_access_memory.sol bytes_inside_mappings.sol bytes_length_member.sol bytes_memory_index_access.sol call_forward_bytes.sol call_function_returning_function.sol calldata_offset.sol calling_nonexisting_contract_throws.sol calling_other_functions.sol calling_uninitialized_function.sol calling_uninitialized_function_in_detail.sol calls_to_this.sol cleanup_bytes_types.sol cleanup_in_compound_assign.sol complex_accessors.sol compound_assign.sol conditional_expression_different_types.sol conditional_expression_false_literal.sol conditional_expression_functions.sol conditional_expression_multiple.sol conditional_expression_storage_memory_1.sol conditional_expression_storage_memory_2.sol conditional_expression_true_literal.sol conditional_expression_tuples.sol conditional_expression_with_return_values.sol constant_string.sol constant_string_literal.sol constant_struct.sol constant_var_as_array_length.sol constant_variables.sol constructing_enums_from_ints.sol constructor.sol constructor_argument_overriding.sol constructor_arguments_external.sol constructor_arguments_internal.sol constructor_static_array_argument.sol constructor_with_long_arguments.sol contract_binary_dependencies.sol contracts_as_addresses.sol contracts_separated_with_comment.sol convert_fixed_bytes_to_fixed_bytes_greater_size.sol convert_fixed_bytes_to_fixed_bytes_same_size.sol convert_fixed_bytes_to_fixed_bytes_smaller_size.sol convert_fixed_bytes_to_uint_greater_size.sol convert_fixed_bytes_to_uint_same_min_size.sol convert_fixed_bytes_to_uint_same_size.sol convert_fixed_bytes_to_uint_smaller_size.sol convert_uint_to_fixed_bytes_greater_size.sol convert_uint_to_fixed_bytes_same_min_size.sol convert_uint_to_fixed_bytes_same_size.sol convert_uint_to_fixed_bytes_smaller_size.sol copy_from_calldata_removes_bytes_data.sol copy_function_storage_array.sol copy_internal_function_array_to_storage.sol copy_removes_bytes_data.sol copying_bytes_multiassign.sol crazy_elementary_typenames_on_stack.sol create_dynamic_array_with_zero_length.sol create_memory_array.sol create_memory_array_allocation_size.sol cross_contract_types.sol decayed_tuple.sol default_fallback_throws.sol deleteLocal.sol deleteLocals.sol deleteStruct.sol delete_on_array_of_structs.sol delete_removes_bytes_data.sol derived_overload_base_function_direct.sol derived_overload_base_function_indirect.sol destructuring_assignment.sol destructuring_assignment_wildcard.sol disorder_named_args.sol divisiod_by_zero.sol do_while_loop.sol dynamic_array_cleanup.sol dynamic_arrays_in_storage.sol dynamic_multi_array_cleanup.sol dynamic_out_of_bounds_array_access.sol ecrecover.sol empty_contract.sol empty_name_input_parameter_with_named_one.sol empty_name_return_parameter.sol enum_explicit_overflow.sol event.sol event_access_through_base_name.sol event_access_through_base_name_emit.sol event_anonymous.sol event_anonymous_with_topics.sol event_emit.sol event_indexed_string.sol event_lots_of_data.sol event_no_arguments.sol event_really_lots_of_data.sol event_really_lots_of_data_from_storage.sol event_really_really_lots_of_data_from_storage.sol events_with_same_name.sol events_with_same_name_inherited.sol events_with_same_name_inherited_emit.sol evm_exceptions_in_constructor_call_fail.sol evm_exceptions_in_constructor_out_of_baund.sol evm_exceptions_out_of_band_access.sol exp_operator.sol exp_operator_const.sol exp_operator_const_signed.sol explicit_base_class.sol external_array_args.sol external_function.sol external_function_to_address.sol external_types_in_calls.sol failed_create.sol failing_ecrecover_invalid_input.sol failing_ecrecover_invalid_input_asm.sol failing_ecrecover_invalid_input_proper.sol failing_send.sol fallback_function.sol fixed_array_cleanup.sol fixed_arrays_as_return_type.sol fixed_arrays_in_constructors.sol fixed_arrays_in_storage.sol fixed_bytes_in_calls.sol fixed_bytes_index_access.sol fixed_bytes_length_access.sol fixed_out_of_bounds_array_access.sol for_loop.sol for_loop_break_continue.sol for_loop_empty.sol for_loop_simple_init_expr.sol function_array_cross_calls.sol function_delete_stack.sol function_delete_storage.sol function_memory_array.sol function_modifier.sol function_modifier_calling_functions_in_creation_context.sol function_modifier_for_constructor.sol function_modifier_local_variables.sol function_modifier_loop.sol function_modifier_multi_invocation.sol function_modifier_multi_with_return.sol function_modifier_multiple_times.sol function_modifier_multiple_times_local_vars.sol function_modifier_overriding.sol function_type_library_internal.sol function_types_sig.sol function_usage_in_constructor_arguments.sol functions_called_by_constructor.sol gas_and_value_basic.sol gasleft_shadow_resolution.sol high_bits_cleaning.sol inc_dec_operators.sol include_creation_bytecode_only_once.sol index_access_with_type_conversion.sol inherited_constant_state_var.sol inherited_fallback_function.sol inherited_function {.sol inherited_function_from_a_library {.sol initialise_string_constant.sol inline_array_index_access_ints.sol inline_array_index_access_strings.sol inline_array_return.sol inline_array_singleton.sol inline_array_storage_to_memory_conversion_ints.sol inline_array_storage_to_memory_conversion_strings.sol inline_array_strings_from_document.sol inline_assembly_embedded_function_call.sol inline_assembly_for.sol inline_assembly_for2.sol inline_assembly_function_access.sol inline_assembly_function_call.sol inline_assembly_function_call2.sol inline_assembly_function_call_assignment.sol inline_assembly_if.sol inline_assembly_in_modifiers.sol inline_assembly_jumps.sol inline_assembly_memory_access.sol inline_assembly_read_and_write_stack.sol inline_assembly_recursion.sol inline_assembly_storage_access.sol inline_assembly_storage_access_inside_function.sol inline_assembly_storage_access_via_pointer.sol inline_assembly_switch.sol inline_assembly_write_to_stack.sol inline_long_string_return.sol inline_member_init.sol inline_member_init_inheritence.sol inline_member_init_inheritence_without_constructor.sol inline_tuple_with_rational_numbers.sol inlineasm_empty_let.sol inter_contract_calls.sol inter_contract_calls_accessing_this.sol inter_contract_calls_with_complex_parameters.sol inter_contract_calls_with_local_vars.sol interface_contract.sol internal_constructor.sol internal_library_function.sol internal_library_function_bound.sol internal_library_function_calling_private.sol internal_library_function_return_var_size.sol internal_types_in_library.sol invalid_enum_as_external_arg.sol invalid_enum_as_external_ret.sol invalid_enum_compared.sol invalid_enum_logged.sol invalid_enum_stored.sol invalid_instruction.sol iszero_bnot_correct.sol iterated_keccak256_with_bytes.sol keccak256.sol keccak256_assembly.sol keccak256_multiple_arguments.sol keccak256_multiple_arguments_with_numeric_literals.sol keccak256_multiple_arguments_with_string_literals.sol keccak256_with_bytes.sol library_call.sol library_call_in_homestead.sol library_call_protection.sol library_enum_as_an_expression.sol library_stray_values.sol library_struct_as_an_expression.sol literal_empty_string.sol literal_strings.sol log0.sol log1.sol log2.sol log3.sol log4.sol log_in_constructor.sol lone_struct_array_type.sol many_local_variables.sol mapping_of_functions.sol mapping_state.sol mapping_state_inc_dec.sol mem_resize_is_not_paid_at_call.sol memory_arrays_delete.sol memory_arrays_dynamic_index_access_write.sol memory_arrays_index_access_write.sol memory_arrays_of_various_sizes.sol memory_overwrite.sol memory_structs_as_function_args.sol memory_structs_nested.sol memory_structs_nested_load.sol memory_structs_read_write.sol memory_structs_with_mappings.sol memory_types_initialisation.sol msg_sig.sol msg_sig_after_internal_call_is_same.sol multi_level_mapping.sol multi_modifiers.sol multi_variable_declaration.sol multiple_elementary_accessors.sol multiple_functions.sol multiple_inherited_state_vars.sol multiple_return_values.sol mutex.sol named_args.sol negative_stack_height.sol nested_loops.sol no_nonpayable_circumvention_by_modifier.sol non_payable_throw.sol now.sol overloaded_function_call_resolve_to_first.sol overloaded_function_call_resolve_to_second.sol overloaded_function_call_with_if_else.sol packed_functions.sol packed_keccak256.sol packed_ripemd160.sol packed_sha256.sol packed_storage_overflow.sol packed_storage_signed.sol packed_storage_structs_bytes.sol packed_storage_structs_delete.sol packed_storage_structs_enum.sol packed_storage_structs_uint.sol packing_signed_types.sol packing_unpacking_types.sol pass_dynamic_arguments_to_the_base.sol pass_dynamic_arguments_to_the_base_base.sol pass_dynamic_arguments_to_the_base_base_with_gap.sol pass_function_types_externally.sol pass_function_types_internally.sol payable_constructor.sol payable_function.sol payable_function_calls_library.sol positive_integers_to_signed.sol proper_order_of_overwriting_of_attributes.sol receive_external_function_type.sol recursive_calls.sol recursive_structs.sol reject_ether_sent_to_library.sol return_bytes_internal.sol return_does_not_skip_modifier.sol return_external_function_type.sol return_multiple_strings_of_various_sizes.sol return_string.sol reusing_memory.sol revert.sol ripemd.sol same_function_in_construction_and_runtime.sol same_function_in_construction_and_runtime_equality_check.sol scientific_notation.sol selfdestruct.sol send_ether.sol send_zero_ether.sol sha256.sol sha3.sol sha3_multiple_arguments.sol shift_bytes.sol shift_bytes_cleanup.sol shift_cleanup.sol shift_cleanup_garbled.sol shift_constant_left.sol shift_constant_left_assignment.sol shift_constant_right.sol shift_constant_right_assignment.sol shift_left.sol shift_left_assignment.sol shift_left_assignment_different_type.sol shift_left_larger_type.sol shift_left_uint32.sol shift_left_uint8.sol shift_negative_constant_left.sol shift_negative_constant_right.sol shift_negative_rvalue.sol shift_negative_rvalue_assignment.sol shift_overflow.sol shift_right.sol shift_right_assignment.sol shift_right_garbled.sol shift_right_negative_lvalue.sol shift_right_negative_lvalue_assignment.sol shift_right_uint32.sol shift_right_uint8.sol short_circuiting.sol short_data_calls_fallback.sol short_fixed_array_cleanup.sol short_strings.sol sign_extension.sol simple_accessor.sol simple_constant_variables_test.sol simple_mapping.sol simple_throw.sol single_copy_with_multiple_inheritance.sol skip_dynamic_types.sol skip_dynamic_types_for_structs.sol small_signed_types.sol small_unsigned_types.sol smoke_test.sol snark.sol stacked_return_with_modifiers.sol state_smoke_test.sol state_variable_local_variable_mixture.sol staticcall_for_view_and_pure.sol storage_array_ref.sol storage_string_as_mapping_key_without_variable.sol store_bytes.sol store_function.sol store_function_in_constructor.sol store_internal_unused_function_in_constructor.sol store_internal_unused_library_function_in_constructor.sol storing_invalid_boolean.sol string_allocation_bug.sol string_as_mapping_key.sol string_bytes_conversion.sol string_tuples.sol strings.sol strings_in_struct.sol struct_accessor.sol struct_assign_reference_to_struct.sol struct_constructor_nested.sol struct_containing_bytes_copy_and_delete.sol struct_copy.sol struct_copy_via_local.sol struct_delete_member.sol struct_delete_struct_in_mapping.sol struct_named_constructor.sol struct_reference.sol structs.sol suicide.sol super.sol super_alone.sol super_in_constructor.sol super_overload.sol swap_in_storage_overwrite.sol transfer_ether.sol tuples.sol type_conversions_cleanup.sol using_contract_enums_with_explicit_contract_name.sol using_enums.sol using_for_by_name.sol using_for_function_on_int.sol using_for_function_on_struct.sol using_for_overload.sol using_inherited_enum.sol using_inherited_enum_excplicitly.sol using_library_structs.sol value_complex.sol value_for_constructor.sol value_insane.sol virtual_function_calls.sol virtual_function_usage_in_constructor_arguments.sol while_loop.sol" WORKING_DIR="file://$PROJECT_DIR$/contracts/end2end/soltest" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest" TEST_MODE="PATTERN" />
     <configuration name="Boost.Test Simple.sol" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" PROGRAM_PARAMS="--log_format=HRF --log_level=all -- Simple.sol" WORKING_DIR="file://$PROJECT_DIR$/contracts" PASS_PARENT_ENVS_2="true" PROJECT_NAME="soltest" TARGET_NAME="soltest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="soltest" TEST_MODE="PATTERN" />
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="soltest" RUN_TARGET_NAME="end2end-extractor" EXPLICIT_BUILD_TARGET_NAME="all" />
@@ -412,20 +480,20 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212945000" />
+    <option name="totallyTimeSpent" value="214067000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="979" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1864139" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1864139" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.2857143" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.32426304" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32918552" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2585034" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2585034" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -462,20 +530,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/include/boost/test/impl/test_tools.ipp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="182" column="9" selection-start-line="182" selection-start-column="9" selection-end-line="182" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/end2end/soltest/accessor_for_state_variable.soltest">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/contracts/end2end/soltest/accessor_for_const_state_variable.soltest">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -593,27 +647,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/CompilerStack.h" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/interface/CompilerStack.cpp" />
-    <entry file="file://$PROJECT_DIR$/libsoltesting/interpreter/AstChecker.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/soltest/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
           <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#800#848#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -687,26 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="200" selection-start-line="200" selection-end-line="200" />
-          <folding>
-            <element signature="e#745#767#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="149" column="11" selection-start-line="149" selection-start-column="11" selection-end-line="149" selection-end-column="11" />
-          <folding>
-            <element signature="e#743#763#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -788,6 +805,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
           <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="149" column="11" selection-start-line="149" selection-start-column="11" selection-end-line="149" selection-end-column="11" />
+          <folding>
+            <element signature="e#743#763#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/interpreter/AstChecker.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="85" column="26" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
+          <folding>
+            <element signature="e#800#848#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/interpreter/Interpreter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="183" column="49" selection-start-line="183" selection-start-column="49" selection-end-line="183" selection-end-column="49" />
+          <folding>
+            <element signature="e#745#767#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/interpreter/Interpreter.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="39" column="51" lean-forward="true" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
+          <folding>
+            <element signature="e#806#838#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

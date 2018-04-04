@@ -32,6 +32,7 @@
 #include <memory>
 #include <string>
 #include <libsoltesting/interpreter/AstChecker.h>
+#include <libsoltesting/interpreter/Interpreter.h>
 
 namespace soltest
 {
@@ -175,12 +176,14 @@ void Testcases::executeTestcase(std::string const &_testcase)
 	{
 		try
 		{
-			dev::solidity::SourceUnit const &testcasesAST = m_compiler->ast(m_testContractFileName);
-			(void) testcasesAST;
+			dev::solidity::SourceUnit const &sourceUnit = m_compiler->ast(m_testContractFileName);
+			soltest::interpeter::Interpreter interpreter(sourceUnit);
 
-			std::string testcaseFunctionName("test_" + normalize(_testcase));
-//			std::cout << testcaseFunctionName << std::endl;
-			(void) testcaseFunctionName;
+			interpreter.run("test_" + normalize(_testcase));
+
+			Poco::Mutex::ScopedLock lock(m_mutex);
+			for (auto &assertion : interpreter.assertions())
+				m_assertions[m_filename].push_back(assertion);
 		}
 		catch (...)
 		{
