@@ -37,11 +37,12 @@
 #include <map>
 #include <memory>
 #include <mutex>
+#include <thread>
 
 namespace soltest
 {
 
-class Soltest
+class Soltest : public boost::noncopyable
 {
 public:
 	struct Error
@@ -55,7 +56,9 @@ public:
 	typedef std::map<dev::solidity::Error::Type, dev::solidity::ErrorList> CompilerErrors;
 	typedef std::map<dev::solidity::Error::Type, std::vector<Error::Ptr>> SoltestErrors;
 
-	Soltest();
+	Soltest(unsigned int threads = std::thread::hardware_concurrency());
+
+	explicit Soltest(std::map<std::string, std::string> const& _soliditySources, unsigned int threads /* = std::thread::hardware_concurrency();*/);
 
 	bool parseCommandLineArguments(int argc, char** argv);
 
@@ -103,9 +106,17 @@ public:
 		return m_contracts;
 	}
 
-	std::map<std::string, std::map<std::string, std::string>> const& soltests() const
+	std::map<std::string, std::map<std::string, std::string>> soltests() const
 	{
 		return m_soltests;
+	};
+
+	std::map<std::string, std::string> soltests(std::string const& _sourceName) const
+	{
+		auto f = m_soltests.find(_sourceName);
+		if (f != m_soltests.end())
+			return f->second;
+		return {};
 	};
 
 	int soltestLine(std::string const& soltestFile, std::string const& testcase) const
@@ -155,6 +166,10 @@ public:
 	unsigned int threads()
 	{
 		return m_threads;
+	}
+
+	void setThreads(unsigned int threads) {
+		m_threads = threads;
 	}
 
 	std::string testcaseName(std::string const& _filename, int _line) const;

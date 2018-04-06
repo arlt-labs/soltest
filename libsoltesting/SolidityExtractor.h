@@ -40,7 +40,7 @@ public:
 		return m_filename;
 	}
 
-	size_t line(const std::string& testcase)
+	int line(const std::string& testcase)
 	{
 		return m_lines[testcase];
 	}
@@ -54,7 +54,7 @@ private:
 	bool visit(dev::solidity::FunctionDefinition const& _node) override;
 
 	std::map<std::string, std::string> m_content;
-	std::map<std::string, size_t> m_lines;
+	std::map<std::string, int> m_lines;
 	std::string m_filename;
 	std::string m_source;
 	dev::solidity::Scanner const& m_scanner;

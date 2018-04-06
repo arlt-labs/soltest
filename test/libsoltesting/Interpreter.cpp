@@ -14,17 +14,18 @@
 	You should have received a copy of the GNU General Public License
 	along with soltest.  If not, see <http://www.gnu.org/licenses/>.
 */
-/** @file Dummy.cpp
+/** @file Interpreter.cpp
  * @author Alexander Arlt <alexander.arlt@arlt-labs.com>
  * @date 2018
- * Dummy Unit tests.
+ * Interpreter tests.
  */
-
-#include <boost/test/unit_test.hpp>
 
 #include <string>
 
-BOOST_AUTO_TEST_CASE(smoke_test)
+#include <boost/test/unit_test.hpp>
+
+#include <libsoltesting/Soltest.h>
+
+BOOST_AUTO_TEST_CASE(interpreter_smoke_test)
 {
-	BOOST_REQUIRE(true);
 }

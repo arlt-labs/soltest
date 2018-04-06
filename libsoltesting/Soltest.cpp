@@ -36,12 +36,13 @@
 namespace soltest
 {
 
-Soltest::Soltest()
+Soltest::Soltest(unsigned int threads /* = std::thread::hardware_concurrency();*/)
 {
-	m_threads = std::thread::hardware_concurrency();
+	m_threads = threads;
 	m_solidityThreads = 1;
 	if (m_threads == 0)
 		m_threads = 1;
+	std::cout << "m_threads=" << m_threads << " m_solidityThreads=" << m_solidityThreads << std::endl;
 	m_scannerFromSourceName =
 		[&](std::string const& _sourceName) -> dev::solidity::Scanner const&
 		{
@@ -50,6 +51,17 @@ Soltest::Soltest()
 			else
 				return m_compiler.scanner(_sourceName);
 		};
+	addSolidityFile("Soltest.sol", m_environment.contracts());
+}
+
+Soltest::Soltest(std::map<std::string, std::string> const& _soliditySources, unsigned int threads /* = std::thread::hardware_concurrency();*/) : Soltest(threads)
+{
+	for (auto const& a : _soliditySources)
+		addSolidityFile(a.first, a.second);
+	initialize();
+	loadContracts();
+	loadTestcases();
+	generateTestcases();
 }
 
 bool Soltest::parseCommandLineArguments(int argc, char** argv)
@@ -122,6 +134,8 @@ bool Soltest::parseCommandLineArguments(int argc, char** argv)
 
 bool Soltest::initialize()
 {
+	std::cout << __PRETTY_FUNCTION__ << " - m_threads=" << m_threads << " m_solidityThreads=" << m_solidityThreads
+			  << std::endl;
 	m_solidityThreadPool = new Poco::ThreadPool(m_solidityThreads);
 	m_testcaseThreadPool = new Poco::ThreadPool(m_threads);
 
@@ -478,7 +492,7 @@ bool Soltest::generateTestcases()
 	for (auto& testcase : m_testcases)
 		errors += testcase.second->errors().size();
 
-	return errors > 0;
+	return errors == 0;
 }
 
 void Soltest::runTestcases()

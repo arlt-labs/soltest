@@ -116,10 +116,10 @@ int main(int argc, char* argv[])
 			traverse_test_tree(boost::unit_test::framework::master_test_suite().p_id, counter, true);
 
 			std::cout << "Preparing " << counter.count - 1 << " test cases..." << std::flush;
-			bool generationFailed = g_testSuiteGenerator->generateTestcases();
+			bool generationSuccess = g_testSuiteGenerator->generateTestcases();
 			std::cout << "\rPreparing " << counter.count - 1 << " test cases... done" << std::endl;
 
-			if (generationFailed)
+			if (!generationSuccess)
 			{
 				std::map<std::string, soltest::Testcases::Ptr> testcases = g_soltest->testcases();
 				for (auto& testcase : testcases)
