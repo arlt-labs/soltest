@@ -1,21 +1,44 @@
-//
-// Created by Alexander Arlt on 04.04.18.
-//
+/*
+	This file is part of soltest.
+
+	soltest is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	soltest is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with soltest.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/** @file Stack.h
+ * @author Alexander Arlt <alexander.arlt@arlt-labs.com>
+ * @date 2018
+ */
 
 #ifndef SOLTEST_STACK_H
 #define SOLTEST_STACK_H
 
+#include <vector>
+
 #include <boost/variant.hpp>
+
 #include <libsolidity/parsing/Token.h>
 
-#include <vector>
+#include "State.h"
 
 namespace soltest
 {
 namespace interpreter
 {
 
-struct EmptyType {};
+struct EmptyType
+{
+};
+
 struct Identifier
 {
 	std::string name;
@@ -24,13 +47,16 @@ struct Identifier
 
 struct Literal
 {
-	explicit Literal(dev::solidity::Token::Value& _value) : value(_value) {}
+	explicit Literal(dev::solidity::Token::Value& _value) : value(_value)
+	{}
+
 	dev::solidity::Token::Value value;
 };
 
 typedef boost::variant<
 	EmptyType,
-	Literal, Identifier
+	Literal, Identifier,
+	StateType
 > StackType;
 
 class Stack: public std::vector<StackType>

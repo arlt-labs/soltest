@@ -34,6 +34,8 @@
 #include <libsoltesting/interpreter/AstChecker.h>
 #include <libsoltesting/interpreter/Interpreter.h>
 
+#include <libsoltesting/interpreter/executor/EvmExecutor.h>
+
 namespace soltest
 {
 
@@ -178,6 +180,7 @@ void Testcases::executeTestcase(std::string const& _testcase)
 		try
 		{
 			soltest::interpreter::Interpreter interpreter(m_filename, m_testContractFileName, *m_compiler);
+			interpreter.setExecutor(std::make_shared<soltest::interpreter::EvmExecutor>());
 			interpreter.run(_testcase);
 
 			Poco::Mutex::ScopedLock lock(m_mutex);

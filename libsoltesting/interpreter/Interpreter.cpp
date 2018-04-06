@@ -21,13 +21,16 @@
 
 #include "Interpreter.h"
 
-#include "FunctionFinder.h"
+#include <memory>
+
+#include <boost/algorithm/string/trim.hpp>
 
 #include <libsolidity/ast/ASTPrinter.h>
 #include <libsolidity/parsing/Scanner.h>
+
 #include <libsoltesting/Testcases.h>
-#include <boost/algorithm/string/trim.hpp>
-#include <memory>
+
+#include "FunctionFinder.h"
 
 namespace soltest
 {
@@ -42,20 +45,21 @@ Interpreter::Interpreter(std::string const& _filename,
 	  m_compilerStack(_compilerStack),
 	  m_sourceUnit(m_compilerStack.ast(m_contractFilename))
 {
+	m_state["soltest"] = m_soltestContract;
 }
 
 void Interpreter::run(std::string const& _testcase)
 {
 	m_testcase = _testcase;
-	m_testcaseNormalized = soltest::Testcases::normalize(_testcase);
+	m_normalizedTestcase = soltest::Testcases::normalize(_testcase);
 
-	FunctionFinder functionFinder(m_sourceUnit, m_testcaseNormalized);
+	FunctionFinder functionFinder(m_sourceUnit, m_normalizedTestcase);
 	dev::solidity::FunctionDefinition const* functionToExecute = functionFinder.functionDefinition();
 	if (functionToExecute == nullptr)
 	{
 		Testcases::Assertion::Ptr assertion(std::make_shared<Testcases::Assertion>(false));
 		assertion->testcase = _testcase;
-		assertion->what = "Internal function '" + m_testcaseNormalized + "' was not found. This should never happen!";
+		assertion->what = "Internal function '" + m_normalizedTestcase + "' was not found. This should never happen!";
 		m_assertions.push_back(assertion);
 	}
 	else
