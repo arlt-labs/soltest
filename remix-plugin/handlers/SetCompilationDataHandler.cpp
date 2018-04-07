@@ -63,16 +63,11 @@ void SetCompilationDataHandler::handleRequest(Poco::Net::HTTPServerRequest& requ
 		}
 	}
 
-	soltest.initialize();
-	bool loadContractsResult(soltest.loadContracts());
-	bool loadTestcasesResult(soltest.loadTestcases());
+	soltest.load();
 
 	std::set<std::string> warningSet;
 	std::set<std::string> errorSet;
 	std::stringstream stream;
-
-	std::cout << "loading contracts returned " << loadContractsResult << std::endl;
-	std::cout << "loading testcases returned " << loadTestcasesResult << std::endl;
 
 	for (auto& errors : soltest.compilerErrors())
 		if (errors.first == dev::solidity::Error::Type::Warning)

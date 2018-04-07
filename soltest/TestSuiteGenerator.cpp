@@ -38,9 +38,6 @@ TestSuiteGenerator::TestSuiteGenerator(soltest::Soltest& _soltest,
 
 void TestSuiteGenerator::load(bool _printWarnings)
 {
-	m_soltest.loadContracts();
-	m_soltest.loadTestcases();
-
 	if (!checkForWarningsAndErrors(_printWarnings))
 	{
 		static std::vector<std::shared_ptr<std::string>> strings;
@@ -116,11 +113,6 @@ void TestSuiteGenerator::processTestcaseResults(std::string const& _soltestFile,
 								  m_soltest.soltestLine(_soltestFile, _testcase),
 								  (std::string("\n    ") + boost::trim_copy(messages.str())).c_str());
 	}
-}
-
-bool TestSuiteGenerator::generateTestcases()
-{
-	return m_soltest.generateTestcases();
 }
 
 void TestSuiteGenerator::runTestcases()

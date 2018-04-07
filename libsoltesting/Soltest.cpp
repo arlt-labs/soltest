@@ -36,13 +36,11 @@
 namespace soltest
 {
 
-Soltest::Soltest(unsigned int threads /* = std::thread::hardware_concurrency();*/)
+Soltest::Soltest(unsigned int threads /*= 1*/, unsigned int solidityThreads /*= 1*/)
 {
-	m_threads = threads;
-	m_solidityThreads = 1;
-	if (m_threads == 0)
-		m_threads = 1;
-	std::cout << "m_threads=" << m_threads << " m_solidityThreads=" << m_solidityThreads << std::endl;
+	setThreads(threads);
+	setSolidityThreads(solidityThreads);
+
 	m_scannerFromSourceName =
 		[&](std::string const& _sourceName) -> dev::solidity::Scanner const&
 		{
@@ -54,93 +52,19 @@ Soltest::Soltest(unsigned int threads /* = std::thread::hardware_concurrency();*
 	addSolidityFile("Soltest.sol", m_environment.contracts());
 }
 
-Soltest::Soltest(std::map<std::string, std::string> const& _soliditySources, unsigned int threads /* = std::thread::hardware_concurrency();*/) : Soltest(threads)
+bool Soltest::load()
 {
-	for (auto const& a : _soliditySources)
-		addSolidityFile(a.first, a.second);
-	initialize();
-	loadContracts();
-	loadTestcases();
-	generateTestcases();
-}
-
-bool Soltest::parseCommandLineArguments(int argc, char** argv)
-{
-	for (auto i = 0; i < argc; i++)
-	{
-		std::string argument(argv[i]);
-		std::string absolutePath(argument);
-		if (!boost::filesystem::path(argument).is_absolute())
-			absolutePath =
-				boost::filesystem::current_path().string() + boost::filesystem::path::preferred_separator + argument;
-		if (argument == "--ipcpath")
-		{
-			m_options[argument] = argv[i + 1];
-			m_ipcpath = argv[i + 1];
-			++i;
-		}
-		else if (argument == "--solidity-threads")
-		{
-			m_options[argument] = argv[i + 1];
-			try
-			{
-				m_solidityThreads = boost::lexical_cast<unsigned int>(argv[i + 1]);
-				if (m_solidityThreads > 64)
-					m_solidityThreads = std::thread::hardware_concurrency();
-			}
-			catch (...)
-			{
-				m_solidityThreads = 1;
-			}
-			if (m_solidityThreads == 0)
-				m_solidityThreads = 1;
-			++i;
-		}
-		else if (argument == "--threads")
-		{
-			m_options[argument] = argv[i + 1];
-			try
-			{
-				m_threads = boost::lexical_cast<unsigned int>(argv[i + 1]);
-				if (m_threads > 64)
-					m_threads = std::thread::hardware_concurrency();
-			}
-			catch (...)
-			{
-				m_threads = std::thread::hardware_concurrency();
-			}
-			if (m_threads == 0)
-				m_threads = 1;
-			++i;
-		}
-		else if (boost::starts_with(argument, "-"))
-			m_options[argument] = "yes";
-		else if (boost::filesystem::exists(absolutePath))
-			if (boost::filesystem::extension(absolutePath) == ".abi")
-				addAbiFile(absolutePath);
-		if (boost::filesystem::extension(absolutePath) == ".sol")
-			addSolidityFile(absolutePath);
-		else if (boost::filesystem::extension(absolutePath) == ".soltest")
-		{
-			std::string contractFile(absolutePath.substr(0, absolutePath.length() - 4));
-			addSoltestFile(absolutePath);
-			if (boost::filesystem::exists(contractFile))
-				addSolidityFile(contractFile);
-		}
-	}
-	addSolidityFile("Soltest.sol", m_environment.contracts());
-	return initialize();
+	return initialize() && loadContracts() && loadTestcases() && generateTestcases();
 }
 
 bool Soltest::initialize()
 {
-	std::cout << __PRETTY_FUNCTION__ << " - m_threads=" << m_threads << " m_solidityThreads=" << m_solidityThreads
-			  << std::endl;
 	m_solidityThreadPool = new Poco::ThreadPool(m_solidityThreads);
 	m_testcaseThreadPool = new Poco::ThreadPool(m_threads);
 
 	preloadContracts();
 	searchSoltestFiles();
+
 	return !m_solidityContents.empty() || !m_solidityTestContents.empty();
 }
 

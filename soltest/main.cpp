@@ -51,6 +51,7 @@ static soltest::Soltest* g_soltest;
 static soltest::TestSuiteGenerator* g_testSuiteGenerator;
 
 #ifdef BOOST_TEST_ALTERNATIVE_INIT_API
+
 bool soltest_init_unit_test_suite()
 #else
 test_suite *soltest_init_unit_test_suite(int argc, char **argv)
@@ -77,13 +78,81 @@ struct TestcaseCounter: public boost::unit_test::test_tree_visitor
 	TestcaseCounter() : count(0)
 	{
 	}
+
 	std::size_t count;
+
 	bool visit(test_unit const& unit) override
 	{
 		++count;
 		return test_tree_visitor::visit(unit);
 	}
 };
+
+void ParseCommandLineArguments(soltest::Soltest& soltest, int argc, char** argv)
+{
+	unsigned int threads;
+	unsigned int solidityThreads;
+	std::string ipcPath;
+	for (auto i = 0; i < argc; i++)
+	{
+		std::string argument(argv[i]);
+		std::string absolutePath(argument);
+		if (!boost::filesystem::path(argument).is_absolute())
+			absolutePath =
+				boost::filesystem::current_path().string() + boost::filesystem::path::preferred_separator + argument;
+		if (argument == "--ipcpath")
+		{
+			ipcPath = argv[i + 1];
+			++i;
+		}
+		else if (argument == "--solidity-threads")
+		{
+			try
+			{
+				solidityThreads = boost::lexical_cast<unsigned int>(argv[i + 1]);
+				if (solidityThreads > 64)
+					solidityThreads = std::thread::hardware_concurrency();
+			}
+			catch (...)
+			{
+				solidityThreads = 1;
+			}
+			if (solidityThreads == 0)
+				solidityThreads = 1;
+			soltest.setSolidityThreads(solidityThreads);
+			++i;
+		}
+		else if (argument == "--threads")
+		{
+			try
+			{
+				threads = boost::lexical_cast<unsigned int>(argv[i + 1]);
+				if (threads > 64)
+					threads = std::thread::hardware_concurrency();
+			}
+			catch (...)
+			{
+				threads = 1;
+			}
+			if (threads == 0)
+				threads = 1;
+			soltest.setThreads(threads);
+			++i;
+		}
+		else if (boost::filesystem::exists(absolutePath))
+			if (boost::filesystem::extension(absolutePath) == ".abi")
+				soltest.addAbiFile(absolutePath);
+		if (boost::filesystem::extension(absolutePath) == ".sol")
+			soltest.addSolidityFile(absolutePath);
+		else if (boost::filesystem::extension(absolutePath) == ".soltest")
+		{
+			std::string contractFile(absolutePath.substr(0, absolutePath.length() - 4));
+			soltest.addSoltestFile(absolutePath);
+			if (boost::filesystem::exists(contractFile))
+				soltest.addSolidityFile(contractFile);
+		}
+	}
+}
 
 int main(int argc, char* argv[])
 {
@@ -95,9 +164,18 @@ int main(int argc, char* argv[])
 	static soltest::Soltest soltest;
 	g_soltest = &soltest;
 
-	if (!soltest.parseCommandLineArguments(argc, argv))
+	ParseCommandLineArguments(*g_soltest, argc, argv);
+
+	if (!soltest.load())
 	{
 		std::cout << "\rLoading test cases... error" << std::endl;
+		std::map<std::string, soltest::Testcases::Ptr> testcases = g_soltest->testcases();
+		for (auto& testcase : testcases)
+		{
+			std::vector<soltest::Testcases::Error::Ptr> const& errors = testcase.second->errors();
+			for (auto& error : errors)
+				std::cerr << error->what << std::endl << std::endl;
+		}
 		return boost::exit_failure;
 	}
 	std::cout << "\rLoading test cases... done" << std::endl;
@@ -116,37 +194,20 @@ int main(int argc, char* argv[])
 			traverse_test_tree(boost::unit_test::framework::master_test_suite().p_id, counter, true);
 
 			std::cout << "Preparing " << counter.count - 1 << " test cases..." << std::flush;
-			bool generationSuccess = g_testSuiteGenerator->generateTestcases();
 			std::cout << "\rPreparing " << counter.count - 1 << " test cases... done" << std::endl;
 
-			if (!generationSuccess)
-			{
-				std::map<std::string, soltest::Testcases::Ptr> testcases = g_soltest->testcases();
-				for (auto& testcase : testcases)
-				{
-					std::vector<soltest::Testcases::Error::Ptr> const& errors = testcase.second->errors();
-					for (auto& error : errors)
-					{
-						std::cerr << error->what << std::endl << std::endl;
-					}
-				}
-				return boost::exit_failure;
-			}
-			else
-			{
-				std::cout << "Running " << counter.count - 1 << " test cases using "
-						  << g_soltest->threads() << " threads..." << std::flush;
-				g_testSuiteGenerator->runTestcases();
+			std::cout << "Running " << counter.count - 1 << " test cases using "
+					  << g_soltest->threads() << " threads..." << std::flush;
+			g_testSuiteGenerator->runTestcases();
 
-				std::cout << "\rRunning " << counter.count - 1 << " test cases using "
-						  << g_soltest->threads() << " threads... done" << std::endl;
+			std::cout << "\rRunning " << counter.count - 1 << " test cases using "
+					  << g_soltest->threads() << " threads... done" << std::endl;
 
-				std::cout << "Processing results..." << std::endl;
+			std::cout << "Processing results..." << std::endl;
 
-				framework::run();
+			framework::run();
 
-				std::cout << "Processing results... done" << std::endl;
-			}
+			std::cout << "Processing results... done" << std::endl;
 		}
 		else
 			return boost::exit_failure;

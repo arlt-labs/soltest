@@ -42,7 +42,7 @@
 namespace soltest
 {
 
-class Soltest : public boost::noncopyable
+class Soltest: public boost::noncopyable
 {
 public:
 	struct Error
@@ -56,33 +56,41 @@ public:
 	typedef std::map<dev::solidity::Error::Type, dev::solidity::ErrorList> CompilerErrors;
 	typedef std::map<dev::solidity::Error::Type, std::vector<Error::Ptr>> SoltestErrors;
 
-	Soltest(unsigned int threads = std::thread::hardware_concurrency());
+	Soltest(unsigned int threads = 1, unsigned int solidityThreads = 1);
 
-	explicit Soltest(std::map<std::string, std::string> const& _soliditySources, unsigned int threads /* = std::thread::hardware_concurrency();*/);
+	bool load();
 
-	bool parseCommandLineArguments(int argc, char** argv);
-
-	bool initialize();
+	void addSolidityFiles(std::map<std::string, std::string> const& _sources)
+	{
+		for (auto const& a : _sources)
+			addSolidityFile(a.first, a.second);
+	}
 
 	void addSolidityFile(std::string const& solidityFile, std::string const& solidityFileContent);
 
 	bool addSolidityFile(std::string const& solidityFile);
 
+	void addSoltestFiles(std::map<std::string, std::string> const& _sources)
+	{
+		for (auto const& a : _sources)
+			addSoltestFile(a.first, a.second);
+	}
+
 	void addSoltestFile(std::string const& soltestFile, std::string const& soltestFileContent);
 
 	bool addSoltestFile(std::string const& soltestFile);
 
-	bool addAbiFile(std::string const& abiFile);
+	void addAbiFiles(std::map<std::string, std::pair<std::string, std::string>> const& _sources)
+	{
+		for (auto const& a : _sources)
+			addAbiFile(a.first, a.second.first, a.second.second);
+	}
 
 	void addAbiFile(std::string const& abiFile, std::string const& abiFileContent, std::string const& binFileContent);
 
+	bool addAbiFile(std::string const& abiFile);
+
 	void searchSoltestFiles();
-
-	bool loadContracts();
-
-	bool loadTestcases();
-
-	bool generateTestcases();
 
 	void runTestcases();
 
@@ -126,9 +134,7 @@ public:
 		{
 			auto line = file->second.find(testcase);
 			if (line != file->second.end())
-			{
 				return line->second;
-			}
 		}
 		return 0;
 	}
@@ -163,13 +169,28 @@ public:
 		return "";
 	}
 
+	unsigned int solidityThreads()
+	{
+		return m_solidityThreads;
+	}
+
+	void setSolidityThreads(unsigned int threads)
+	{
+		m_solidityThreads = threads;
+		if (m_solidityThreads == 0)
+			m_solidityThreads = 1;
+	}
+
 	unsigned int threads()
 	{
 		return m_threads;
 	}
 
-	void setThreads(unsigned int threads) {
+	void setThreads(unsigned int threads)
+	{
 		m_threads = threads;
+		if (m_threads == 0)
+			m_threads = 1;
 	}
 
 	std::string testcaseName(std::string const& _filename, int _line) const;
@@ -183,13 +204,17 @@ public:
 private:
 	void preloadContracts();
 
+	bool initialize();
+
+	bool loadContracts();
+
+	bool loadTestcases();
+
+	bool generateTestcases();
+
 	bool parseSoltest(uint32_t _line, std::string const& _filename, std::string const& _content);
 
 	void parseSoltest(SolidityExtractor& _extractor);
-
-	std::map<std::string, std::string> m_options;
-
-	std::string m_ipcpath;
 
 	unsigned int m_threads;
 	unsigned int m_solidityThreads;

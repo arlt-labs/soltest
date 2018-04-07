@@ -26,31 +26,7 @@
 
 #include <libsoltesting/Soltest.h>
 
-BOOST_AUTO_TEST_CASE(soltest_embedded_smoke_test_1)
-{
-	soltest::Soltest soltest(1);
-	soltest.addSolidityFile(
-		"Contract.sol", R"(
-pragma solidity ^0.4.0;
-
-contract Contract {
-    /// @ext:soltest
-    /// {assert-false}
-    ///     assert(false);
-    function add(uint16 a) public returns (uint16 result)  {
-        return a;
-    }
-}
-)");
-	BOOST_REQUIRE(soltest.initialize());
-	BOOST_REQUIRE(soltest.loadContracts());
-	BOOST_REQUIRE(soltest.loadTestcases());
-	BOOST_REQUIRE(soltest.generateTestcases());
-	BOOST_REQUIRE(soltest.contracts().size() == 1);
-	BOOST_REQUIRE(soltest.soltests("Contract.sol").size() == 1);
-}
-
-BOOST_AUTO_TEST_CASE(soltest_embedded_smoke_test_2)
+BOOST_AUTO_TEST_CASE(soltest_embedded_smoke_test)
 {
 	std::map<std::string, std::string> sources{{"Contract.sol", R"(
 pragma solidity ^0.4.0;
@@ -66,7 +42,9 @@ contract Contract {
     }
 }
 )"}};
-	soltest::Soltest soltest(sources, 1);
+	soltest::Soltest soltest;
+	soltest.addSolidityFiles(sources);
+	BOOST_REQUIRE(soltest.load());
 	BOOST_REQUIRE(soltest.contracts().size() == 1);
 	BOOST_REQUIRE(soltest.soltests("Contract.sol").size() == 2);
 }

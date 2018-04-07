@@ -54,8 +54,6 @@ public:
 
 	void load(bool _printWarnings);
 
-	bool generateTestcases();
-
 	void runTestcases();
 
 	void processTestcaseResults(std::string const& _soltestFile, std::string const& _testcase);
