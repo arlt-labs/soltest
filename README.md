@@ -2,7 +2,7 @@
 
 A test-framework for smart-contracts.
 
-[![Join the chat at https://gitter.im/arlt-labs/soltest](https://badges.gitter.im/arlt-labs/soltest.svg)](https://gitter.im/arlt-labs/soltest) [![License](https://img.shields.io/github/license/aarlt/soltest.svg)](LICENSE.txt)
+[![License](https://img.shields.io/github/license/aarlt/soltest.svg)](LICENSE.txt) [![circleci](https://img.shields.io/circleci/project/github/arlt-labs/soltest/master.svg)](https://circleci.com/gh/arlt-labs/soltest/tree/master) [![codecov](https://codecov.io/gh/arlt-labs/soltest/branch/master/graph/badge.svg)](https://codecov.io/gh/arlt-labs/soltest) [![Join the chat at https://gitter.im/arlt-labs/soltest](https://badges.gitter.im/arlt-labs/soltest.svg)](https://gitter.im/arlt-labs/soltest)
 
 _Attention: `soltest` is still under development and not usable right now._
 
