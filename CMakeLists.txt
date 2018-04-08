@@ -69,7 +69,6 @@ include_directories(${CMAKE_BINARY_DIR}/solidity-git/src/solidity-git)
 include_directories(${CMAKE_BINARY_DIR}/solidity-git/src/solidity-git-build/deps/include)
 
 add_subdirectory(libsoltesting)
-
 if (TOOLS)
 	add_subdirectory(remix-plugin)
 	add_subdirectory(end2end-extractor)

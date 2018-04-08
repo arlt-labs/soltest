@@ -8,29 +8,98 @@ jobs:
           name: Install build dependencies
           command: |
             apt-get -qq update
-            apt-get -qy install ca-certificates libpoco-dev libleveldb-dev git-core cmake build-essential libboost-regex-dev libboost-filesystem-dev libboost-test-dev libboost-system-dev libboost-program-options-dev libz3-dev
+            apt-get -qy install curl ca-certificates clang lcov libpoco-dev libleveldb-dev git-core cmake build-essential libboost-regex-dev libboost-filesystem-dev libboost-test-dev libboost-system-dev libboost-program-options-dev libz3-dev
       - checkout
-      - restore_cache:
-          name: Restore cache
-          keys:
-            - build-{{ checksum "CMakeLists.txt" }}
       - run:
           name: Fix host authenticity for github.com
           command: |
             mkdir -p ~/.ssh/
             ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - restore_cache:
+          name: Restore cache (gnu)
+          keys:
+            - build-{{ checksum "CMakeLists.txt" }}
       - run:
-          name: Build
+          name: Build (gnu)
           command: |
             mkdir -p build
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
             make
+      - save_cache:
+          name: Save cache (gnu)
+          key: build-{{ checksum "CMakeLists.txt" }}
+          paths:
+            - ~/.hunter
+            - build/cpp-ethereum-git
+            - build/solidity-git
       - run:
-          name: Test
+          name: Cleanup Hunter (gnu)
+          command: |
+            rm -rf ~/.hunter
+      - restore_cache:
+          name: Restore cache (clang)
+          keys:
+            - build-clang-{{ checksum "CMakeLists.txt" }}
+      - run:
+          name: Build (clang)
+          command: |
+            mkdir -p build-clang
+            cd build-clang
+            CC=/usr/bin/clang CXX=/usr/bin/clang++ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
+            make
+      - save_cache:
+          name: Save cache (clang)
+          key: build-clang-{{ checksum "CMakeLists.txt" }}
+          paths:
+            - ~/.hunter
+            - build-clang/cpp-ethereum-git
+            - build-clang/solidity-git
+      - run:
+          name: Cleanup Hunter (clang)
+          command: |
+            rm -rf ~/.hunter
+      - run:
+          name: Testing (gnu)
           command: |
             mkdir -p build/test/report
             build/test/soltest-unittests --log_format=XML --logger=XML,all,build/test/report/results.xml --report_level=detailed
+      - restore_cache:
+          name: Restore cache (coverage)
+          keys:
+            - build-coverage-{{ checksum "CMakeLists.txt" }}
+      - run:
+          name: Build (coverage)
+          command: |
+            mkdir -p build-coverage
+            cd build-coverage
+            cmake .. -DCMAKE_BUILD_TYPE=DEBUG -DPROFILING=ON
+            make
+      - save_cache:
+          name: Save cache (coverage)
+          key: build-coverage-{{ checksum "CMakeLists.txt" }}
+          paths:
+            - ~/.hunter
+            - build-coverage/cpp-ethereum-git
+            - build-coverage/solidity-git
+      - run:
+          name: Cleanup Hunter (coverage)
+          command: |
+            rm -rf ~/.hunter
+      - run:
+          name: Testing (coverage)
+          command: |
+            mkdir -p build-coverage/test/report
+            build-coverage/test/soltest-unittests --log_format=XML --logger=XML,all,build/test/report/results.xml --report_level=detailed
+      - run:
+          name: Creating Coverage Reports
+          command: |
+            cd build-coverage
+            lcov --directory . --capture --output-file coverage.info # capture coverage info
+            lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
+            lcov --remove coverage.info 'test/*' --output-file coverage.info # filter out test-cases
+            lcov --list coverage.info #debug info
+            bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
       - store_artifacts:
           path: build/soltest/soltest
           destination: soltest
@@ -38,14 +107,7 @@ jobs:
           path: build/test/report
           destination: report
       - store_test_results:
-          path: report
-      - save_cache:
-          name: Save cache
-          key: build-{{ checksum "CMakeLists.txt" }}
-          paths:
-            - ~/.hunter
-            - build/cpp-ethereum-git
-            - build/solidity-git
+          path: build/test/report
       - persist_to_workspace:
           root: build
           paths:
