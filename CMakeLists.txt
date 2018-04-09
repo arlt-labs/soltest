@@ -81,5 +81,4 @@ endif ()
 if (TESTS)
 	add_subdirectory(test)
 endif ()
-
 add_subdirectory(soltest)
