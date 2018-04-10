@@ -2,45 +2,45 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="soltest" targetName="ExperimentalConfigure" />
-      <config projectName="soltest" targetName="ContinuousCoverage" />
-      <config projectName="soltest" targetName="cpp-ethereum-git-build" />
-      <config projectName="soltest" targetName="jsoncpp-project" />
-      <config projectName="soltest" targetName="ExperimentalBuild" />
-      <config projectName="soltest" targetName="ContinuousMemCheck" />
-      <config projectName="soltest" targetName="NightlyMemCheck" />
-      <config projectName="soltest" targetName="ExperimentalTest" />
-      <config projectName="soltest" targetName="remix-plugin" />
+      <config projectName="soltest" targetName="ContinuousConfigure" />
       <config projectName="soltest" targetName="NightlyTest" />
-      <config projectName="soltest" targetName="Continuous" />
-      <config projectName="soltest" targetName="NightlyCoverage" />
-      <config projectName="soltest" targetName="ContinuousSubmit" />
-      <config projectName="soltest" targetName="ExperimentalSubmit" />
-      <config projectName="soltest" targetName="NightlyConfigure" />
-      <config projectName="soltest" targetName="ContinuousBuild" />
-      <config projectName="soltest" targetName="NightlyMemoryCheck" />
-      <config projectName="soltest" targetName="NightlySubmit" />
+      <config projectName="soltest" targetName="ExperimentalTest" />
+      <config projectName="soltest" targetName="ContinuousStart" />
+      <config projectName="soltest" targetName="soltesting" />
+      <config projectName="soltest" targetName="ExperimentalCoverage" />
+      <config projectName="soltest" targetName="ExperimentalUpdate" />
       <config projectName="soltest" targetName="soltest" />
+      <config projectName="soltest" targetName="NightlyCoverage" />
+      <config projectName="soltest" targetName="Continuous" />
       <config projectName="soltest" targetName="ExperimentalStart" />
+      <config projectName="soltest" targetName="cpp-ethereum-git" />
+      <config projectName="soltest" targetName="ContinuousCoverage" />
+      <config projectName="soltest" targetName="Experimental" />
+      <config projectName="soltest" targetName="NightlyConfigure" />
+      <config projectName="soltest" targetName="ExperimentalBuild" />
+      <config projectName="soltest" targetName="soltest-unittests" />
+      <config projectName="soltest" targetName="ContinuousTest" />
+      <config projectName="soltest" targetName="ExperimentalSubmit" />
       <config projectName="soltest" targetName="ContinuousUpdate" />
       <config projectName="soltest" targetName="NightlyBuild" />
-      <config projectName="soltest" targetName="Experimental" />
-      <config projectName="soltest" targetName="ExperimentalCoverage" />
-      <config projectName="soltest" targetName="ExperimentalMemCheck" />
-      <config projectName="soltest" targetName="Nightly" />
-      <config projectName="soltest" targetName="soltesting" />
-      <config projectName="soltest" targetName="solidity-git-build" />
-      <config projectName="soltest" targetName="soltest-unittests" />
-      <config projectName="soltest" targetName="ContinuousConfigure" />
-      <config projectName="soltest" targetName="soltest_BuildInfo.h" />
-      <config projectName="soltest" targetName="ContinuousTest" />
-      <config projectName="soltest" targetName="ContinuousStart" />
-      <config projectName="soltest" targetName="NightlyStart" />
-      <config projectName="soltest" targetName="cpp-ethereum-git" />
-      <config projectName="soltest" targetName="solidity-git" />
-      <config projectName="soltest" targetName="ExperimentalUpdate" />
-      <config projectName="soltest" targetName="end2end-extractor" />
       <config projectName="soltest" targetName="NightlyUpdate" />
+      <config projectName="soltest" targetName="remix-plugin" />
+      <config projectName="soltest" targetName="ExperimentalConfigure" />
+      <config projectName="soltest" targetName="ContinuousBuild" />
+      <config projectName="soltest" targetName="NightlyMemoryCheck" />
+      <config projectName="soltest" targetName="jsoncpp-project" />
+      <config projectName="soltest" targetName="NightlyStart" />
+      <config projectName="soltest" targetName="end2end-extractor" />
+      <config projectName="soltest" targetName="NightlyMemCheck" />
+      <config projectName="soltest" targetName="solidity-git" />
+      <config projectName="soltest" targetName="ContinuousSubmit" />
+      <config projectName="soltest" targetName="Nightly" />
+      <config projectName="soltest" targetName="cpp-ethereum-git-build" />
+      <config projectName="soltest" targetName="solidity-git-build" />
+      <config projectName="soltest" targetName="ExperimentalMemCheck" />
+      <config projectName="soltest" targetName="NightlySubmit" />
+      <config projectName="soltest" targetName="ContinuousMemCheck" />
+      <config projectName="soltest" targetName="soltest_BuildInfo.h" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -50,7 +50,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="693c209a-fbdb-4c9f-98c2-e9af5a9ff988" name="Default" comment="Basic loading of .abi files and corresponding .bin files implemented.">
-      <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/Raw.bin-runtime" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/Raw.abi" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/Raw.abi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/Raw.bin" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/Raw.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/raw.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/raw.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libsoltesting/Soltest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/libsoltesting/Soltest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,17 +81,35 @@
       <file leaf-file-name="Loading.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="260" column="12" selection-start-line="260" selection-start-column="12" selection-end-line="260" selection-end-column="12" />
+            <state relative-caret-position="295">
+              <caret line="298" column="28" selection-start-line="298" selection-start-column="28" selection-end-line="298" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="unit_test_log.ipp" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/include/boost/test/impl/unit_test_log.ipp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="297" selection-start-line="297" selection-end-line="297" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="basic_cstring.hpp" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/include/boost/test/utils/basic_cstring/basic_cstring.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="184" selection-start-line="184" selection-end-line="184" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="113" column="35" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
+            <state relative-caret-position="1065">
+              <caret line="71" column="29" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -99,17 +123,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EthOptions.cmake" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cmake/EthOptions.cmake">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-272" />
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="1200">
               <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
             </state>
           </provider>
@@ -118,35 +135,26 @@
       <file leaf-file-name="EthCompilerSettings.cmake" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cmake/EthCompilerSettings.cmake">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="3015">
               <caret line="201" selection-start-line="201" selection-end-line="201" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Interpreter.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/libsoltesting/Interpreter.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Soltest.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Soltest.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="63" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="168">
+              <caret line="60" column="98" selection-start-line="60" selection-start-column="98" selection-end-line="60" selection-end-column="98" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SetCompilationDataHandler.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/remix-plugin/handlers/SetCompilationDataHandler.cpp">
+      <file leaf-file-name="Testcases.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+            <state relative-caret-position="-824">
+              <caret line="46" column="46" lean-forward="true" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -249,13 +257,13 @@
         <option value="$PROJECT_DIR$/contracts/end2end/embedded/array_accessor.sol" />
         <option value="$PROJECT_DIR$/remix-plugin/handlers/SetCompilationDataHandler.cpp" />
         <option value="$PROJECT_DIR$/libsoltesting/Soltest.h" />
-        <option value="$PROJECT_DIR$/libsoltesting/Soltest.cpp" />
         <option value="$PROJECT_DIR$/test/libsoltesting/Soltest.cpp" />
-        <option value="$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp" />
         <option value="$PROJECT_DIR$/test/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cmake/EthCompilerSettings.cmake" />
         <option value="$PROJECT_DIR$/.circleci/config.yml" />
+        <option value="$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp" />
+        <option value="$PROJECT_DIR$/libsoltesting/Soltest.cpp" />
       </list>
     </option>
   </component>
@@ -282,16 +290,6 @@
             <path>
               <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
               <item name="soltest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="soltest" type="462c0819:PsiDirectoryNode" />
-              <item name=".circleci" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="soltest" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
@@ -514,6 +512,8 @@
       <workItem from="1523028119860" duration="1128000" />
       <workItem from="1523030354498" duration="26755000" />
       <workItem from="1523200686335" duration="6048000" />
+      <workItem from="1523357265443" duration="1017000" />
+      <workItem from="1523372851892" duration="1601000" />
     </task>
     <task id="LOCAL-00001" summary="remix-plugin: initial source loading implemented">
       <created>1520691439980</created>
@@ -572,18 +572,18 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268631000" />
+    <option name="totallyTimeSpent" value="271249000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18611111" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18611111" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="CMake" order="7" visible="true" weight="0.3230148" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.28667563" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.3230148" />
       <window_info anchor="right" id="LuaJ" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32839838" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.25841185" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -596,7 +596,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.28667563" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32839838" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,13 +615,32 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp</url>
+          <line>298</line>
+          <option name="timeStamp" value="271" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/libsoltesting/Soltest.cpp</url>
+          <line>257</line>
+          <option name="timeStamp" value="273" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="270" />
+      <option name="time" value="274" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4095">
+          <caret line="273" column="25" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/remix-plugin/handlers/StaticFileRequestHandler.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
@@ -754,13 +773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2540">
-          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libsoltesting/interpreter/executor/EvmExecutor.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -772,20 +784,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/boost/test/utils/basic_cstring/basic_cstring.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="184" selection-start-line="184" selection-end-line="184" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/boost/test/impl/unit_test_log.ipp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="297" selection-start-line="297" selection-end-line="297" />
         </state>
       </provider>
     </entry>
@@ -815,9 +813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2340">
           <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
-          <folding>
-            <element signature="e#755#786#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -832,13 +827,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2655">
           <caret line="177" selection-start-line="177" selection-end-line="177" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
         </state>
       </provider>
     </entry>
@@ -864,18 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="260" column="12" selection-start-line="260" selection-start-column="12" selection-end-line="260" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake/EthOptions.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -885,22 +861,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="1200">
           <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cmake/EthCompilerSettings.cmake">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="3015">
           <caret line="201" selection-start-line="201" selection-end-line="201" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="113" column="35" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
+        <state relative-caret-position="1065">
+          <caret line="71" column="29" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-824">
+          <caret line="46" column="46" lean-forward="true" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/boost/test/utils/basic_cstring/basic_cstring.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/boost/test/impl/unit_test_log.ipp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="297" selection-start-line="297" selection-end-line="297" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="298" column="28" selection-start-line="298" selection-start-column="28" selection-end-line="298" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="60" column="98" selection-start-line="60" selection-start-column="98" selection-end-line="60" selection-end-column="98" />
         </state>
       </provider>
     </entry>

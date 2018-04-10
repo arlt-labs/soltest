@@ -54,7 +54,11 @@ Soltest::Soltest(unsigned int threads /*= 1*/, unsigned int solidityThreads /*= 
 
 bool Soltest::load()
 {
-	return initialize() && loadContracts() && loadTestcases() && generateTestcases();
+	bool initializeResult(initialize());
+	bool loadContractsResult(loadContracts());
+	bool loadTestcasesResult(loadTestcases());
+	bool generateTestcasesResult(generateTestcases());
+	return initializeResult && loadContractsResult && loadContractsResult && loadTestcasesResult && generateTestcasesResult;
 }
 
 bool Soltest::initialize()

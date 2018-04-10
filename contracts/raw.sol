@@ -3,7 +3,7 @@ pragma solidity ^0.4.0;
 contract Raw {
     uint16 d;
     address owner;
-    function SimpleAssignment(uint16 a) public {
+    function Raw(uint16 a) public {
         owner = msg.sender;
         d = a;
     }
