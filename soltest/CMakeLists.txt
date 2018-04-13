@@ -3,6 +3,9 @@ file(GLOB_RECURSE headers "*.h")
 
 find_package(Threads)
 
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/../solidity-git/src/solidity-git)
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/../solidity-git/src/solidity-git-build/deps/include)
+
 link_directories(${CMAKE_CURRENT_BINARY_DIR}/../solidity-git/src/solidity-git-build/libsolc
 		${CMAKE_CURRENT_BINARY_DIR}/../solidity-git/src/solidity-git-build/libsolidity
 		${CMAKE_CURRENT_BINARY_DIR}/../solidity-git/src/solidity-git-build/liblll

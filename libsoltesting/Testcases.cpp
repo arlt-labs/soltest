@@ -24,6 +24,7 @@
 
 #include <libsolidity/interface/CompilerStack.h>
 #include <libsolidity/interface/SourceReferenceFormatter.h>
+#include <libdevcore/JSON.h>
 #include <libevmasm/SourceLocation.h>
 
 #include <boost/algorithm/string.hpp>
@@ -45,6 +46,79 @@ Testcases::Testcases(const soltest::Soltest* _soltest,
 {
 	std::map<std::string, std::string> solidityContents = m_soltest->solidityContents();
 	std::map<std::string, std::string> solidityTestContents = m_soltest->solidityTestContents();
+	std::map<std::string, std::string> solidityAbiContents;
+	std::map<std::string, std::pair<std::string, std::string>> abiContents = m_soltest->abiContents();
+
+	for (auto& abi : abiContents)
+	{
+		std::string abiFile(abi.first);
+		std::pair<std::string, std::string> abiContent = abi.second;
+
+		Json::Value interfaces;
+		if (dev::jsonParseStrict(abiContent.first, interfaces))
+		{
+			std::string abiContractName(boost::replace_all_copy(abiFile, ".abi", "ABI"));
+			std::string abiContractSolidityFilename(abiFile + ".sol");
+
+			std::stringstream abiContractContent;
+			abiContractContent << "pragma solidity ^0.4.0;" << std::endl << std::endl;
+			abiContractContent << "contract " << abiContractName << "{" << std::endl;
+			for (auto& interface : interfaces)
+			{
+				bool constant = interface["constant"].asBool();
+				(void)constant;
+				bool payable = interface["payable"].asBool();
+				(void)payable;
+				std::string name = interface["name"].asString();
+				std::string type = interface["type"].asString();
+				std::string stateMutability = interface["stateMutability"].asString();
+				std::vector<std::pair<std::string, std::string>> inputs;
+				std::vector<std::pair<std::string, std::string>> outputs;
+				for (auto& input : interface["inputs"])
+					inputs.emplace_back(input["name"].asString(), input["type"].asString());
+				for (auto& output : interface["outputs"])
+					outputs.emplace_back(std::make_pair(output["name"].asString(), output["type"].asString()));
+				if (type == "function")
+					abiContractContent << "    function " << name << "(";
+				else if (type == "constructor")
+					abiContractContent << "    function " << abiContractName << "(";
+				else
+				{
+
+				}
+				for (auto& input : inputs)
+				{
+					abiContractContent << input.second << " " << input.first;
+					if (input != *inputs.rbegin())
+						abiContractContent << ", ";
+				}
+				abiContractContent << ")" << std::endl;
+				abiContractContent << "        " << "public\n";
+				abiContractContent << "        " << ((stateMutability == "pure") ? "pure\n        " :
+													 (stateMutability == "payable") ? "payable\n        " : "");
+				if (!outputs.empty())
+				{
+					abiContractContent << "returns (";
+					for (auto& output : outputs)
+					{
+						abiContractContent << output.second << " " << output.first;
+						if (output != *outputs.rbegin())
+							abiContractContent << ", ";
+					}
+					abiContractContent << ")" << std::endl;
+				}
+				abiContractContent << "{ }" << std::endl;
+
+//				std::cout << "--" << std::endl;
+//				std::cout << dev::jsonPrettyPrint(interface) << std::endl;
+			}
+			abiContractContent << "}" << std::endl;
+
+//			std::cout << std::endl << abiContractSolidityFilename << std::endl << abiContractContent.str() << std::endl;
+
+			solidityAbiContents[abiContractSolidityFilename] = abiContractContent.str();
+		}
+	}
 
 	m_compiler = std::make_shared<dev::solidity::CompilerStack>(
 		[&](std::string const& import) -> dev::solidity::ReadCallback::Result
@@ -63,11 +137,14 @@ Testcases::Testcases(const soltest::Soltest* _soltest,
 
 			auto solidityContentsImport = solidityContents.find(realImport);
 			auto solidityTestContentsImport = solidityTestContents.find(realImport);
+			auto abiSolidityContentsImport = solidityAbiContents.find(realImport);
 
 			if (solidityContentsImport != solidityContents.end())
 				result.responseOrErrorMessage = solidityContentsImport->second;
 			else if (solidityTestContents.find(realImport) != solidityTestContents.end())
 				result.responseOrErrorMessage = solidityTestContentsImport->second;
+			else if (abiSolidityContentsImport != solidityAbiContents.end())
+				result.responseOrErrorMessage = abiSolidityContentsImport->second;
 			else
 				result.success = false;
 
@@ -103,6 +180,10 @@ Testcases::Testcases(const soltest::Soltest* _soltest,
 		testContractContent << "pragma solidity ^0.4.0;" << std::endl << std::endl;
 		testContractContent << "import '/virtual" << solidityFile << "';" << std::endl;
 		testContractContent << "import 'Soltest.sol';" << std::endl << std::endl;
+		for (auto& abi : abiContents)
+			testContractContent << "import '" << abi.first << ".sol';" << std::endl;
+		testContractContent << std::endl;
+
 		testContractContent << "contract " << m_testContractName << "Test is Soltest {" << std::endl;
 		for (auto& testcase : _testcases)
 		{

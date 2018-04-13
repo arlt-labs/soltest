@@ -274,10 +274,11 @@ pragma solidity ^0.4.0;
 contract Contract {
     /// @ext:soltest
     /// {assert-false}
-    ///     // Raw_ABI raw = new Raw_ABI(1);
+    ///     RawABI raw = new RawABI(1);
     ///     assert(false);
     /// {assert-true}
-    ///     // Raw_ABI raw = new Raw_ABI(2);
+    ///     RawABI raw = new RawABI(2);
+    ///     raw.add(1, 2);
     ///     assert(true);
     function add(uint16 a) public returns (uint16 result)  {
         return a;
@@ -300,6 +301,5 @@ contract Contract {
 	soltest.addAbiFiles(abis);
 	BOOST_REQUIRE(soltest.load());
 	BOOST_REQUIRE(soltest.contracts().size() == 1);
-	// BOOST_REQUIRE(soltest.contracts().size() == 2);
 	BOOST_REQUIRE(soltest.soltests("Contract.sol").size() == 2);
 }
