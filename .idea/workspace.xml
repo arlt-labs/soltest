@@ -2,45 +2,45 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="soltest" targetName="ContinuousConfigure" />
-      <config projectName="soltest" targetName="NightlyConfigure" />
-      <config projectName="soltest" targetName="ExperimentalTest" />
-      <config projectName="soltest" targetName="ContinuousSubmit" />
-      <config projectName="soltest" targetName="ExperimentalUpdate" />
-      <config projectName="soltest" targetName="ContinuousStart" />
-      <config projectName="soltest" targetName="soltesting" />
-      <config projectName="soltest" targetName="ExperimentalCoverage" />
-      <config projectName="soltest" targetName="NightlyBuild" />
-      <config projectName="soltest" targetName="soltest" />
-      <config projectName="soltest" targetName="NightlyCoverage" />
-      <config projectName="soltest" targetName="Continuous" />
-      <config projectName="soltest" targetName="ExperimentalStart" />
-      <config projectName="soltest" targetName="cpp-ethereum-git" />
-      <config projectName="soltest" targetName="ContinuousCoverage" />
-      <config projectName="soltest" targetName="NightlySubmit" />
-      <config projectName="soltest" targetName="soltest-unittests" />
-      <config projectName="soltest" targetName="Experimental" />
-      <config projectName="soltest" targetName="Nightly" />
-      <config projectName="soltest" targetName="ExperimentalSubmit" />
-      <config projectName="soltest" targetName="ContinuousUpdate" />
-      <config projectName="soltest" targetName="NightlyTest" />
-      <config projectName="soltest" targetName="NightlyUpdate" />
-      <config projectName="soltest" targetName="remix-plugin" />
       <config projectName="soltest" targetName="ExperimentalConfigure" />
-      <config projectName="soltest" targetName="ContinuousTest" />
-      <config projectName="soltest" targetName="ContinuousBuild" />
-      <config projectName="soltest" targetName="NightlyMemoryCheck" />
+      <config projectName="soltest" targetName="ContinuousCoverage" />
       <config projectName="soltest" targetName="jsoncpp-project" />
-      <config projectName="soltest" targetName="NightlyStart" />
-      <config projectName="soltest" targetName="end2end-extractor" />
-      <config projectName="soltest" targetName="solidity-git" />
       <config projectName="soltest" targetName="ExperimentalBuild" />
       <config projectName="soltest" targetName="cpp-ethereum-git-build" />
-      <config projectName="soltest" targetName="solidity-git-build" />
-      <config projectName="soltest" targetName="ExperimentalMemCheck" />
       <config projectName="soltest" targetName="NightlyMemCheck" />
       <config projectName="soltest" targetName="ContinuousMemCheck" />
+      <config projectName="soltest" targetName="ExperimentalTest" />
+      <config projectName="soltest" targetName="remix-plugin" />
+      <config projectName="soltest" targetName="NightlyTest" />
+      <config projectName="soltest" targetName="NightlyCoverage" />
+      <config projectName="soltest" targetName="Continuous" />
+      <config projectName="soltest" targetName="ContinuousSubmit" />
+      <config projectName="soltest" targetName="ExperimentalSubmit" />
+      <config projectName="soltest" targetName="NightlyConfigure" />
+      <config projectName="soltest" targetName="ContinuousBuild" />
+      <config projectName="soltest" targetName="NightlyMemoryCheck" />
+      <config projectName="soltest" targetName="NightlySubmit" />
+      <config projectName="soltest" targetName="soltest" />
+      <config projectName="soltest" targetName="ExperimentalStart" />
+      <config projectName="soltest" targetName="NightlyBuild" />
+      <config projectName="soltest" targetName="ContinuousUpdate" />
+      <config projectName="soltest" targetName="Experimental" />
+      <config projectName="soltest" targetName="ExperimentalCoverage" />
+      <config projectName="soltest" targetName="ExperimentalMemCheck" />
+      <config projectName="soltest" targetName="Nightly" />
+      <config projectName="soltest" targetName="soltesting" />
+      <config projectName="soltest" targetName="solidity-git-build" />
+      <config projectName="soltest" targetName="soltest-unittests" />
+      <config projectName="soltest" targetName="ContinuousConfigure" />
+      <config projectName="soltest" targetName="ContinuousTest" />
       <config projectName="soltest" targetName="soltest_BuildInfo.h" />
+      <config projectName="soltest" targetName="ContinuousStart" />
+      <config projectName="soltest" targetName="NightlyStart" />
+      <config projectName="soltest" targetName="cpp-ethereum-git" />
+      <config projectName="soltest" targetName="solidity-git" />
+      <config projectName="soltest" targetName="ExperimentalUpdate" />
+      <config projectName="soltest" targetName="end2end-extractor" />
+      <config projectName="soltest" targetName="NightlyUpdate" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -50,11 +50,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="693c209a-fbdb-4c9f-98c2-e9af5a9ff988" name="Default" comment="Basic loading of .abi files and corresponding .bin files implemented.">
+      <change afterPath="$PROJECT_DIR$/test/libsoltesting/soltest/interpreter/Assertion.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libsoltesting/Testcases.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/libsoltesting/Testcases.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soltest/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/soltest/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,13 +64,25 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Testcases.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Testcases.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3455">
-              <caret line="69" column="39" lean-forward="true" selection-start-line="69" selection-start-column="39" selection-end-line="69" selection-end-column="39" />
+            <state relative-caret-position="-421">
+              <caret line="347" selection-start-line="347" selection-end-line="347" />
               <folding>
                 <element signature="e#745#767#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Assertion.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/libsoltesting/soltest/interpreter/Assertion.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="78" selection-start-line="78" selection-end-line="78" />
+              <folding>
+                <element signature="e#761#778#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,8 +91,8 @@
       <file leaf-file-name="Loading.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="301" selection-start-line="301" selection-end-line="301" />
+            <state relative-caret-position="145">
+              <caret line="290" column="8" selection-end-line="305" />
             </state>
           </provider>
         </entry>
@@ -91,26 +100,8 @@
       <file leaf-file-name="Soltest.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="422" selection-start-line="422" selection-end-line="422" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scratch.json" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="652" column="4" selection-start-line="652" selection-start-column="4" selection-end-line="652" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="value.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git-build/deps/include/json/value.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="362" column="7" selection-start-line="362" selection-start-column="7" selection-end-line="362" selection-end-column="7" />
+            <state relative-caret-position="111">
+              <caret line="407" column="33" selection-start-line="407" selection-start-column="33" selection-end-line="407" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -169,7 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/libsoltesting/Task.h" />
         <option value="$PROJECT_DIR$/contracts/SimpleAssignment.soltest" />
         <option value="$PROJECT_DIR$/contracts/end2end/embedded/accessor_for_const_state_variable.sol" />
         <option value="$PROJECT_DIR$/contracts/Tests.test.sol" />
@@ -220,6 +210,7 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.json" />
         <option value="$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp" />
         <option value="$PROJECT_DIR$/libsoltesting/Testcases.cpp" />
+        <option value="$PROJECT_DIR$/test/libsoltesting/soltest/interpreter/Assertion.cpp" />
       </list>
     </option>
   </component>
@@ -260,11 +251,6 @@
             <path>
               <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
               <item name="soltest" type="462c0819:PsiDirectoryNode" />
-              <item name="soltest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
-              <item name="soltest" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -279,6 +265,14 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="libsoltesting" type="462c0819:PsiDirectoryNode" />
               <item name="soltest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="soltest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="soltest" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="libsoltesting" type="462c0819:PsiDirectoryNode" />
+              <item name="soltest" type="462c0819:PsiDirectoryNode" />
+              <item name="interpreter" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -468,7 +462,7 @@
       <workItem from="1523563102468" duration="89000" />
       <workItem from="1523563224764" duration="2372000" />
       <workItem from="1523622268364" duration="778000" />
-      <workItem from="1523623165989" duration="11171000" />
+      <workItem from="1523623165989" duration="17425000" />
     </task>
     <task id="LOCAL-00001" summary="remix-plugin: initial source loading implemented">
       <created>1520691439980</created>
@@ -527,20 +521,20 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="288928000" />
+    <option name="totallyTimeSpent" value="295182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18611111" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18611111" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.28667563" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.28667563" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.3230148" />
       <window_info anchor="right" id="LuaJ" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.41184387" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41184387" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -584,7 +578,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/solidity-git/src/solidity-git/libsolidity/parsing/Token.h" />
     <entry file="file:///usr/include/assert.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
@@ -854,24 +847,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/libsoltesting/Soltest.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="422" selection-start-line="422" selection-end-line="422" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="301" selection-start-line="301" selection-end-line="301" />
+        <state relative-caret-position="111">
+          <caret line="407" column="33" selection-start-line="407" selection-start-column="33" selection-end-line="407" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libsoltesting/Testcases.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3455">
-          <caret line="69" column="39" lean-forward="true" selection-start-line="69" selection-start-column="39" selection-end-line="69" selection-end-column="39" />
+        <state relative-caret-position="-421">
+          <caret line="347" selection-start-line="347" selection-end-line="347" />
           <folding>
             <element signature="e#745#767#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/libsoltesting/soltest/Loading.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="290" column="8" selection-end-line="305" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/libsoltesting/soltest/interpreter/Assertion.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
+          <folding>
+            <element signature="e#761#778#0" expanded="true" />
           </folding>
         </state>
       </provider>
